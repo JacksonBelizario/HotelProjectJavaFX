@@ -1,0 +1,79 @@
+.button {
+   -fx-font-family: 'Poppins', sans-serif;
+    -fx-background-color : #e6eaed;
+    /*-fx-text-fill : #e7e5e5;*/
+}
+.button:hover {
+    -fx-background-color : #DFE4E8;
+}
+.button:pressed, .button.active {
+    -fx-background-color : #D5DBE0;
+}
+
+.text {
+   -fx-font-family: 'Poppins', sans-serif;
+}
+
+.overview-number {
+   -fx-font-size: 38;
+   -fx-font-weight: bold;
+}
+
+.bold {
+   -fx-font-weight: bold;
+}
+
+.scroll-pane {
+    -fx-background-color: #FFF;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #D5DBE0;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: white;
+}
+
+.title {
+   -fx-font-family: 'Poppins', sans-serif;
+   -fx-font-size: 38;
+   -fx-font-weight: bold;
+}
+
+.subtitle {
+   -fx-font-family: 'Poppins', sans-serif;
+   -fx-font-size: 25;
+}
+
+.sidebar-text {
+   -fx-font-family: 'Poppins', sans-serif;
+   -fx-font-size: 16;
+}
+
+.list-item {
+    -fx-background-radius:  5px;
+    -fx-background-insets: 0px;
+}
+
+.list-item:hover {
+    -fx-background-color : #DFE4E8;
+}
