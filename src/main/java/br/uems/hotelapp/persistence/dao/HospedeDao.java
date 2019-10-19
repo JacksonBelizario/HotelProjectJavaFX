@@ -21,17 +21,17 @@ public class HospedeDao extends Dao implements AbstractDao<Hospede> {
 
     @Override
     public void save(Hospede hospede) {
-        executeInsideTransaction(entityManager -> entityManager.persist(hospede));
+        executeInsideTransaction(entityMan -> entityMan.persist(hospede));
     }
 
     @Override
     public void delete(Hospede hospede) {
-        executeInsideTransaction(entityManager -> entityManager.remove(hospede));
+        executeInsideTransaction(entityMan -> entityMan.remove(hospede));
     }
 
     @Override
     public void update(Hospede hospede) {
-        executeInsideTransaction(entityManager -> entityManager.merge(hospede));
+        executeInsideTransaction(entityMan -> entityMan.merge(hospede));
     }
 
     @Override

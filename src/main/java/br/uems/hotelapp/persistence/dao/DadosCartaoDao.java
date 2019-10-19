@@ -21,9 +21,7 @@ public class DadosCartaoDao extends Dao implements AbstractDao<DadosCartao> {
 
     @Override
     public void save(DadosCartao dadosCartao) {
-        executeInsideTransaction((EntityManager entityMan) -> {
-            entityMan.persist(dadosCartao);
-        });
+        executeInsideTransaction(entityMan -> entityMan.persist(dadosCartao));
     }
 
     @Override

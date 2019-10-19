@@ -20,17 +20,17 @@ public class FuncionarioDao extends Dao implements AbstractDao<Funcionario> {
 
     @Override
     public void save(Funcionario funcionario) {
-        executeInsideTransaction(entityManager -> entityManager.persist(funcionario));
+        executeInsideTransaction(entityMan -> entityMan.persist(funcionario));
     }
 
     @Override
     public void delete(Funcionario funcionario) {
-        executeInsideTransaction(entityManager -> entityManager.remove(funcionario));
+        executeInsideTransaction(entityMan -> entityMan.remove(funcionario));
     }
 
     @Override
     public void update(Funcionario funcionario) {
-        executeInsideTransaction(entityManager -> entityManager.merge(funcionario));
+        executeInsideTransaction(entityMan -> entityMan.merge(funcionario));
     }
 
     @Override

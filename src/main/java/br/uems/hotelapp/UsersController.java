@@ -31,7 +31,7 @@ public class UsersController implements Initializable {
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     
     @FXML
-    final private VBox pnListUsers = null;
+    private VBox pnListUsers;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,8 +73,7 @@ public class UsersController implements Initializable {
                     pnListUsers.getChildren().add(loader.load());
 
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
-//                    e.printStackTrace();
+                    e.printStackTrace();
                 }
         
             }
