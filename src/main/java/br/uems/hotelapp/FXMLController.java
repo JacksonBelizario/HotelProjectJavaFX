@@ -86,11 +86,11 @@ public class FXMLController implements Initializable {
 
     public void handleClicks(ActionEvent actionEvent) {
         btnOverview.getStyleClass().remove("active");
+        btnOrders.getStyleClass().remove("active");
         btnCustomers.getStyleClass().remove("active");
         btnMenus.getStyleClass().remove("active");
-        btnOrders.getStyleClass().remove("active");
-        btnRooms.getStyleClass().remove("active");
         btnUsers.getStyleClass().remove("active");
+        btnRooms.getStyleClass().remove("active");
         
         if (actionEvent.getSource() == btnOverview) {
             btnOverview.getStyleClass().add("active");
@@ -107,6 +107,15 @@ public class FXMLController implements Initializable {
         if (actionEvent.getSource() == btnCustomers) {
             initPlaneUsers();
         }
+        if (actionEvent.getSource() == btnMenus) {
+            btnMenus.getStyleClass().add("active");
+        }
+        if (actionEvent.getSource() == btnUsers) {
+            btnUsers.getStyleClass().add("active");
+        }
+        if (actionEvent.getSource() == btnRooms) {
+            btnRooms.getStyleClass().add("active");
+        }
     }
     
     public void initPlaneUsers() {
@@ -115,9 +124,9 @@ public class FXMLController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Users.fxml"));
                 pnlUsers = loader.load();
-                UsersController userController = loader.getController();
+//                UsersController userController = loader.getController();
                 
-                userController.dummyData();
+//                userController.fillEmployeeTable();
                 stackPane.getChildren().add(pnlUsers);
 //                dummyData(pnListUsers);
             } catch (IOException e) {

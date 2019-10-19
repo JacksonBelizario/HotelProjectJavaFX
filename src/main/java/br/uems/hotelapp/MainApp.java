@@ -1,5 +1,6 @@
 package br.uems.hotelapp;
 
+import br.uems.hotelapp.persistence.ConnectionFactory;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        ConnectionFactory.getEntityManager();
+        
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Home.fxml"));
         
         Parent root = loader.load();
