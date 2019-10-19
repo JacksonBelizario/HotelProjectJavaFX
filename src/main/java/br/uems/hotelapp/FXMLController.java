@@ -2,6 +2,7 @@ package br.uems.hotelapp;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -22,13 +24,16 @@ public class FXMLController implements Initializable {
     private Label label;
 
     @FXML
-    private VBox pnItems = null;
+    private StackPane stackPane;
+    
+    @FXML
+    private VBox pnItems = null, pnListUsers = null;
     
     @FXML
     private Button btnOverview, btnOrders, btnCustomers, btnMenus, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlCustomer, pnlOrders, pnlOverview, pnlMenus;
+    private Pane pnlCustomer, pnlOrders, pnlOverview, pnlMenus, pnlUsers;
     
     double x, y;
 
@@ -69,33 +74,11 @@ public class FXMLController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        final Node[] nodes = new Node[10];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
-
-                final int j = i;
-                nodes[i] = FXMLLoader.load(getClass().getResource("/fxml/Item.fxml"));
-
-                //give the items some effect
-
-//                nodes[i].setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent mouseEvent) {
-//                        nodes[j].setStyle("-fx-background-color : #DFE4E8");
-//                    }
-//                });
-//                nodes[i].setOnMouseExited(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent mouseEvent) {
-//                        nodes[j].setStyle("-fx-background-color : #FFFFFF");
-//                        
-//                    }
-//                });
-                
-                pnItems.getChildren().add(nodes[i]);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        
+        try {
+            dummyData(pnItems);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
@@ -122,16 +105,54 @@ public class FXMLController implements Initializable {
             pnlOrders.toFront();
         }
         if (actionEvent.getSource() == btnCustomers) {
-            btnCustomers.getStyleClass().add("active");
-            
-            pnlCustomer.setStyle("-fx-background-color : #FFFFFF");
-            pnlCustomer.toFront();
+            initPlaneUsers();
         }
-        if (actionEvent.getSource() == btnMenus) {
-            btnMenus.getStyleClass().add("active");
-            
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
+    }
+    
+    public void initPlaneUsers() {
+        btnCustomers.getStyleClass().add("active");
+        if (pnlUsers == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Users.fxml"));
+                pnlUsers = loader.load();
+                UsersController userController = loader.getController();
+                
+                userController.dummyData();
+                stackPane.getChildren().add(pnlUsers);
+//                dummyData(pnListUsers);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
         }
+        
+        pnlUsers.toFront();
+    }
+    
+    public void dummyData(Pane pane) throws IOException {
+        
+        final Node[] nodes = new Node[10];
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i] = FXMLLoader.load(getClass().getResource("/fxml/Item.fxml"));
+
+                //give the items some effect
+
+//                nodes[i].setOnMouseEntered(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent mouseEvent) {
+//                        nodes[j].setStyle("-fx-background-color : #DFE4E8");
+//                    }
+//                });
+//                nodes[i].setOnMouseExited(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent mouseEvent) {
+//                        nodes[j].setStyle("-fx-background-color : #FFFFFF");
+//                        
+//                    }
+//                });
+
+            pane.getChildren().add(nodes[i]);
+        }
+
     }
 }

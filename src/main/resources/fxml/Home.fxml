@@ -180,7 +180,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <StackPane prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;">
+            <StackPane fx:id="stackPane" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
                   <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
@@ -266,7 +266,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="232.0" prefHeight="286.0" prefWidth="765.0" stylesheets="@resources/style/Styles.css">
+                        <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="232.0" prefHeight="286.0" prefWidth="765.0" stylesheets="@../styles/Styles.css">
                            <content>
                               <VBox fx:id="pnItems" prefHeight="284.0" prefWidth="749.0" spacing="5.0" style="-fx-background-color: #FFFFFF;">
                                  <padding>
