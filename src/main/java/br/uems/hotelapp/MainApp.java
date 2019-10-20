@@ -1,8 +1,8 @@
 package br.uems.hotelapp;
 
+import static javafx.application.Application.launch;
 import br.uems.hotelapp.persistence.ConnectionFactory;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +13,22 @@ import javafx.stage.StageStyle;
 
 
 public class MainApp extends Application {
+    
+    
+    public static MainApp mainApp;
+    
+    public static MainApp getAppController() {
+        return mainApp;
+    }
+
+    private static void setAppController(MainApp mainApp) {
+        MainApp.mainApp = mainApp;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
+        MainApp.setAppController(this);
+        
         ConnectionFactory.getEntityManager();
         
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Home.fxml"));

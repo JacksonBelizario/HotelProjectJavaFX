@@ -10,8 +10,12 @@
     -fx-background-color : #D5DBE0;
 }
 
-.text {
+.text, JFXTextField {
    -fx-font-family: 'Poppins', sans-serif;
+}
+
+JFXTextField {
+   -fx-font-size: 14;
 }
 
 .overview-number {
@@ -76,4 +80,31 @@
 
 .list-item:hover {
     -fx-background-color : #DFE4E8;
+}
+
+JFXButton, JFXButton:hover {
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-font-size: 14;
+    -fx-display: inline-block;
+    -fx-font-weight: 400;
+    -fx-text-align: center;
+    -fx-white-space: nowrap;
+    -fx-vertical-align: middle;
+    -fx-user-select: none;
+    -fx-border: 1px solid transparent;
+    -fx-padding: 0.3em 1em 0.3em 1em;
+    -fx-line-height: 1.25;
+    -fx-border-radius: 0.25em;
+    -fx-background-radius: 0.25em;
+}
+
+JFXButton.btn-primary {
+    -fx-text-fill: #fff;
+    -fx-background-color: #5867dd;
+    -fx-border-color: #5867dd;
+}
+
+JFXButton.btn-primary:hover {
+    -fx-background-color: #384ad7;
+    -fx-border-color: #2e40d4;
 }

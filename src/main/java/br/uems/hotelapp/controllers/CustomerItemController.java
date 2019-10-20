@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uems.hotelapp;
+package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.entities.Hospede;
 import javafx.fxml.FXML;

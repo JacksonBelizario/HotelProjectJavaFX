@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uems.hotelapp;
+package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.entities.Funcionario;
-import java.net.URL;
 import java.text.NumberFormat;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

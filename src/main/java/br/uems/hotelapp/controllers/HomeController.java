@@ -1,11 +1,9 @@
-package br.uems.hotelapp;
+package br.uems.hotelapp.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +16,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class FXMLController implements Initializable {
+public class HomeController implements Initializable {
+    
+    
+    public static HomeController controller;
+    
+    public static HomeController getController() {
+        return controller;
+    }
+
+    private static void setController(HomeController controller) {
+        HomeController.controller = controller;
+    }
     
     @FXML
     private Label label;
@@ -33,7 +42,7 @@ public class FXMLController implements Initializable {
     private Button btnOverview, btnOrders, btnCustomers, btnMenus, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlOrders, pnlMenus, pnlRooms, pnlCustomers, pnlUsers;
+    private Pane pnlOverview, pnlOrders, pnlMenus, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm;
     
     double x, y;
 
@@ -74,7 +83,7 @@ public class FXMLController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        HomeController.setController(this);
         try {
             dummyData(pnItems);
         } catch (IOException e) {
@@ -138,6 +147,20 @@ public class FXMLController implements Initializable {
         pnlUsers.toFront();
     }
     
+    public void showUserForm() {
+        if (pnlUserForm == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/UserForm.fxml"));
+                pnlUserForm = userFormLoader.load();
+                stackPane.getChildren().add(pnlUserForm);
+            } catch (IOException e) {
+                return;
+            }
+        }
+        
+        pnlUserForm.toFront();
+    }
+    
     public void showPlaneCustomers() {
         if (pnlCustomers == null) {
             try {
@@ -145,6 +168,7 @@ public class FXMLController implements Initializable {
                 pnlCustomers = loader.load();
                 stackPane.getChildren().add(pnlCustomers);
             } catch (IOException e) {
+                return;
             }
         }
         
