@@ -17,27 +17,29 @@
       </Label>
       <HBox alignment="CENTER_LEFT" layoutX="42.0" layoutY="88.0" prefHeight="42.0" prefWidth="712.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label prefWidth="70.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Quarto" textFill="#0d0d0d">
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="317.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="185.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Nome" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Entrada" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="118.0" styleClass="bold" text="Endereço" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefWidth="91.0" styleClass="bold" text="Valor" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Cidade" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Estado" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Telefone" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefWidth="60.0" styleClass="bold" text="Status" textFill="#0d0d0d">
+            <Label prefWidth="85.0" styleClass="bold" text="Salário" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label prefWidth="60.0" styleClass="bold" text="#" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

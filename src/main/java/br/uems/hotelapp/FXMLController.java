@@ -27,13 +27,13 @@ public class FXMLController implements Initializable {
     private StackPane stackPane;
     
     @FXML
-    private VBox pnItems = null, pnListUsers = null;
+    private VBox pnItems;
     
     @FXML
     private Button btnOverview, btnOrders, btnCustomers, btnMenus, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlCustomer, pnlOrders, pnlOverview, pnlMenus, pnlUsers;
+    private Pane pnlOverview, pnlOrders, pnlCustomer, pnlMenus, pnlUsers;
     
     double x, y;
 
@@ -78,7 +78,6 @@ public class FXMLController implements Initializable {
         try {
             dummyData(pnItems);
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
@@ -105,13 +104,20 @@ public class FXMLController implements Initializable {
             pnlOrders.toFront();
         }
         if (actionEvent.getSource() == btnCustomers) {
-            initPlaneUsers();
+            btnCustomers.getStyleClass().add("active");
+            
+            pnlCustomer.setStyle("-fx-background-color : #FFFFFF");
+            pnlCustomer.toFront();
         }
         if (actionEvent.getSource() == btnMenus) {
             btnMenus.getStyleClass().add("active");
+            
+            pnlMenus.setStyle("-fx-background-color : #464F67");
+            pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnUsers) {
             btnUsers.getStyleClass().add("active");
+            initPlaneUsers();
         }
         if (actionEvent.getSource() == btnRooms) {
             btnRooms.getStyleClass().add("active");
@@ -119,14 +125,11 @@ public class FXMLController implements Initializable {
     }
     
     public void initPlaneUsers() {
-        btnCustomers.getStyleClass().add("active");
+        btnUsers.getStyleClass().add("active");
         if (pnlUsers == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Users.fxml"));
                 pnlUsers = loader.load();
-//                UsersController userController = loader.getController();
-                
-//                userController.fillEmployeeTable();
                 stackPane.getChildren().add(pnlUsers);
 //                dummyData(pnListUsers);
             } catch (IOException e) {

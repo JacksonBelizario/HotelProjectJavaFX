@@ -7,6 +7,7 @@ br\uems\hotelapp\UsersController.class
 br\uems\hotelapp\persistence\entities\DadosCartao.class
 br\uems\hotelapp\persistence\entities\AbstractEntity.class
 br\uems\hotelapp\persistence\dao\FuncionarioDao.class
+br\uems\hotelapp\UserItemController.class
 br\uems\hotelapp\FXMLController.class
 br\uems\hotelapp\persistence\dao\AbstractDao.class
 br\uems\hotelapp\persistence\dao\HospedeDao.class

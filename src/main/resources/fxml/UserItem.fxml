@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.UserItemController">
+    <children>
+        <Label fx:id="labelNome" prefHeight="17.0" prefWidth="185.0" text="Nome Funcionário" textFill="#393939">
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin></Label>
+        <Label fx:id="labelEnd" prefHeight="17.0" prefWidth="118.0" text="Endereço" textFill="#393939">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+      <Label fx:id="labelCidade" prefHeight="17.0" prefWidth="65.0" text="Cidade" textFill="#393939" />
+      <Label fx:id="labelEstado" prefHeight="17.0" prefWidth="65.0" text="Estado" textFill="#393939" />
+        <Label fx:id="labelTel" prefHeight="17.0" prefWidth="90.0" text="(67) 9999-9999" textFill="#393939">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+        <Label fx:id="labelSalario" prefHeight="17.0" prefWidth="85.0" text="R$ 1200,00" textFill="#393939">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Label>
+      <ImageView fx:id="btnEdit" fitHeight="15.0" fitWidth="15.0" onMousePressed="#onEdit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_edit_32px.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="btnDel" fitHeight="20.0" fitWidth="20.0" onMousePressed="#onRemove" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_delete_sign_32px.png" />
+         </image>
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+    </children>
+</HBox>

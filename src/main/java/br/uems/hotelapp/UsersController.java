@@ -27,9 +27,6 @@ import javafx.scene.layout.VBox;
  */
 public class UsersController implements Initializable {
     
-    NumberFormat numberFormat = NumberFormat.getNumberInstance();
-    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    
     @FXML
     private VBox pnListUsers;
     
@@ -40,23 +37,6 @@ public class UsersController implements Initializable {
 
     }
     
-    public void dummyData() {
-        try {
-        
-            final Node[] nodes = new Node[3];
-            for (int i = 0; i < nodes.length; i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Item.fxml"));
-                nodes[i] = loader.load();
-//                nodes[i] = FXMLLoader.load(getClass().getResource("/fxml/Item.fxml"));
-
-                pnListUsers.getChildren().add(nodes[i]);
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-    }
     
     public void fillEmployeeTable() {
         FuncionarioDao funcionarioDao = new FuncionarioDao();
@@ -66,49 +46,16 @@ public class UsersController implements Initializable {
             Iterator<Funcionario> funcionariosIterator = funcionarios.iterator();
             while (funcionariosIterator.hasNext()){
                 Funcionario funcionario = (Funcionario) funcionariosIterator.next();
-                System.out.println(funcionario.getNome());
-    //            System.out.println(getFuncionarioRow(funcionario));
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Item.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
                     pnListUsers.getChildren().add(loader.load());
+                    
+                    UserItemController controller = loader.<UserItemController>getController();
+                    controller.setUser(funcionario);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
         
             }
-    }
-    
-    private Object[] getFuncionarioRow(Funcionario funcionario) {
-        return new Object[] {
-            funcionario.getId(),
-            funcionario.getNome(),
-            funcionario.getEndereco(),
-            funcionario.getCidade(),
-            funcionario.getEstado(),
-            funcionario.getTelefone(),
-            formatDate(funcionario.getDataNascimento()),
-            "R$ " + formatNumber(funcionario.getSalario())
-        };
-    }
-    
-    private String formatDate(Date date) {
-        String dateStr =  "";
-        try {
-            dateStr = df.format(date);
-        } catch(Exception ex) {
-            //
-        }
-        return dateStr;
-    }
-    
-    private String formatNumber(Double value) {
-        String valueStr =  "0";
-        try {
-            valueStr = numberFormat.format(value);
-        } catch(Exception ex) {
-            //
-        }
-        return valueStr;
     }
 }
