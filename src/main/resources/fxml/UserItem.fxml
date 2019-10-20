@@ -12,7 +12,10 @@
         <Label fx:id="labelNome" prefHeight="17.0" prefWidth="185.0" text="Nome Funcionário" textFill="#393939">
          <HBox.margin>
             <Insets left="10.0" />
-         </HBox.margin></Label>
+         </HBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding></Label>
         <Label fx:id="labelEnd" prefHeight="17.0" prefWidth="118.0" text="Endereço" textFill="#393939">
             <HBox.margin>
                 <Insets />

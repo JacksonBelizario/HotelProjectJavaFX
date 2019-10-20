@@ -7,18 +7,13 @@ package br.uems.hotelapp;
 
 import br.uems.hotelapp.persistence.dao.FuncionarioDao;
 import br.uems.hotelapp.persistence.entities.Funcionario;
-import java.io.IOException;
 import java.net.URL;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 /**
@@ -41,21 +36,21 @@ public class UsersController implements Initializable {
     public void fillEmployeeTable() {
         FuncionarioDao funcionarioDao = new FuncionarioDao();
         
-            List<Funcionario> funcionarios = funcionarioDao.getAll();
+        List<Funcionario> funcionarios = funcionarioDao.getAll();
 
-            Iterator<Funcionario> funcionariosIterator = funcionarios.iterator();
-            while (funcionariosIterator.hasNext()){
-                Funcionario funcionario = (Funcionario) funcionariosIterator.next();
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
-                    pnListUsers.getChildren().add(loader.load());
-                    
-                    UserItemController controller = loader.<UserItemController>getController();
-                    controller.setUser(funcionario);
+        Iterator<Funcionario> funcionariosIterator = funcionarios.iterator();
+        while (funcionariosIterator.hasNext()){
+            Funcionario funcionario = (Funcionario) funcionariosIterator.next();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
+                pnListUsers.getChildren().add(loader.load());
 
-                } catch (Exception e) {
-                }
-        
+                UserItemController controller = loader.<UserItemController>getController();
+                controller.setUser(funcionario);
+
+            } catch (Exception e) {
             }
+
+        }
     }
 }

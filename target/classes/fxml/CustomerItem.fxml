@@ -7,9 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.UserItemController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.CustomerItemController">
     <children>
-        <Label fx:id="labelNome" prefHeight="17.0" prefWidth="185.0" text="Nome Funcionário" textFill="#393939">
+        <Label fx:id="labelNome" prefHeight="17.0" prefWidth="165.0" text="Nome" textFill="#393939">
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin>
@@ -28,11 +28,19 @@
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label fx:id="labelSalario" prefHeight="17.0" prefWidth="85.0" text="R$ 1200,00" textFill="#393939">
+        <Label fx:id="labelEmail" prefHeight="17.0" prefWidth="85.0" text="email@email.com" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
+      <ImageView fx:id="btnCard" fitHeight="20.0" fitWidth="20.0" onMousePressed="#onCard" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/bank-card.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
       <ImageView fx:id="btnEdit" fitHeight="15.0" fitWidth="15.0" onMousePressed="#onEdit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8_edit_32px.png" />

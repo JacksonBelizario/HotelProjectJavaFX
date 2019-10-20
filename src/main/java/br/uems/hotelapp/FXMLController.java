@@ -33,7 +33,7 @@ public class FXMLController implements Initializable {
     private Button btnOverview, btnOrders, btnCustomers, btnMenus, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlOrders, pnlCustomer, pnlMenus, pnlUsers;
+    private Pane pnlOverview, pnlOrders, pnlMenus, pnlRooms, pnlCustomers, pnlUsers;
     
     double x, y;
 
@@ -105,9 +105,7 @@ public class FXMLController implements Initializable {
         }
         if (actionEvent.getSource() == btnCustomers) {
             btnCustomers.getStyleClass().add("active");
-            
-            pnlCustomer.setStyle("-fx-background-color : #FFFFFF");
-            pnlCustomer.toFront();
+            showPlaneCustomers();
         }
         if (actionEvent.getSource() == btnMenus) {
             btnMenus.getStyleClass().add("active");
@@ -117,28 +115,40 @@ public class FXMLController implements Initializable {
         }
         if (actionEvent.getSource() == btnUsers) {
             btnUsers.getStyleClass().add("active");
-            initPlaneUsers();
+            showPlaneUsers();
         }
         if (actionEvent.getSource() == btnRooms) {
             btnRooms.getStyleClass().add("active");
+            
+            pnlRooms.setStyle("-fx-background-color : #FFFFFF");
+            pnlRooms.toFront();
         }
     }
     
-    public void initPlaneUsers() {
-        btnUsers.getStyleClass().add("active");
+    public void showPlaneUsers() {
         if (pnlUsers == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Users.fxml"));
                 pnlUsers = loader.load();
                 stackPane.getChildren().add(pnlUsers);
-//                dummyData(pnListUsers);
             } catch (IOException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         }
         
         pnlUsers.toFront();
+    }
+    
+    public void showPlaneCustomers() {
+        if (pnlCustomers == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Customers.fxml"));
+                pnlCustomers = loader.load();
+                stackPane.getChildren().add(pnlCustomers);
+            } catch (IOException e) {
+            }
+        }
+        
+        pnlCustomers.toFront();
     }
     
     public void dummyData(Pane pane) throws IOException {
