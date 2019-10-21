@@ -8,6 +8,7 @@
 }
 .button:pressed, .button.active {
     -fx-background-color : #D5DBE0;
+    -fx-text-fill: #5867dd;
 }
 
 .text, JFXTextField {

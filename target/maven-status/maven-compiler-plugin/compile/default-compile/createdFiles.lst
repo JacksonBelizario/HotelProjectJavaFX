@@ -1,4 +1,5 @@
 br\uems\hotelapp\persistence\ConnectionFactory.class
+br\uems\hotelapp\utils\NumberUtils.class
 br\uems\hotelapp\controllers\CustomersController.class
 br\uems\hotelapp\controllers\UserItemController.class
 br\uems\hotelapp\persistence\entities\Funcionario.class
@@ -15,3 +16,4 @@ br\uems\hotelapp\persistence\dao\AbstractDao.class
 br\uems\hotelapp\controllers\UsersController.class
 br\uems\hotelapp\persistence\dao\HospedeDao.class
 br\uems\hotelapp\persistence\dao\DadosCartaoDao.class
+br\uems\hotelapp\utils\MascarasFX.class
