@@ -109,3 +109,16 @@ JFXButton.btn-primary:hover {
     -fx-background-color: #384ad7;
     -fx-border-color: #2e40d4;
 }
+
+.jfx-snackbar-content {
+    -fx-background-color: #ffc241;
+    -fx-border: 1px solid #ffbd31;
+    -fx-padding: 1em 2em 1em 2em;
+    -fx-margin: 2em;
+    -fx-border-radius: 0.25em;
+    -fx-background-radius: 0.25em;
+}
+
+.jfx-snackbar-action {
+    -fx-background-color: #FFFFFF;
+}

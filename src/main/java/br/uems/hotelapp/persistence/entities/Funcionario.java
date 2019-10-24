@@ -5,6 +5,7 @@
  */
 package br.uems.hotelapp.persistence.entities;
 
+import br.uems.hotelapp.utils.DateUtils;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -105,7 +106,7 @@ public class Funcionario implements AbstractEntity, Serializable {
     }
     
     public void setDataNascimento(LocalDate data_nascimento) {
-        this.data_nascimento = java.sql.Date.valueOf(data_nascimento);
+        this.data_nascimento = DateUtils.toDate(data_nascimento);
     }
     
     public void setDataNascimento(String data_nascimento, DateFormat df) {

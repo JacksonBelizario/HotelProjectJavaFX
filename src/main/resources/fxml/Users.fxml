@@ -31,8 +31,8 @@
                </HBox.margin>
             </Label>
             <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Cidade" textFill="#0d0d0d" />
-            <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Estado" textFill="#0d0d0d" />
-            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Telefone" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="45.0" styleClass="bold" text="Estado" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="110.0" styleClass="bold" text="Telefone" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

@@ -1,12 +1,15 @@
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\FuncionarioDao.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\DateUtils.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CustomerItemController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\AbstractDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CustomersController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UserItemController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\ConnectionFactory.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Funcionario.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\NumberUtils.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\HomeController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\HospedeDao.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\MascarasFX.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\AbstractEntity.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\DadosCartaoDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Hospede.java
@@ -14,4 +17,5 @@ C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelap
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\DadosCartao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UserFormController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UsersController.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\MaskFieldUtil.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\Dao.java

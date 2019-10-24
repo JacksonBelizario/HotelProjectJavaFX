@@ -22,8 +22,8 @@
             </HBox.margin>
         </Label>
       <Label fx:id="labelCidade" prefHeight="17.0" prefWidth="65.0" text="Cidade" textFill="#393939" />
-      <Label fx:id="labelEstado" prefHeight="17.0" prefWidth="65.0" text="Estado" textFill="#393939" />
-        <Label fx:id="labelTel" prefHeight="17.0" prefWidth="90.0" text="(67) 9999-9999" textFill="#393939">
+      <Label fx:id="labelEstado" prefHeight="17.0" prefWidth="45.0" text="Estado" textFill="#393939" />
+        <Label fx:id="labelTel" prefHeight="17.0" prefWidth="110.0" text="(67) 9999-9999" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

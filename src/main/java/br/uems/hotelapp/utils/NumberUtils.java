@@ -99,4 +99,14 @@ public class NumberUtils {
         });
 
     } 
+    
+    public static String formatNumber(Double value) {
+        String valueStr =  "0";
+        try {
+            valueStr = NumberFormat.getNumberInstance().format(value);
+        } catch(Exception ex) {
+            //
+        }
+        return valueStr;
+    }
 }

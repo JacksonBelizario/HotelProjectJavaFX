@@ -1,5 +1,6 @@
 package br.uems.hotelapp.controllers;
 
+import br.uems.hotelapp.persistence.entities.Funcionario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +45,7 @@ public class HomeController implements Initializable {
     @FXML
     private Pane pnlOverview, pnlOrders, pnlMenus, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm;
     
+    UserFormController userFormController;
     double x, y;
 
     @FXML
@@ -152,12 +154,28 @@ public class HomeController implements Initializable {
             try {
                 FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/UserForm.fxml"));
                 pnlUserForm = userFormLoader.load();
+                userFormController = userFormLoader.<UserFormController>getController();
                 stackPane.getChildren().add(pnlUserForm);
             } catch (IOException e) {
                 return;
             }
         }
         
+        pnlUserForm.toFront();
+    }
+    
+    public void showUserForm(Funcionario funcionario) {
+        if (pnlUserForm == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/UserForm.fxml"));
+                pnlUserForm = userFormLoader.load();
+                userFormController = userFormLoader.<UserFormController>getController();
+                stackPane.getChildren().add(pnlUserForm);
+            } catch (IOException e) {
+                return;
+            }
+        }
+        userFormController.editUser(funcionario);
         pnlUserForm.toFront();
     }
     
