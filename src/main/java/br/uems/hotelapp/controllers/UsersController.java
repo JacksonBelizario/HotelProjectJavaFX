@@ -7,7 +7,11 @@ package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.FuncionarioDao;
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import br.uems.hotelapp.utils.AlertMaker;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,8 +20,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -37,6 +44,9 @@ public class UsersController implements Initializable {
         UsersController.controller = controller;
     }
     
+    @FXML
+    private Pane pnlUsers;
+
     @FXML
     private VBox pnListUsers;
     
@@ -66,10 +76,27 @@ public class UsersController implements Initializable {
                 controller.setUser(funcionario);
                 
                 ImageView btnEdit = (ImageView) node.lookup("#btnEdit");
-                
                 btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {
                     HomeController.getController().showUserForm(funcionario);
                 });
+                
+                
+                ImageView btnDel = (ImageView) node.lookup("#btnDel");
+                btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                    
+                    JFXButton noButton = new JFXButton("Não");
+                    noButton.getStyleClass().add("btn-secondary");
+                    
+                    JFXButton yesButton = new JFXButton("Sim");
+                    yesButton.getStyleClass().add("btn-danger");
+                    yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ev) -> {
+                        funcionarioDao.delete(funcionario);
+                        pnListUsers.getChildren().remove(node);
+                    });
+                    
+                    HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover funcionário?", "Esta ação não pode ser desfeita!");
+                });
+                
 
             } catch (Exception e) {
             }

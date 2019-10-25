@@ -109,6 +109,25 @@ JFXButton.btn-primary:hover {
     -fx-background-color: #384ad7;
     -fx-border-color: #2e40d4;
 }
+JFXButton.btn-secondary {
+    -fx-background-color: #fff;
+    -fx-border-color: #ebedf2;
+}
+JFXButton.btn-secondary:hover {
+    -fx-text-fill: #212529;
+    -fx-background-color: #d4d8e3;
+    -fx-border-color: #ccd1de;
+}
+JFXButton.btn-danger {
+    -fx-text-fill: #fff;
+    -fx-background-color: #f4516c;
+    -fx-border-color: #f4516c;
+}
+JFXButton.btn-danger:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: #f22d4e;
+    -fx-border-color: #f12143;
+}
 
 .jfx-snackbar-content {
     -fx-background-color: #ffc241;

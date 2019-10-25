@@ -21,5 +21,6 @@ br\uems\hotelapp\utils\MasksUtils$2.class
 br\uems\hotelapp\controllers\UsersController.class
 br\uems\hotelapp\persistence\dao\HospedeDao.class
 br\uems\hotelapp\persistence\dao\DadosCartaoDao.class
+br\uems\hotelapp\utils\AlertMaker.class
 br\uems\hotelapp\utils\MascarasFX.class
 br\uems\hotelapp\utils\MasksUtils$3.class

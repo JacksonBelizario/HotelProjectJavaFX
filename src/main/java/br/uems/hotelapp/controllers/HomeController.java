@@ -1,8 +1,13 @@
 package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -218,5 +224,25 @@ public class HomeController implements Initializable {
             pane.getChildren().add(nodes[i]);
         }
 
+    }
+
+    public void showMaterialDialog(List<JFXButton> controls, String header, String body) {
+        if (controls.isEmpty()) {
+            controls.add(new JFXButton("Okay"));
+        }
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        JFXDialog dialog = new JFXDialog(stackPane, dialogLayout, JFXDialog.DialogTransition.TOP);
+
+        controls.forEach(controlButton -> {
+            controlButton.getStyleClass().add("dialog-button");
+            controlButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
+                dialog.close();
+            });
+        });
+
+        dialogLayout.setHeading(new Label(header));
+        dialogLayout.setBody(new Label(body));
+        dialogLayout.setActions(controls);
+        dialog.show();
     }
 }
