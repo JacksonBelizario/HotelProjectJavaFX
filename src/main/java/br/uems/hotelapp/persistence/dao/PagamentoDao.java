@@ -5,7 +5,8 @@
  */
 package br.uems.hotelapp.persistence.dao;
 
-import br.uems.hotelapp.persistence.entities.Funcionario;
+import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
+import br.uems.hotelapp.persistence.entities.Pagamento;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -13,41 +14,41 @@ import javax.persistence.TypedQuery;
  *
  * @author Jackson
  */
-public class FuncionarioDao extends Dao implements AbstractDao<Funcionario> {
+public class PagamentoDao extends Dao implements AbstractDao<Pagamento> {
 
     @Override
-    public void save(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.persist(funcionario));
+    public void save(Pagamento pagamento) {
+        executeInsideTransaction(entityMan -> entityMan.persist(pagamento));
     }
 
     @Override
-    public void delete(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.remove(funcionario));
+    public void delete(Pagamento pagamento) {
+        executeInsideTransaction(entityMan -> entityMan.remove(pagamento));
     }
 
     @Override
-    public void update(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.merge(funcionario));
+    public void update(Pagamento pagamento) {
+        executeInsideTransaction(entityMan -> entityMan.merge(pagamento));
     }
 
     @Override
-    public Funcionario find(Integer id) {
-        return entityManager.find(Funcionario.class, id);
+    public Pagamento find(Integer id) {
+        return entityManager.find(Pagamento.class, id);
     }
 
     @Override
-    public List<Funcionario> getAll() {
-        TypedQuery<Funcionario> query = entityManager.createQuery("SELECT f FROM Funcionario f", Funcionario.class);
+    public List<Pagamento> getAll() {
+        TypedQuery<Pagamento> query = entityManager.createQuery("SELECT f FROM Pagamento f", Pagamento.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Funcionario> getList(String qlString, Object[] params) {
+    public List<Pagamento> getList(String qlString, Object[] params) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Funcionario> getList(String qlString, Object[] params, int[] range) {
+    public List<Pagamento> getList(String qlString, Object[] params, int[] range) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

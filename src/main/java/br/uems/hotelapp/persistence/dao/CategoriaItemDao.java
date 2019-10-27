@@ -6,7 +6,7 @@
 package br.uems.hotelapp.persistence.dao;
 
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
-import br.uems.hotelapp.persistence.entities.Hospede;
+import br.uems.hotelapp.persistence.entities.CategoriaItem;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -14,41 +14,41 @@ import javax.persistence.TypedQuery;
  *
  * @author Jackson
  */
-public class HospedeDao extends Dao implements AbstractDao<Hospede> {
+public class CategoriaItemDao extends Dao implements AbstractDao<CategoriaItem> {
 
     @Override
-    public void save(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.persist(hospede));
+    public void save(CategoriaItem categoriaItem) {
+        executeInsideTransaction(entityMan -> entityMan.persist(categoriaItem));
     }
 
     @Override
-    public void delete(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.remove(hospede));
+    public void delete(CategoriaItem categoriaItem) {
+        executeInsideTransaction(entityMan -> entityMan.remove(categoriaItem));
     }
 
     @Override
-    public void update(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.merge(hospede));
+    public void update(CategoriaItem categoriaItem) {
+        executeInsideTransaction(entityMan -> entityMan.merge(categoriaItem));
     }
 
     @Override
-    public Hospede find(Integer id) {
-        return entityManager.find(Hospede.class, id);
+    public CategoriaItem find(Integer id) {
+        return entityManager.find(CategoriaItem.class, id);
     }
 
     @Override
-    public List<Hospede> getAll() {
-        TypedQuery<Hospede> query = entityManager.createQuery("SELECT e FROM Hospede e", Hospede.class);
+    public List<CategoriaItem> getAll() {
+        TypedQuery<CategoriaItem> query = entityManager.createQuery("SELECT f FROM CategoriaItem f", CategoriaItem.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Hospede> getList(String qlString, Object[] params) {
+    public List<CategoriaItem> getList(String qlString, Object[] params) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Hospede> getList(String qlString, Object[] params, int[] range) {
+    public List<CategoriaItem> getList(String qlString, Object[] params, int[] range) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

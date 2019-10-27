@@ -46,10 +46,10 @@ public class HomeController implements Initializable {
     private VBox pnItems;
     
     @FXML
-    private Button btnOverview, btnOrders, btnCustomers, btnMenus, btnRooms, btnUsers, btnSignout;
+    private Button btnOverview, btnOrders, btnCustomers, btnConsumable, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlOrders, pnlMenus, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm;
+    private Pane pnlOverview, pnlOrders, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm;
     
     UserFormController userFormController;
     double x, y;
@@ -104,7 +104,7 @@ public class HomeController implements Initializable {
         btnOverview.getStyleClass().remove("active");
         btnOrders.getStyleClass().remove("active");
         btnCustomers.getStyleClass().remove("active");
-        btnMenus.getStyleClass().remove("active");
+        btnConsumable.getStyleClass().remove("active");
         btnUsers.getStyleClass().remove("active");
         btnRooms.getStyleClass().remove("active");
         
@@ -124,11 +124,10 @@ public class HomeController implements Initializable {
             btnCustomers.getStyleClass().add("active");
             showPlaneCustomers();
         }
-        if (actionEvent.getSource() == btnMenus) {
-            btnMenus.getStyleClass().add("active");
+        if (actionEvent.getSource() == btnConsumable) {
+            btnConsumable.getStyleClass().add("active");
             
-            pnlMenus.setStyle("-fx-background-color : #464F67");
-            pnlMenus.toFront();
+            showPlaneItensConsumo();
         }
         if (actionEvent.getSource() == btnUsers) {
             btnUsers.getStyleClass().add("active");
@@ -197,6 +196,21 @@ public class HomeController implements Initializable {
         }
         
         pnlCustomers.toFront();
+    }
+    
+    public void showPlaneItensConsumo() {
+        if (pnlConsumable == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ItensConsumo.fxml"));
+                pnlConsumable = loader.load();
+                stackPane.getChildren().add(pnlConsumable);
+            } catch (IOException e) {
+                e.getStackTrace();
+                return;
+            }
+        }
+        
+        pnlConsumable.toFront();
     }
     
     public void dummyData(Pane pane) throws IOException {

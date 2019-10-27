@@ -5,7 +5,8 @@
  */
 package br.uems.hotelapp.persistence.dao;
 
-import br.uems.hotelapp.persistence.entities.Funcionario;
+import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
+import br.uems.hotelapp.persistence.entities.Reserva;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -13,41 +14,41 @@ import javax.persistence.TypedQuery;
  *
  * @author Jackson
  */
-public class FuncionarioDao extends Dao implements AbstractDao<Funcionario> {
+public class ReservaDao extends Dao implements AbstractDao<Reserva> {
 
     @Override
-    public void save(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.persist(funcionario));
+    public void save(Reserva reserva) {
+        executeInsideTransaction(entityMan -> entityMan.persist(reserva));
     }
 
     @Override
-    public void delete(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.remove(funcionario));
+    public void delete(Reserva reserva) {
+        executeInsideTransaction(entityMan -> entityMan.remove(reserva));
     }
 
     @Override
-    public void update(Funcionario funcionario) {
-        executeInsideTransaction(entityMan -> entityMan.merge(funcionario));
+    public void update(Reserva reserva) {
+        executeInsideTransaction(entityMan -> entityMan.merge(reserva));
     }
 
     @Override
-    public Funcionario find(Integer id) {
-        return entityManager.find(Funcionario.class, id);
+    public Reserva find(Integer id) {
+        return entityManager.find(Reserva.class, id);
     }
 
     @Override
-    public List<Funcionario> getAll() {
-        TypedQuery<Funcionario> query = entityManager.createQuery("SELECT f FROM Funcionario f", Funcionario.class);
+    public List<Reserva> getAll() {
+        TypedQuery<Reserva> query = entityManager.createQuery("SELECT f FROM Reserva f", Reserva.class);
         return query.getResultList();
     }
 
     @Override
-    public List<Funcionario> getList(String qlString, Object[] params) {
+    public List<Reserva> getList(String qlString, Object[] params) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Funcionario> getList(String qlString, Object[] params, int[] range) {
+    public List<Reserva> getList(String qlString, Object[] params, int[] range) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

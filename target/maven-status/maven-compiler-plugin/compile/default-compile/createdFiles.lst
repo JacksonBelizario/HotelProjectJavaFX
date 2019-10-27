@@ -7,11 +7,13 @@ br\uems\hotelapp\persistence\entities\Funcionario.class
 br\uems\hotelapp\controllers\UserFormController.class
 br\uems\hotelapp\persistence\dao\Dao.class
 br\uems\hotelapp\MainApp.class
+br\uems\hotelapp\controllers\ItemConsumoController.class
 br\uems\hotelapp\utils\MasksUtils$1.class
 br\uems\hotelapp\controllers\HomeController.class
 br\uems\hotelapp\persistence\entities\Hospede.class
 br\uems\hotelapp\utils\DateUtils.class
 br\uems\hotelapp\utils\MasksUtils.class
+br\uems\hotelapp\controllers\ItensConsumoController.class
 br\uems\hotelapp\persistence\entities\DadosCartao.class
 br\uems\hotelapp\persistence\entities\AbstractEntity.class
 br\uems\hotelapp\persistence\dao\FuncionarioDao.class

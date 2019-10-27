@@ -8,9 +8,6 @@ package br.uems.hotelapp.persistence.dao;
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.DadosCartao;
 import java.util.List;
-import java.util.function.Consumer;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 /**
@@ -69,19 +66,5 @@ public class DadosCartaoDao extends Dao implements AbstractDao<DadosCartao> {
     @Override
     public long getCount(String qlString, Object[] params) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-     
-    private void executeInsideTransaction(Consumer<EntityManager> action) {
-        EntityTransaction tx = entityManager.getTransaction();
-        try {
-            tx.begin();
-            action.accept(entityManager);
-            tx.commit(); 
-        }
-        catch (RuntimeException e) {
-            tx.rollback();
-            throw e;
-        }
     }
 }

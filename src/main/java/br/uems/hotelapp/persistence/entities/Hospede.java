@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -55,13 +57,14 @@ public class Hospede implements AbstractEntity, Serializable {
     @Column(name = "email", nullable = true, length = 255)
     private String email;
     
-    @Column(name = "data_nascimento", nullable = true, length = 255)
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_nascimento", nullable = true)
     private Date data_nascimento;
     
     @Column(name = "documento", nullable = true, length = 255)
     private String documento;
     
-    @Column(name = "tipo_doc", nullable = true, length = 255)
+    @Column(name = "tipo_doc", nullable = true)
     private Integer tipo_doc;
 
 

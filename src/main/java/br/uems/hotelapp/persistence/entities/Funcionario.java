@@ -18,6 +18,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -54,10 +56,11 @@ public class Funcionario implements AbstractEntity, Serializable {
     @Column(name = "telefone", nullable = true, length = 255)
     private String telefone;
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "data_nascimento", nullable = true, length = 255)
     private Date data_nascimento;
     
-    @Column(name = "salario", nullable = true, length = 255)
+    @Column(name = "salario", nullable = true)
     private Double salario;
 
 
