@@ -12,20 +12,25 @@
 }
 
 .text, JFXTextField {
-   -fx-font-family: 'Poppins', sans-serif;
+    -fx-font-family: 'Poppins', sans-serif;
 }
 
-JFXTextField {
-   -fx-font-size: 14;
+JFXTextField, JFXDatePicker, JFXComboBox {
+    -fx-font-size: 14;
+}
+
+.jfx-text-field {
+    -fx-font-family: 'Poppins', sans-serif;
+    -jfx-label-float: true;
 }
 
 .overview-number {
-   -fx-font-size: 38;
-   -fx-font-weight: bold;
+    -fx-font-size: 38;
+    -fx-font-weight: bold;
 }
 
 .bold {
-   -fx-font-weight: bold;
+    -fx-font-weight: bold;
 }
 
 .scroll-pane {
@@ -92,10 +97,10 @@ JFXButton, JFXButton:hover {
     -fx-white-space: nowrap;
     -fx-vertical-align: middle;
     -fx-user-select: none;
-    -fx-border: 1px solid transparent;
+    -fx-border: 1px;
+    -fx-border-radius: 0.25em;
     -fx-padding: 0.3em 1em 0.3em 1em;
     -fx-line-height: 1.25;
-    -fx-border-radius: 0.25em;
     -fx-background-radius: 0.25em;
 }
 
@@ -131,10 +136,11 @@ JFXButton.btn-danger:hover {
 
 .jfx-snackbar-content {
     -fx-background-color: #ffc241;
-    -fx-border: 1px solid #ffbd31;
+    -fx-border: 1px;
+    -fx-border-color: #ffbd31;
+    -fx-border-radius: 0.25em;
     -fx-padding: 1em 2em 1em 2em;
     -fx-margin: 2em;
-    -fx-border-radius: 0.25em;
     -fx-background-radius: 0.25em;
 }
 

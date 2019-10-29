@@ -53,11 +53,11 @@ public class UsersController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setController(this);
-        fillData();
+        loadUsers();
     }
     
     
-    public void fillData() {
+    public void loadUsers() {
         pnListUsers.getChildren().clear();
         
         FuncionarioDao funcionarioDao = new FuncionarioDao();

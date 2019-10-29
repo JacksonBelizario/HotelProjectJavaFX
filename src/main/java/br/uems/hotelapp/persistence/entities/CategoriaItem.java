@@ -43,5 +43,10 @@ public class CategoriaItem implements AbstractEntity, Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
     
 }

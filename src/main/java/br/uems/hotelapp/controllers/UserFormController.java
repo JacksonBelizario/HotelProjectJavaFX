@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import com.jfoenix.validation.RequiredFieldValidator;
 
 /**
  *
@@ -73,6 +74,11 @@ public class UserFormController implements Initializable {
 //        MascarasFX.mascaraTelefone(inputTel);
         MasksUtils.foneField(inputTel);
         NumberUtils.mascaraDinheiro(inputSalario);
+        
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Campo obrigatório");
+        inputName.getValidators().add(validator);
+        inputSalario.getValidators().add(validator);
     }
     
     public void editUser(Funcionario funcionario) {
@@ -92,18 +98,20 @@ public class UserFormController implements Initializable {
         
         Boolean edit = funcionario != null;
 
-        if (!edit) {
-            funcionario = new Funcionario();
-        }
-
         if (inputName.getText().isEmpty()) {
-            snackBar("Informe o nome", 5);
+            inputName.validate();
+//            snackBar("Informe o nome", 5);
             return;
         }
 
         if (inputSalario.getText().isEmpty()) {
-            snackBar("Informe o salário", 5);
+            inputSalario.validate();
+//            snackBar("Informe o salário", 5);
             return;
+        }
+
+        if (!edit) {
+            funcionario = new Funcionario();
         }
 
         funcionario.setNome(inputName.getText());
@@ -121,7 +129,7 @@ public class UserFormController implements Initializable {
             funcionarioDao.update(funcionario);
         }
         reset();
-        UsersController.getController().fillData();
+        UsersController.getController().loadUsers();
         HomeController.getController().showPlaneUsers();
     }
     

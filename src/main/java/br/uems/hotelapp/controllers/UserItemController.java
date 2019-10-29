@@ -6,6 +6,7 @@
 package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import br.uems.hotelapp.utils.NumberUtils;
 import java.text.NumberFormat;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -64,20 +65,10 @@ public class UserItemController {
             labelCidade.setText(funcionario.getCidade());
             labelEstado.setText(funcionario.getEstado());
             labelTel.setText(funcionario.getTelefone());
-            labelSalario.setText("R$ " + formatNumber(funcionario.getSalario()));
+            labelSalario.setText("R$ " + NumberUtils.formatNumber(funcionario.getSalario()));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-    
-    private String formatNumber(Double value) {
-        String valueStr = "0";
-        try {
-            valueStr = NumberFormat.getNumberInstance().format(value);
-        } catch(Exception ex) {
-            //
-        }
-        return valueStr;
     }
 }

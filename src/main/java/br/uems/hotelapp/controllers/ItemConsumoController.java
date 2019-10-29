@@ -6,10 +6,11 @@
 package br.uems.hotelapp.controllers;
 
 
+import br.uems.hotelapp.persistence.entities.ItemConsumo;
+import br.uems.hotelapp.utils.NumberUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 public class ItemConsumoController {
 
@@ -27,15 +28,15 @@ public class ItemConsumoController {
 
     @FXML
     private ImageView btnDel;
-
-    @FXML
-    void onEdit(MouseEvent event) {
-
-    }
-
-    @FXML
-    void onRemove(MouseEvent event) {
-
+    
+    public void setData(ItemConsumo itemConsumo) {
+        try {
+            labelNome.setText(itemConsumo.getItem());
+            labelDesc.setText(itemConsumo.getDescricao());
+            labelPreco.setText("R$ " + NumberUtils.formatNumber(itemConsumo.getPreco()));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
