@@ -182,7 +182,6 @@
             </HBox>
             <StackPane fx:id="stackPane" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Pane fx:id="pnlRooms" prefHeight="200.0" prefWidth="200.0" />
                   <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
                   <Pane fx:id="pnlOverview" prefHeight="513.0" prefWidth="762.0">
                      <children>

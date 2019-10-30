@@ -22,6 +22,7 @@ br\uems\hotelapp\persistence\entities\Hospede.class
 br\uems\hotelapp\utils\DateUtils.class
 br\uems\hotelapp\persistence\dao\EstadiaDao.class
 br\uems\hotelapp\utils\MasksUtils.class
+br\uems\hotelapp\controllers\AcomodacoesController.class
 br\uems\hotelapp\controllers\ItensConsumoController.class
 br\uems\hotelapp\persistence\entities\DadosCartao.class
 br\uems\hotelapp\persistence\entities\AbstractEntity.class
@@ -33,6 +34,7 @@ br\uems\hotelapp\persistence\dao\AbstractDao.class
 br\uems\hotelapp\utils\MasksUtils$2.class
 br\uems\hotelapp\persistence\dao\ItemConsumoDao.class
 br\uems\hotelapp\controllers\UsersController.class
+br\uems\hotelapp\controllers\AcomodacaoItemController.class
 br\uems\hotelapp\persistence\dao\TipoAcomodacaoDao.class
 br\uems\hotelapp\persistence\dao\HospedeDao.class
 br\uems\hotelapp\persistence\dao\DadosCartaoDao.class

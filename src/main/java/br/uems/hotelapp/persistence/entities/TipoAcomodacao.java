@@ -76,4 +76,9 @@ public class TipoAcomodacao implements AbstractEntity, Serializable {
     public void setValorDiaria(Double valorDiaria) {
         this.valorDiaria = valorDiaria;
     }
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

@@ -126,7 +126,6 @@ public class HomeController implements Initializable {
         }
         if (actionEvent.getSource() == btnConsumable) {
             btnConsumable.getStyleClass().add("active");
-            
             showPlaneItensConsumo();
         }
         if (actionEvent.getSource() == btnUsers) {
@@ -135,9 +134,7 @@ public class HomeController implements Initializable {
         }
         if (actionEvent.getSource() == btnRooms) {
             btnRooms.getStyleClass().add("active");
-            
-            pnlRooms.setStyle("-fx-background-color : #FFFFFF");
-            pnlRooms.toFront();
+            showPlaneRooms();
         }
     }
     
@@ -211,6 +208,22 @@ public class HomeController implements Initializable {
         }
         
         pnlConsumable.toFront();
+    }
+    
+    public void showPlaneRooms() {
+        if (pnlRooms == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Acomodacoes.fxml"));
+                pnlRooms = loader.load();
+                stackPane.getChildren().add(pnlRooms);
+            } catch (IOException e) {
+                e.getStackTrace();
+                System.out.println(e.getMessage());
+                return;
+            }
+        }
+        
+        pnlRooms.toFront();
     }
     
     public void dummyData(Pane pane) throws IOException {
