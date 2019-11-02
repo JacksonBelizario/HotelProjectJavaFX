@@ -9,6 +9,7 @@ import br.uems.hotelapp.persistence.dao.AcomodacaoDao;
 import br.uems.hotelapp.persistence.dao.TipoAcomodacaoDao;
 import br.uems.hotelapp.persistence.entities.Acomodacao;
 import br.uems.hotelapp.persistence.entities.TipoAcomodacao;
+import br.uems.hotelapp.utils.AlertMaker;
 import br.uems.hotelapp.utils.MasksUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -57,15 +58,15 @@ public class AcomodacoesController implements Initializable {
     @FXML
     private JFXButton btnReset;
     
-    TipoAcomodacaoDao tipoAcomodacaoDao = new TipoAcomodacaoDao();
+    private TipoAcomodacaoDao tipoAcomodacaoDao = new TipoAcomodacaoDao();
         
-    AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
+    private AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
     
-    ObservableList<TipoAcomodacao> obTipos;
+    private ObservableList<TipoAcomodacao> obTipos;
     
-    TipoAcomodacao tipoAcomodacao;
+    private TipoAcomodacao tipoAcomodacao;
     
-    Acomodacao acomodacao;
+    private Acomodacao acomodacao;
 
     
     @Override
@@ -187,9 +188,8 @@ public class AcomodacoesController implements Initializable {
             });
 
 
-        } catch (Exception e) {
-            e.getStackTrace();
-            System.out.println(e.getMessage());
+        } catch (Exception ex) {
+            AlertMaker.showErrorMessage(ex);
         }
 
     }

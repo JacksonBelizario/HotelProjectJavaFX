@@ -9,6 +9,7 @@ import br.uems.hotelapp.persistence.dao.CategoriaItemDao;
 import br.uems.hotelapp.persistence.dao.ItemConsumoDao;
 import br.uems.hotelapp.persistence.entities.CategoriaItem;
 import br.uems.hotelapp.persistence.entities.ItemConsumo;
+import br.uems.hotelapp.utils.AlertMaker;
 import br.uems.hotelapp.utils.NumberUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -162,11 +163,8 @@ public class ItensConsumoController implements Initializable {
 
                 HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover item?", "Esta ação não pode ser desfeita!");
             });
-
-
-        } catch (Exception e) {
-            e.getStackTrace();
-            System.out.println(e.getMessage());
+        } catch (Exception ex) {
+            AlertMaker.showErrorMessage(ex);
         }
 
     }

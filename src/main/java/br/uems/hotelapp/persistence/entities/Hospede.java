@@ -160,4 +160,9 @@ public class Hospede implements AbstractEntity, Serializable {
         this.tipo_doc = tipo_doc;
     }
     
+    @Override
+    public String toString() {
+        return id + " | " + nome;
+    }
+    
 }

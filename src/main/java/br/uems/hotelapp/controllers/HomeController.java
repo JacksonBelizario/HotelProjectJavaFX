@@ -46,10 +46,10 @@ public class HomeController implements Initializable {
     private VBox pnItems;
     
     @FXML
-    private Button btnOverview, btnOrders, btnCustomers, btnConsumable, btnRooms, btnUsers, btnSignout;
+    private Button btnOverview, btnBooking, btnCustomers, btnConsumable, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlOrders, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm;
+    private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm, pnlReservaForm;
     
     UserFormController userFormController;
     double x, y;
@@ -102,7 +102,7 @@ public class HomeController implements Initializable {
 
     public void handleClicks(ActionEvent actionEvent) {
         btnOverview.getStyleClass().remove("active");
-        btnOrders.getStyleClass().remove("active");
+        btnBooking.getStyleClass().remove("active");
         btnCustomers.getStyleClass().remove("active");
         btnConsumable.getStyleClass().remove("active");
         btnUsers.getStyleClass().remove("active");
@@ -110,15 +110,11 @@ public class HomeController implements Initializable {
         
         if (actionEvent.getSource() == btnOverview) {
             btnOverview.getStyleClass().add("active");
-            
-            pnlOverview.setStyle("-fx-background-color : #FFFFFF");
             pnlOverview.toFront();
         }
-        if (actionEvent.getSource() == btnOrders) {
-            btnOrders.getStyleClass().add("active");
-            
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
+        if (actionEvent.getSource() == btnBooking) {
+            btnBooking.getStyleClass().add("active");
+            showPlaneBookings();
         }
         if (actionEvent.getSource() == btnCustomers) {
             btnCustomers.getStyleClass().add("active");
@@ -149,6 +145,19 @@ public class HomeController implements Initializable {
         }
         
         pnlUsers.toFront();
+    }
+    
+    public void showPlaneBookings() {
+        if (pnlBooking == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Reservas.fxml"));
+                pnlBooking = loader.load();
+                stackPane.getChildren().add(pnlBooking);
+            } catch (IOException e) {
+            }
+        }
+        
+        pnlBooking.toFront();
     }
     
     public void showUserForm() {
@@ -226,6 +235,20 @@ public class HomeController implements Initializable {
         pnlRooms.toFront();
     }
     
+    public void showReservaForm() {
+        if (pnlReservaForm == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/ReservaForm.fxml"));
+                pnlReservaForm = userFormLoader.load();
+                stackPane.getChildren().add(pnlReservaForm);
+            } catch (IOException e) {
+                return;
+            }
+        }
+        
+        pnlReservaForm.toFront();
+    }
+    
     public void dummyData(Pane pane) throws IOException {
         
         final Node[] nodes = new Node[10];
@@ -255,7 +278,7 @@ public class HomeController implements Initializable {
 
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {
         if (controls.isEmpty()) {
-            controls.add(new JFXButton("Okay"));
+            controls.add(new JFXButton("Ok"));
         }
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         JFXDialog dialog = new JFXDialog(stackPane, dialogLayout, JFXDialog.DialogTransition.TOP);

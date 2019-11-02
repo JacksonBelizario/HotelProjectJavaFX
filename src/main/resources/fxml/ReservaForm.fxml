@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pnlReservaForm" prefHeight="541.0" prefWidth="794.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.ReservaFormController">
+   <children>
+      <ImageView fx:id="btnBack" fitHeight="36.0" fitWidth="34.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_left_round_64px.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Nova reserva" textFill="#0d0d0d">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cbCustomers" labelFloat="true" layoutX="14.0" layoutY="109.0" onAction="#setHospede" prefHeight="36.0" prefWidth="374.0" promptText="Hospede" />
+      <JFXTextField fx:id="inputQtdeAdultos" focusColor="#5867dd" labelFloat="true" layoutX="404.0" layoutY="109.0" prefHeight="36.0" prefWidth="166.0" promptText="Número de Adultos" />
+      <JFXTextField fx:id="inputQtdeCriancas" focusColor="#5867dd" labelFloat="true" layoutX="592.0" layoutY="109.0" prefHeight="36.0" prefWidth="166.0" promptText="Número de Crianças" />
+      <JFXDatePicker fx:id="inputStartDate" defaultColor="#5867dd" editable="false" layoutX="14.0" layoutY="168.0" onAction="#onStartDate" prefHeight="36.0" prefWidth="374.0" promptText="Data chegada" />
+      <JFXDatePicker fx:id="inputEndDate" defaultColor="#5867dd" editable="false" layoutX="397.0" layoutY="168.0" onAction="#onEndDate" prefHeight="36.0" prefWidth="374.0" promptText="Data Saída" />
+      <JFXButton fx:id="btnSearch" layoutX="679.0" layoutY="232.0" onMouseClicked="#search" styleClass="btn-primary" stylesheets="@../styles/Styles.css" text="Procurar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <HBox alignment="CENTER_LEFT" layoutX="48.0" layoutY="271.0" prefHeight="42.0" prefWidth="712.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label prefWidth="140.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Quarto" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Andar" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Tipo" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="70.0" styleClass="bold" text="Adultos" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="70.0" styleClass="bold" text="Crianças" textFill="#0d0d0d" />
+            <Label prefWidth="80.0" styleClass="bold" text="Valor" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label prefWidth="70.0" styleClass="bold" text="Status" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <ScrollPane fitToWidth="true" layoutX="15.0" layoutY="319.0" prefHeight="208.0" prefWidth="765.0" stylesheets="@../styles/Styles.css">
+         <content>
+            <VBox fx:id="pnReservas" prefHeight="380.0" prefWidth="763.0" spacing="5.0" style="-fx-background-color: #FFFFFF;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

@@ -7,6 +7,7 @@ package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.FuncionarioDao;
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import br.uems.hotelapp.utils.AlertMaker;
 import br.uems.hotelapp.utils.DateUtils;
 import br.uems.hotelapp.utils.MascarasFX;
 import br.uems.hotelapp.utils.MasksUtils;
@@ -100,13 +101,11 @@ public class UserFormController implements Initializable {
 
         if (inputName.getText().isEmpty()) {
             inputName.validate();
-//            snackBar("Informe o nome", 5);
             return;
         }
 
         if (inputSalario.getText().isEmpty()) {
             inputSalario.validate();
-//            snackBar("Informe o salário", 5);
             return;
         }
 
@@ -124,9 +123,11 @@ public class UserFormController implements Initializable {
 
         if (!edit) {
             funcionarioDao.save(funcionario);
+            AlertMaker.snackBar(pnlUserForm, "Funcionário atualizado");
         }
         else {
             funcionarioDao.update(funcionario);
+            AlertMaker.snackBar(pnlUserForm, "Funcionário inserido");
         }
         reset();
         UsersController.getController().loadUsers();
@@ -147,12 +148,5 @@ public class UserFormController implements Initializable {
     void back(MouseEvent event) {
         reset();
         HomeController.getController().showPlaneUsers();
-    }
-    
-    public void snackBar(String message, long duration) {
-        JFXSnackbar bar = new JFXSnackbar(pnlUserForm);
-        label.setText(message);
-        label.setTextFill(Color.web("#FFFFFF"));
-        bar.enqueue(new SnackbarEvent(label, Duration.seconds(duration), null));
     }
 }

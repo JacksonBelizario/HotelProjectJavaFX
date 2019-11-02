@@ -8,6 +8,7 @@ package br.uems.hotelapp.utils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
@@ -25,9 +26,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 
 public class AlertMaker {
@@ -158,8 +162,20 @@ public class AlertMaker {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         //LibraryAssistantUtil.setStageIcon(stage);
 
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(AlertMaker.class.getResource("/resources/dark-theme.css").toExternalForm());
-        dialogPane.getStyleClass().add("custom-alert");
+//        DialogPane dialogPane = alert.getDialogPane();
+//        dialogPane.getStylesheets().add(AlertMaker.class.getResource("/resources/dark-theme.css").toExternalForm());
+//        dialogPane.getStyleClass().add("custom-alert");
+    }
+    
+    public static void snackBar(Pane pane, String message) {
+       snackBar(pane, message, 5);
+    }
+    
+    public static void snackBar(Pane pane, String message, long duration) {
+        JFXSnackbar bar = new JFXSnackbar(pane);
+        Label label = new Label();
+        label.setText(message);
+        label.setTextFill(Color.web("#FFFFFF"));
+        bar.enqueue(new JFXSnackbar.SnackbarEvent(label, Duration.seconds(duration), null));
     }
 }

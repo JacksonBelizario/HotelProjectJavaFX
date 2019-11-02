@@ -66,7 +66,6 @@ public class UserItemController {
             labelEstado.setText(funcionario.getEstado());
             labelTel.setText(funcionario.getTelefone());
             labelSalario.setText("R$ " + NumberUtils.formatNumber(funcionario.getSalario()));
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

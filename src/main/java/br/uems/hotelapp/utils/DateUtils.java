@@ -8,6 +8,8 @@ package br.uems.hotelapp.utils;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -33,5 +35,23 @@ public class DateUtils {
         } catch(Exception ex) {
             return null;
         }
+    }
+    
+    public static void setDatePickerLimit(DatePicker datePicker, LocalDate minDate, LocalDate maxDate) {
+        datePicker.setDayCellFactory(d -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (minDate != null && maxDate != null) {
+                    setDisable(item.isBefore(minDate) || item.isAfter(maxDate));
+                }
+                else if (minDate != null) {
+                    setDisable(item.isBefore(minDate));
+                }
+                else if (maxDate != null) {
+                    setDisable(item.isAfter(maxDate));
+                }
+            }
+        });
     }
 }
