@@ -16,7 +16,7 @@ import javafx.scene.control.DatePicker;
  *
  * @author Jackson
  */
-public class DateUtils {
+public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     
     public static SimpleDateFormat simpleDateFormat;
     

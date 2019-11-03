@@ -37,7 +37,7 @@
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button fx:id="labelStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../styles/Styles.css" text="livre">
+        <Button fx:id="btnStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../styles/Styles.css" text="livre">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

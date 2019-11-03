@@ -93,37 +93,31 @@ public class ReservaFormController implements Initializable {
     
     @FXML
     void onEndDate(ActionEvent event) {
-        LocalDate maxDate = inputEndDate.getValue();
+        LocalDate maxDate = inputEndDate.getValue().minusDays(1);
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), maxDate);
     }
 
     @FXML
     void onStartDate(ActionEvent event) {
-        LocalDate minDate = inputStartDate.getValue();
+        LocalDate minDate = inputStartDate.getValue().plusDays(1);
         DateUtils.setDatePickerLimit(inputEndDate, minDate, null);
 
     }
 
     @FXML
     void search(MouseEvent event) {
-        if (hospede == null) {
-            cbCustomers.validate();
-            return;
-        }
+        
+        cbCustomers.validate();
+        inputStartDate.validate();
+        inputEndDate.validate();
         
         if (StringUtils.strip(inputQtdeAdultos.getText(), "0").isEmpty()) {
             inputQtdeAdultos.clear();
             inputQtdeAdultos.validate();
             return;
         }
-
-        if (inputStartDate.getValue() == null) {
-            inputStartDate.validate();
-            return;
-        }
-
-        if (inputEndDate.getValue() == null) {
-            inputEndDate.validate();
+        
+        if (hospede == null || inputStartDate.getValue() == null || inputEndDate.getValue() == null) {
             return;
         }
         loadItens();
@@ -190,7 +184,7 @@ public class ReservaFormController implements Initializable {
         inputQtdeCriancas.clear();
         
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), null);
-        DateUtils.setDatePickerLimit(inputEndDate, LocalDate.now(), null);
+        DateUtils.setDatePickerLimit(inputEndDate, LocalDate.now().plusDays(1), null);
         pnReservas.getChildren().clear();
     }
     

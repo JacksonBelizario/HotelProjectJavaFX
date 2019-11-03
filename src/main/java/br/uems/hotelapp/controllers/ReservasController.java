@@ -85,15 +85,4 @@ public class ReservasController implements Initializable {
             controller.setData(reserva);
     }
     
-    public void dummyData() throws IOException {
-        
-        final Node[] nodes = new Node[10];
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = FXMLLoader.load(getClass().getResource("/fxml/Item.fxml"));
-
-            pnReservas.getChildren().add(nodes[i]);
-        }
-
-    }
-    
 }

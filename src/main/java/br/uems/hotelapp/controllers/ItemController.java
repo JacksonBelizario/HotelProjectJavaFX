@@ -32,7 +32,7 @@ public class ItemController {
     private Label labelPreco;
 
     @FXML
-    private Button labelStatus;
+    private Button btnStatus;
     
     public void setData(Reserva reserva) {
         labelQuarto.setText(reserva.getAcomodacao().toString());
@@ -45,6 +45,8 @@ public class ItemController {
             DateUtils.toLocalDate(reserva.getDataHoraSaida())
         );
         labelPreco.setText("R$ " + NumberUtils.formatNumber(periodo.getDays() * reserva.getValorDiaria()));
+        
+        btnStatus.setText("Confirmar");
     }
 
 }
