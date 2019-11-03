@@ -25,7 +25,7 @@
                   <Insets left="30.0" />
                </HBox.margin>
             </Label>
-            <Label prefHeight="17.0" prefWidth="317.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="217.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -35,6 +35,7 @@
                   <Insets />
                </HBox.margin>
             </Label>
+            <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Saída" textFill="#0d0d0d" />
             <Label prefWidth="91.0" styleClass="bold" text="Valor" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />

@@ -3,6 +3,7 @@ br\uems\hotelapp\persistence\entities\Estadia.class
 br\uems\hotelapp\utils\NumberUtils.class
 br\uems\hotelapp\controllers\CustomersController.class
 br\uems\hotelapp\persistence\dao\PagamentoDao.class
+br\uems\hotelapp\controllers\ItemController.class
 br\uems\hotelapp\controllers\UserItemController.class
 br\uems\hotelapp\controllers\ReservaItemController.class
 br\uems\hotelapp\utils\MasksUtils$4.class

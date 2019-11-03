@@ -1,6 +1,7 @@
 package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import br.uems.hotelapp.utils.AlertMaker;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -94,7 +95,8 @@ public class HomeController implements Initializable {
         HomeController.setController(this);
         try {
             dummyData(pnItems);
-        } catch (IOException e) {
+        } catch (IOException ex) {
+            AlertMaker.showErrorMessage(ex);
         }
 
     }
@@ -140,7 +142,9 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Users.fxml"));
                 pnlUsers = loader.load();
                 stackPane.getChildren().add(pnlUsers);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
             }
         }
         
@@ -153,7 +157,9 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Reservas.fxml"));
                 pnlBooking = loader.load();
                 stackPane.getChildren().add(pnlBooking);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
             }
         }
         
@@ -167,7 +173,8 @@ public class HomeController implements Initializable {
                 pnlUserForm = userFormLoader.load();
                 userFormController = userFormLoader.<UserFormController>getController();
                 stackPane.getChildren().add(pnlUserForm);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -182,7 +189,8 @@ public class HomeController implements Initializable {
                 pnlUserForm = userFormLoader.load();
                 userFormController = userFormLoader.<UserFormController>getController();
                 stackPane.getChildren().add(pnlUserForm);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -196,7 +204,8 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Customers.fxml"));
                 pnlCustomers = loader.load();
                 stackPane.getChildren().add(pnlCustomers);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -210,8 +219,8 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ItensConsumo.fxml"));
                 pnlConsumable = loader.load();
                 stackPane.getChildren().add(pnlConsumable);
-            } catch (IOException e) {
-                e.getStackTrace();
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -225,9 +234,8 @@ public class HomeController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Acomodacoes.fxml"));
                 pnlRooms = loader.load();
                 stackPane.getChildren().add(pnlRooms);
-            } catch (IOException e) {
-                e.getStackTrace();
-                System.out.println(e.getMessage());
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -241,7 +249,8 @@ public class HomeController implements Initializable {
                 FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/ReservaForm.fxml"));
                 pnlReservaForm = userFormLoader.load();
                 stackPane.getChildren().add(pnlReservaForm);
-            } catch (IOException e) {
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
                 return;
             }
         }
@@ -294,5 +303,9 @@ public class HomeController implements Initializable {
         dialogLayout.setBody(new Label(body));
         dialogLayout.setActions(controls);
         dialog.show();
+    }
+    
+    public void showSnackBar(String message) {
+        AlertMaker.snackBar(stackPane, message);
     }
 }

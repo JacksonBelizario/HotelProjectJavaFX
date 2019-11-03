@@ -123,11 +123,11 @@ public class UserFormController implements Initializable {
 
         if (!edit) {
             funcionarioDao.save(funcionario);
-            AlertMaker.snackBar(pnlUserForm, "Funcionário atualizado");
+            HomeController.getController().showSnackBar("Funcionário atualizado");
         }
         else {
             funcionarioDao.update(funcionario);
-            AlertMaker.snackBar(pnlUserForm, "Funcionário inserido");
+            HomeController.getController().showSnackBar("Funcionário inserido");
         }
         reset();
         UsersController.getController().loadUsers();

@@ -59,4 +59,9 @@ public class Acomodacao implements AbstractEntity, Serializable {
         this.tipoAcomodacao = tipoAcomodacao;
     }
     
+    @Override
+    public String toString() {
+        return "Quarto " + id;
+    }
+    
 }

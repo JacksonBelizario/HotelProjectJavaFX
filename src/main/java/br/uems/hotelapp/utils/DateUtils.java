@@ -5,6 +5,7 @@
  */
 package br.uems.hotelapp.utils;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -16,6 +17,19 @@ import javafx.scene.control.DatePicker;
  * @author Jackson
  */
 public class DateUtils {
+    
+    public static SimpleDateFormat simpleDateFormat;
+    
+    public static SimpleDateFormat getDateFormat() {
+        if (simpleDateFormat == null) {
+            setDateFormat(new SimpleDateFormat("dd/MM/yyyy"));
+        }
+        return simpleDateFormat;
+    }
+
+    private static void setDateFormat(SimpleDateFormat controller) {
+        DateUtils.simpleDateFormat = controller;
+    }
     
     public static LocalDate toLocalDate(Date dateToConvert) {
         try {
@@ -53,5 +67,9 @@ public class DateUtils {
                 }
             }
         });
+    }
+    
+    public static String format(Date date) {
+        return getDateFormat().format(date);
     }
 }

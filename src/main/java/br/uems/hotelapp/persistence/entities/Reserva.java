@@ -35,11 +35,11 @@ public class Reserva implements AbstractEntity, Serializable {
     private Integer id;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_hora_chegada", nullable = true)
+    @Column(name = "data_hora_chegada")
     private Date dataHoraChegada;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_hora_saida", nullable = true)
+    @Column(name = "data_hora_saida")
     private Date dataHoraSaida;
     
     @OneToOne(cascade = CascadeType.MERGE)
@@ -51,22 +51,22 @@ public class Reserva implements AbstractEntity, Serializable {
     Acomodacao acomodacao;
     
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "codigo_cartao", nullable = false, updatable = false)
+    @JoinColumn(name = "codigo_cartao")
     DadosCartao cartao;
     
     @Column(name = "valor_diaria", nullable = false)
     private Double valorDiaria;
     
-    @Column(name = "valor_multa", nullable = false)
-    private Double valorMulta;
+    @Column(name = "taxa_multa")
+    private Double taxaMulta;
     
-    @Column(name = "desconto", nullable = true)
+    @Column(name = "desconto")
     private Double desconto;
     
     @Column(name = "qtde_adulto", nullable = false)
     private Integer qtdeAdulto;
     
-    @Column(name = "qtde_crianca", nullable = false)
+    @Column(name = "qtde_crianca")
     private Integer qtdeCrianca;
     
     @Override
@@ -122,12 +122,12 @@ public class Reserva implements AbstractEntity, Serializable {
         this.valorDiaria = valorDiaria;
     }
 
-    public Double getValorMulta() {
-        return valorMulta;
+    public Double getTaxaMulta() {
+        return taxaMulta;
     }
 
-    public void setValorMulta(Double valorMulta) {
-        this.valorMulta = valorMulta;
+    public void setTaxaMulta(Double taxaMulta) {
+        this.taxaMulta = taxaMulta;
     }
 
     public Double getDesconto() {

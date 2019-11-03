@@ -7,6 +7,7 @@ package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.AcomodacaoDao;
 import br.uems.hotelapp.persistence.dao.HospedeDao;
+import br.uems.hotelapp.persistence.dao.ReservaDao;
 import br.uems.hotelapp.persistence.entities.Acomodacao;
 import br.uems.hotelapp.persistence.entities.Hospede;
 import br.uems.hotelapp.persistence.entities.Reserva;
@@ -68,6 +69,8 @@ public class ReservaFormController implements Initializable {
     
     private ObservableList<Hospede> obCustomers;
     
+    private ReservaDao reservaDao = new ReservaDao();
+    
     private HospedeDao hospedeDao = new HospedeDao();
     
     private Hospede hospede = null;
@@ -103,16 +106,24 @@ public class ReservaFormController implements Initializable {
 
     @FXML
     void search(MouseEvent event) {
+        if (hospede == null) {
+            cbCustomers.validate();
+            return;
+        }
+        
         if (StringUtils.strip(inputQtdeAdultos.getText(), "0").isEmpty()) {
             inputQtdeAdultos.clear();
+            inputQtdeAdultos.validate();
             return;
         }
 
         if (inputStartDate.getValue() == null) {
+            inputStartDate.validate();
             return;
         }
 
         if (inputEndDate.getValue() == null) {
+            inputEndDate.validate();
             return;
         }
         loadItens();
@@ -122,16 +133,18 @@ public class ReservaFormController implements Initializable {
         Reserva reserva = new Reserva();
         
         reserva.setAcomodacao(acomodacao);
+        reserva.setValorDiaria(acomodacao.getTipoAcomodacao().getValorDiaria());
         reserva.setDataHoraChegada(DateUtils.toDate(inputStartDate.getValue()));
         reserva.setDataHoraSaida(DateUtils.toDate(inputEndDate.getValue()));
         reserva.setHospede(hospede);
         reserva.setQtdeAdulto(Integer.parseInt(inputQtdeAdultos.getText()));
         reserva.setQtdeCrianca(Integer.parseInt(inputQtdeCriancas.getText()));
         
-        AlertMaker.snackBar(pnlReservaForm, "Reserva efetuada.");
+        reservaDao.save(reserva);
         reset();
         HomeController.getController().showPlaneBookings();
-        
+        HomeController.getController().showSnackBar("Reserva efetuada");
+        ReservasController.getController().loadItens();
     }
 
     @FXML
@@ -166,14 +179,19 @@ public class ReservaFormController implements Initializable {
         } catch (Exception ex) {
             AlertMaker.showErrorMessage(ex);
         }
-
     }
     
     private void reset () {
         hospede = null;
         cbCustomers.getSelectionModel().select(hospede);
+        inputStartDate.setValue(null);
+        inputEndDate.setValue(null);
+        inputQtdeAdultos.clear();
+        inputQtdeCriancas.clear();
+        
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), null);
         DateUtils.setDatePickerLimit(inputEndDate, LocalDate.now(), null);
+        pnReservas.getChildren().clear();
     }
     
     

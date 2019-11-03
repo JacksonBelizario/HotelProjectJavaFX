@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="item" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.ItemController">
     <children>
         <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -17,26 +17,27 @@
                 <Insets left="10.0" />
             </HBox.margin>
         </ImageView>
-        <Label prefHeight="17.0" prefWidth="70.0" text="Quarto 1" textFill="#393939">
+        <Label fx:id="labelQuarto" prefHeight="17.0" prefWidth="70.0" text="Quarto 1" textFill="#393939">
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin></Label>
-        <Label prefHeight="17.0" prefWidth="317.0" text="Cliente" textFill="#393939">
+        <Label fx:id="labelHospede" prefHeight="17.0" prefWidth="217.0" text="Cliente" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label prefHeight="17.0" prefWidth="90.0" text="19/10/2019" textFill="#393939">
+        <Label fx:id="labelStartDate" prefHeight="17.0" prefWidth="90.0" text="19/10/2019" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label prefHeight="17.0" prefWidth="91.0" text="R$ 200,00" textFill="#393939">
+      <Label fx:id="labelEndDate" prefHeight="17.0" prefWidth="90.0" text="22/10/2019" textFill="#393939" />
+        <Label fx:id="labelPreco" prefHeight="17.0" prefWidth="91.0" text="R$ 200,00" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../styles/Styles.css" text="livre">
+        <Button fx:id="labelStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@../styles/Styles.css" text="livre">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

@@ -2,9 +2,18 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="hotel" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>br.uems.hotelapp.persistence.entities.Acomodacao</class>
+    <class>br.uems.hotelapp.persistence.entities.Acompanhante</class>
+    <class>br.uems.hotelapp.persistence.entities.CategoriaItem</class>
+    <class>br.uems.hotelapp.persistence.entities.Consumo</class>
+    <class>br.uems.hotelapp.persistence.entities.DadosCartao</class>
+    <class>br.uems.hotelapp.persistence.entities.Estadia</class>
     <class>br.uems.hotelapp.persistence.entities.Funcionario</class>
     <class>br.uems.hotelapp.persistence.entities.Hospede</class>
-    <class>br.uems.hotelapp.persistence.entities.DadosCartao</class>
+    <class>br.uems.hotelapp.persistence.entities.ItemConsumo</class>
+    <class>br.uems.hotelapp.persistence.entities.Pagamento</class>
+    <class>br.uems.hotelapp.persistence.entities.Reserva</class>
+    <class>br.uems.hotelapp.persistence.entities.TipoAcomodacao</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hotel"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
