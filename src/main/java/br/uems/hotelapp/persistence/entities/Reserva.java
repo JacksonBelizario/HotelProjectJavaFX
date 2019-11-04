@@ -161,4 +161,8 @@ public class Reserva implements AbstractEntity, Serializable {
         return estadia;
     }
     
+    public void setEstadia(Estadia estadia) {
+        this.estadia = estadia;
+    }
+    
 }

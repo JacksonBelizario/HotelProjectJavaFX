@@ -101,7 +101,6 @@ public class ReservaFormController implements Initializable {
     void onStartDate(ActionEvent event) {
         LocalDate minDate = inputStartDate.getValue().plusDays(1);
         DateUtils.setDatePickerLimit(inputEndDate, minDate, null);
-
     }
 
     @FXML
@@ -120,7 +119,7 @@ public class ReservaFormController implements Initializable {
         if (hospede == null || inputStartDate.getValue() == null || inputEndDate.getValue() == null) {
             return;
         }
-        loadItens();
+        findFreeRooms();
     }
     
     void reservar(Acomodacao acomodacao) {
@@ -146,10 +145,18 @@ public class ReservaFormController implements Initializable {
         hospede = cbCustomers.getSelectionModel().getSelectedItem();
     }
     
-    private void loadItens() {
+    private void findFreeRooms() {
         pnReservas.getChildren().clear();
         
-        List<Acomodacao> acomodacoes = acomodacaoDao.getAll();
+        List<Acomodacao> acomodacoes = acomodacaoDao.findFreeRooms(
+            DateUtils.toDate(inputStartDate.getValue()),
+            DateUtils.toDate(inputEndDate.getValue())
+        );
+        
+        if (acomodacoes.isEmpty()) {
+            AlertMaker.showSimpleAlert("Não há quartos disponíveis", "Altere os filtros e tente novamente.");
+            return;
+        }
 
         Iterator<Acomodacao> acomodacoesIterator = acomodacoes.iterator();
         while (acomodacoesIterator.hasNext()){

@@ -15,9 +15,11 @@ import br.uems.hotelapp.utils.DateUtils;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -68,9 +70,8 @@ public class ReservasController implements Initializable {
     
     
     public void loadItens() {
+        pnReservas.getChildren().clear();
         try {
-            pnReservas.getChildren().clear();
-
             List<Reserva> reservas = reservaDao.getAll();
 
             Iterator<Reserva> reservasIterator = reservas.iterator();
@@ -101,16 +102,20 @@ public class ReservasController implements Initializable {
                 btnStatus.setPrefWidth(180);
                 btnCancel.setVisible(false);
                 btnCancel.setManaged(false);
-            } else if (DateUtils.isToday(reserva.getDataHoraChegada())) {
-            } else {
-                btnStatus.setText("Reservado");
-                btnStatus.getStyleClass().add("btn-round-disabled");
             }
-            btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                if (DateUtils.isToday(reserva.getDataHoraChegada())) {
-                    confirmarEstadia(reserva);
+            else {
+                if(reserva.getDataHoraChegada().after(Calendar.getInstance().getTime())) {
+                    btnStatus.setText("Reservado");
+                    btnStatus.getStyleClass().add("btn-round-disabled");
+                } else {
+                    btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                        confirmarEstadia(reserva);
+                    });
                 }
-            });
+                btnCancel.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                    cancelarReserva(reserva);
+                });
+            }
     }
     
     private void confirmarEstadia(Reserva reserva) {
@@ -122,7 +127,15 @@ public class ReservasController implements Initializable {
         estadia.setHospede(reserva.getHospede());
         
         estadiaDao.save(estadia);
+        
+        reserva.setEstadia(estadia);
         AlertMaker.snackBar(pnlBooking, "Estadia confirmada.");
+        loadItens();
+    }
+
+    private void cancelarReserva(Reserva reserva) {
+        reservaDao.delete(reserva);
+        AlertMaker.snackBar(pnlBooking, "Reserva cancelada.");
         loadItens();
     }
     

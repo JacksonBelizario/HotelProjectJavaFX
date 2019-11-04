@@ -7,6 +7,7 @@ package br.uems.hotelapp.persistence.dao;
 
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Acomodacao;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -40,6 +41,20 @@ public class AcomodacaoDao extends Dao implements AbstractDao<Acomodacao> {
     public List<Acomodacao> getAll() {
         TypedQuery<Acomodacao> query = entityManager.createQuery("SELECT f FROM Acomodacao f", Acomodacao.class);
         return query.getResultList();
+    }
+    
+    
+    
+    public List<Acomodacao> findFreeRooms(Date dataHoraChegada, Date dataHoraSaida) {
+        return entityManager.createQuery(
+            "SELECT a from Acomodacao a WHERE a.id NOT IN ("
+                + "SELECT a.id FROM Acomodacao a JOIN Reserva r on a.id = r.acomodacao.id WHERE"
+                + " (r.dataHoraSaida > :data_hora_chegada and r.dataHoraChegada <= :data_hora_chegada) or (r.dataHoraSaida >= :data_hora_saida and r.dataHoraChegada < :data_hora_saida)"
+                + " GROUP BY a.id"
+                + ")")
+                .setParameter("data_hora_chegada", dataHoraChegada)
+                .setParameter("data_hora_saida", dataHoraSaida)
+                .getResultList();
     }
 
     @Override
