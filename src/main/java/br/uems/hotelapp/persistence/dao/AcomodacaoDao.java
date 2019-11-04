@@ -45,13 +45,16 @@ public class AcomodacaoDao extends Dao implements AbstractDao<Acomodacao> {
     
     
     
-    public List<Acomodacao> findFreeRooms(Date dataHoraChegada, Date dataHoraSaida) {
+    public List<Acomodacao> findFreeRooms(Integer qtdeAdulto, Integer qtdeCrianca, Date dataHoraChegada, Date dataHoraSaida) {
         return entityManager.createQuery(
-            "SELECT a from Acomodacao a WHERE a.id NOT IN ("
-                + "SELECT a.id FROM Acomodacao a JOIN Reserva r on a.id = r.acomodacao.id WHERE"
-                + " (r.dataHoraSaida > :data_hora_chegada and r.dataHoraChegada <= :data_hora_chegada) or (r.dataHoraSaida >= :data_hora_saida and r.dataHoraChegada < :data_hora_saida)"
-                + " GROUP BY a.id"
-                + ")")
+            "SELECT a from Acomodacao a JOIN TipoAcomodacao t ON t.id = a.tipoAcomodacao.id"
+                + " WHERE t.qtdeAdulto >= :qtde_adulto AND t.qtdeCrianca >= :qtde_crianca AND a.id NOT IN"
+                + " (SELECT a.id FROM Acomodacao a JOIN Reserva r on a.id = r.acomodacao.id WHERE"
+                + "  (r.dataHoraSaida > :data_hora_chegada and r.dataHoraChegada <= :data_hora_chegada) or (r.dataHoraSaida >= :data_hora_saida and r.dataHoraChegada < :data_hora_saida)"
+                + "  GROUP BY a.id"
+                + " )")
+                .setParameter("qtde_adulto", qtdeAdulto)
+                .setParameter("qtde_crianca", qtdeCrianca)
                 .setParameter("data_hora_chegada", dataHoraChegada)
                 .setParameter("data_hora_saida", dataHoraSaida)
                 .getResultList();

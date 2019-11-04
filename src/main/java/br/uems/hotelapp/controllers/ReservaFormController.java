@@ -116,6 +116,10 @@ public class ReservaFormController implements Initializable {
             return;
         }
         
+        if (StringUtils.strip(inputQtdeCriancas.getText(), "0").isEmpty()) {
+            inputQtdeCriancas.setText("0");
+        }
+        
         if (hospede == null || inputStartDate.getValue() == null || inputEndDate.getValue() == null) {
             return;
         }
@@ -149,6 +153,8 @@ public class ReservaFormController implements Initializable {
         pnReservas.getChildren().clear();
         
         List<Acomodacao> acomodacoes = acomodacaoDao.findFreeRooms(
+            Integer.parseInt(inputQtdeAdultos.getText()),
+            Integer.parseInt(inputQtdeCriancas.getText()),
             DateUtils.toDate(inputStartDate.getValue()),
             DateUtils.toDate(inputEndDate.getValue())
         );
