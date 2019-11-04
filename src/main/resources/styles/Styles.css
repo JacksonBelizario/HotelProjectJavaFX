@@ -121,6 +121,30 @@ JFXButton, JFXButton:hover {
     -fx-background-radius: 0.25em;
 }
 
+.btn-round, .btn-round:hover  {
+    -fx-border-color:  #384ad7;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
+.btn-round-disabled, .btn-round-disabled:hover {
+    -fx-border-color: #DDDDDD;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
+.btn-round-danger, .btn-round-danger:hover  {
+    -fx-border-color: #f4516c;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
+.btn-round-secondary, .btn-round-secondary:hover  {
+    -fx-border-color: #d4d8e3;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
 JFXButton.btn-primary {
     -fx-text-fill: #fff;
     -fx-background-color: #5867dd;

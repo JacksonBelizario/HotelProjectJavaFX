@@ -51,7 +51,7 @@ public class Estadia implements AbstractEntity, Serializable {
     Hospede hospede;
     
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "codigo_funcionario", nullable = false, updatable = false)
+    @JoinColumn(name = "codigo_funcionario", updatable = false)
     Funcionario funcionario;
     
     @OneToOne(cascade = CascadeType.MERGE)

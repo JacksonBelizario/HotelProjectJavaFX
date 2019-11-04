@@ -143,6 +143,26 @@ public class AlertMaker {
         nodeToBeBlurred.setEffect(blur);
     }
 
+    public static void showMaterialDialog(StackPane root, List<JFXButton> controls, String header, String body) {
+        if (controls.isEmpty()) {
+            controls.add(new JFXButton("Ok"));
+        }
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.TOP);
+
+        controls.forEach(controlButton -> {
+            controlButton.getStyleClass().add("dialog-button");
+            controlButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
+                dialog.close();
+            });
+        });
+
+        dialogLayout.setHeading(new Label(header));
+        dialogLayout.setBody(new Label(body));
+        dialogLayout.setActions(controls);
+        dialog.show();
+    }
+
 //    public static void showTrayMessage(String title, String message) {
 //        try {
 //            SystemTray tray = SystemTray.getSystemTray();

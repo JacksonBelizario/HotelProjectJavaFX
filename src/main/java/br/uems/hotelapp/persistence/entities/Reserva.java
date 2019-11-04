@@ -44,15 +44,18 @@ public class Reserva implements AbstractEntity, Serializable {
     
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_hospede", nullable = false, updatable = false)
-    Hospede hospede;
+    private Hospede hospede;
     
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_acomodacao", nullable = false, updatable = true)
-    Acomodacao acomodacao;
+    private Acomodacao acomodacao;
     
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_cartao")
-    DadosCartao cartao;
+    private DadosCartao cartao;
+    
+    @OneToOne(mappedBy = "reserva")
+    private Estadia estadia;
     
     @Column(name = "valor_diaria", nullable = false)
     private Double valorDiaria;
@@ -152,6 +155,10 @@ public class Reserva implements AbstractEntity, Serializable {
 
     public void setQtdeCrianca(Integer qtdeCrianca) {
         this.qtdeCrianca = qtdeCrianca;
+    }
+    
+    public Estadia getEstadia() {
+        return estadia;
     }
     
 }

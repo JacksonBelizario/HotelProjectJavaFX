@@ -286,23 +286,7 @@ public class HomeController implements Initializable {
     }
 
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {
-        if (controls.isEmpty()) {
-            controls.add(new JFXButton("Ok"));
-        }
-        JFXDialogLayout dialogLayout = new JFXDialogLayout();
-        JFXDialog dialog = new JFXDialog(stackPane, dialogLayout, JFXDialog.DialogTransition.TOP);
-
-        controls.forEach(controlButton -> {
-            controlButton.getStyleClass().add("dialog-button");
-            controlButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) -> {
-                dialog.close();
-            });
-        });
-
-        dialogLayout.setHeading(new Label(header));
-        dialogLayout.setBody(new Label(body));
-        dialogLayout.setActions(controls);
-        dialog.show();
+        AlertMaker.showMaterialDialog(stackPane, controls, header, body);
     }
     
     public void showSnackBar(String message) {

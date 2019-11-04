@@ -6,6 +6,7 @@ br\uems\hotelapp\persistence\dao\PagamentoDao.class
 br\uems\hotelapp\controllers\ItemController.class
 br\uems\hotelapp\controllers\UserItemController.class
 br\uems\hotelapp\controllers\ReservaItemController.class
+br\uems\hotelapp\controllers\ListaReservaItemController.class
 br\uems\hotelapp\utils\MasksUtils$4.class
 br\uems\hotelapp\persistence\dao\AcomodacaoDao.class
 br\uems\hotelapp\persistence\entities\Funcionario.class

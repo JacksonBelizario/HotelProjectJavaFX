@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="item" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.ItemController">
+<HBox fx:id="item" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.ListaReservaItemController">
     <children>
         <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -22,23 +22,23 @@
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin></Label>
-        <Label fx:id="labelHospede" prefHeight="17.0" prefWidth="217.0" text="Cliente" textFill="#393939">
+        <Label fx:id="labelHospede" prefHeight="17.0" prefWidth="150.0" text="Cliente" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Label fx:id="labelStartDate" prefHeight="17.0" prefWidth="90.0" text="19/10/2019" textFill="#393939">
+        <Label fx:id="labelStartDate" prefHeight="17.0" prefWidth="75.0" text="19/10/2019" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-      <Label fx:id="labelEndDate" prefHeight="17.0" prefWidth="90.0" text="22/10/2019" textFill="#393939" />
+      <Label fx:id="labelEndDate" prefHeight="17.0" prefWidth="75.0" text="22/10/2019" textFill="#393939" />
         <Label fx:id="labelPreco" prefHeight="17.0" prefWidth="70.0" text="R$ 200,00" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button fx:id="btnStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="80.0" styleClass="btn-round" text="reservado">
+        <Button fx:id="btnStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="85.0" styleClass="btn-round" text="confirmar">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
@@ -46,5 +46,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
+      <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="10.0" prefWidth="85.0" styleClass="btn-round-danger" text="cancelar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </HBox>
