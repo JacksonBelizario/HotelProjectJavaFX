@@ -50,19 +50,13 @@ public class ReservaFormController implements Initializable {
     private JFXComboBox<Hospede> cbCustomers;
 
     @FXML
-    private JFXTextField inputQtdeAdultos;
+    private JFXTextField inputQtdeAdultos, inputQtdeCriancas;
 
     @FXML
-    private JFXTextField inputQtdeCriancas;
+    private JFXDatePicker inputStartDate, inputEndDate;
 
     @FXML
-    private JFXDatePicker inputStartDate;
-
-    @FXML
-    private JFXDatePicker inputEndDate;
-
-    @FXML
-    private JFXButton btnSearch;
+    private JFXButton btnSearch, btnReset;
 
     @FXML
     private VBox pnReservas;
@@ -163,6 +157,12 @@ public class ReservaFormController implements Initializable {
             AlertMaker.showSimpleAlert("Não há quartos disponíveis", "Altere os filtros e tente novamente.");
             return;
         }
+        
+        cbCustomers.setDisable(true);
+        inputStartDate.setDisable(true);
+        inputEndDate.setDisable(true);
+        inputQtdeAdultos.setDisable(true);
+        inputQtdeCriancas.setDisable(true);
 
         Iterator<Acomodacao> acomodacoesIterator = acomodacoes.iterator();
         while (acomodacoesIterator.hasNext()){
@@ -188,13 +188,18 @@ public class ReservaFormController implements Initializable {
         }
     }
     
-    private void reset () {
+    private void reset() {
         hospede = null;
         cbCustomers.getSelectionModel().select(hospede);
         inputStartDate.setValue(null);
         inputEndDate.setValue(null);
         inputQtdeAdultos.clear();
         inputQtdeCriancas.clear();
+        cbCustomers.setDisable(false);
+        inputStartDate.setDisable(false);
+        inputEndDate.setDisable(false);
+        inputQtdeAdultos.setDisable(false);
+        inputQtdeCriancas.setDisable(false);
         
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), null);
         DateUtils.setDatePickerLimit(inputEndDate, LocalDate.now().plusDays(1), null);
@@ -215,6 +220,13 @@ public class ReservaFormController implements Initializable {
         ValidatorUtils.setValidator(cbCustomers, "Informe o hóspede");
         ValidatorUtils.setValidator(inputStartDate, "Informe a data de chegada");
         ValidatorUtils.setValidator(inputEndDate, "Informe a data de saída");
+    }
+    
+    
+
+    @FXML
+    void reset(MouseEvent event) {
+        reset();
     }
 
 }

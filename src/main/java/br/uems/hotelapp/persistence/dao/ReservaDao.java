@@ -38,7 +38,7 @@ public class ReservaDao extends Dao implements AbstractDao<Reserva> {
 
     @Override
     public List<Reserva> getAll() {
-        TypedQuery<Reserva> query = entityManager.createQuery("SELECT f FROM Reserva f", Reserva.class);
+        TypedQuery<Reserva> query = entityManager.createQuery("SELECT r FROM Reserva r ORDER By r.id DESC", Reserva.class);
         return query.getResultList();
     }
 

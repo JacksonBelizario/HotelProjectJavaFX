@@ -1,3 +1,12 @@
+* {
+    -fx-primary : #5867dd;
+    -fx-secondary : #fff;
+    -fx-primarytext : #fff;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-gray: #fafbfd;
+}
+
 .button {
    -fx-font-family: 'Poppins', sans-serif;
     -fx-background-color : #e6eaed;
@@ -34,7 +43,7 @@ JFXTextField, JFXDatePicker, JFXComboBox {
 }
 
 .pane, .scroll-pane {
-    -fx-background-color: #fafbfd;
+    -fx-background-color: -fx-gray;
 }
 
 .scroll-bar:horizontal, .scroll-bar:vertical{
@@ -188,3 +197,29 @@ JFXButton.btn-danger:hover {
 .jfx-snackbar-action {
     -fx-background-color: #FFFFFF;
 }
+
+
+/*Alert Dialog*/
+
+.custom-alert{
+    -fx-text-fill: -fx-primary;
+}
+.custom-alert > *.label.content {
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-primary;
+}
+.custom-alert:header .header-panel .label {
+    -fx-font-style: normal;
+    -fx-text-fill: -fx-primary;
+}
+.custom-alert:header *.header-panel *.label {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: -fx-primary;
+}
+.custom-alert .button {
+    -fx-text-fill: #fff;
+    -fx-background-color: #5867dd;
+    -fx-border-color: #5867dd;
+    -fx-cursor:hand;
+ }

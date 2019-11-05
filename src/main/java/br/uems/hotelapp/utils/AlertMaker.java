@@ -182,9 +182,9 @@ public class AlertMaker {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         //LibraryAssistantUtil.setStageIcon(stage);
 
-//        DialogPane dialogPane = alert.getDialogPane();
-//        dialogPane.getStylesheets().add(AlertMaker.class.getResource("/resources/dark-theme.css").toExternalForm());
-//        dialogPane.getStyleClass().add("custom-alert");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("/styles/Styles.css");
+        dialogPane.getStyleClass().add("custom-alert");
     }
     
     public static void snackBar(Pane pane, String message) {

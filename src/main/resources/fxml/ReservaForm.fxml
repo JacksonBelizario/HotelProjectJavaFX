@@ -76,5 +76,10 @@
             </VBox>
          </content>
       </ScrollPane>
+      <JFXButton fx:id="btnReset" layoutX="584.0" layoutY="232.0" onMouseClicked="#reset" styleClass="btn-secondary" stylesheets="@../styles/Styles.css" text="Limpar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </Pane>
