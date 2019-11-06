@@ -9,20 +9,25 @@
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="734.0" spacing="10.0" styleClass="list-item" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.CustomerItemController">
     <children>
-        <Label fx:id="labelNome" prefHeight="17.0" prefWidth="165.0" text="Nome" textFill="#393939">
+      <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_user_32px.png" />
+         </image>
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin>
-         <padding>
+      </ImageView>
+        <Label fx:id="labelNome" prefHeight="17.0" prefWidth="150.0" text="Nome" textFill="#393939">
+         <HBox.margin>
             <Insets left="10.0" />
-         </padding></Label>
-        <Label fx:id="labelEnd" prefHeight="17.0" prefWidth="118.0" text="Endereço" textFill="#393939">
+         </HBox.margin></Label>
+        <Label fx:id="labelEnd" prefHeight="17.0" prefWidth="105.0" text="Endereço" textFill="#393939">
             <HBox.margin>
                 <Insets />
             </HBox.margin>
         </Label>
-      <Label fx:id="labelCidade" prefHeight="17.0" prefWidth="65.0" text="Cidade" textFill="#393939" />
-      <Label fx:id="labelEstado" prefHeight="17.0" prefWidth="65.0" text="Estado" textFill="#393939" />
+      <Label fx:id="labelCidade" prefHeight="17.0" prefWidth="60.0" text="Cidade" textFill="#393939" />
+      <Label fx:id="labelEstado" prefHeight="17.0" prefWidth="45.0" text="Estado" textFill="#393939" />
         <Label fx:id="labelTel" prefHeight="17.0" prefWidth="90.0" text="(67) 9999-9999" textFill="#393939">
             <HBox.margin>
                 <Insets />

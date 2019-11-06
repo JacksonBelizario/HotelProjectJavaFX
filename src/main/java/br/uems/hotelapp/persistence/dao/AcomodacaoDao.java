@@ -50,7 +50,8 @@ public class AcomodacaoDao extends Dao implements AbstractDao<Acomodacao> {
             "SELECT a from Acomodacao a JOIN TipoAcomodacao t ON t.id = a.tipoAcomodacao.id"
                 + " WHERE t.qtdeAdulto >= :qtde_adulto AND t.qtdeCrianca >= :qtde_crianca AND a.id NOT IN"
                 + " (SELECT a.id FROM Acomodacao a JOIN Reserva r on a.id = r.acomodacao.id WHERE"
-                + "  (r.dataHoraSaida > :data_hora_chegada and r.dataHoraChegada <= :data_hora_chegada) or (r.dataHoraSaida >= :data_hora_saida and r.dataHoraChegada < :data_hora_saida)"
+                + "  (r.dataHoraSaida > :data_hora_chegada and r.dataHoraChegada <= :data_hora_chegada) OR"
+                + "  (r.dataHoraSaida >= :data_hora_saida and r.dataHoraChegada < :data_hora_saida)"
                 + "  GROUP BY a.id"
                 + " )")
                 .setParameter("qtde_adulto", qtdeAdulto)

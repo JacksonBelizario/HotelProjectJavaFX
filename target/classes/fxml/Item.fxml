@@ -38,7 +38,7 @@
                 <Insets />
             </HBox.margin>
         </Label>
-        <Button fx:id="btnStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="80.0" styleClass="btn-round" text="reservado">
+        <Button fx:id="btnStatus" mnemonicParsing="false" prefHeight="10.0" prefWidth="80.0" styleClass="btn-round" text="visualizar">
             <HBox.margin>
                 <Insets />
             </HBox.margin>

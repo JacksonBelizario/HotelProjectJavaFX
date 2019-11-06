@@ -108,4 +108,9 @@ public class UsersController implements Initializable {
     void addUser(MouseEvent event) {
         HomeController.getController().showUserForm();
     }
+
+    @FXML
+    void refresh(MouseEvent event) {
+        loadUsers();
+    }
 }

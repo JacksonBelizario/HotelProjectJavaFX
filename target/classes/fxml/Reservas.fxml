@@ -18,11 +18,11 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="42.0" layoutY="86.0" prefHeight="42.0" prefWidth="712.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
+      <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="88.0" prefHeight="42.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label prefWidth="70.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Quarto" textFill="#0d0d0d">
                <HBox.margin>
-                  <Insets left="32.0" />
+                  <Insets left="55.0" />
                </HBox.margin>
             </Label>
             <Label prefHeight="17.0" prefWidth="150.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
@@ -46,6 +46,14 @@
                   <Insets />
                </HBox.margin>
             </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_restart_32px.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </HBox>
       <ScrollPane fitToWidth="true" layoutX="16.0" layoutY="145.0" prefHeight="382.0" prefWidth="765.0" stylesheets="@../styles/Styles.css">

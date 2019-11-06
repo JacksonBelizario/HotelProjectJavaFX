@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -184,7 +183,6 @@
                <children>
                   <Pane fx:id="pnlOverview" prefHeight="513.0" prefWidth="762.0" styleClass="pane">
                      <children>
-                        <TextField layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="procurar" style="-fx-background-color: #FFFFFF; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
                         <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Disponibilidade de Quartos" textFill="#0d0d0d">
                            <font>
                               <Font size="24.0" />
@@ -234,14 +232,14 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
+                        <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="179.0" prefHeight="42.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
                            <children>
                               <Label prefWidth="70.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Quarto" textFill="#0d0d0d">
                                  <HBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets left="55.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label prefHeight="17.0" prefWidth="317.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
+                              <Label prefHeight="17.0" prefWidth="217.0" styleClass="bold" text="Cliente" textFill="#0d0d0d">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -251,16 +249,25 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
+                              <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Saída" textFill="#0d0d0d" />
                               <Label prefWidth="91.0" styleClass="bold" text="Valor" textFill="#0d0d0d">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label prefWidth="60.0" styleClass="bold" text="Status" textFill="#0d0d0d">
+                              <Label prefWidth="25.0" styleClass="bold" textFill="#0d0d0d">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Label>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons8_restart_32px.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
                            </children>
                         </HBox>
                         <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="232.0" prefHeight="286.0" prefWidth="765.0" stylesheets="@../styles/Styles.css">
@@ -272,11 +279,6 @@
                               </VBox>
                            </content>
                         </ScrollPane>
-                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons8_Search_52px.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </Pane>
                </children>

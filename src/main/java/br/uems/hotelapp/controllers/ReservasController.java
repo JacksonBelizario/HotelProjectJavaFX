@@ -138,5 +138,10 @@ public class ReservasController implements Initializable {
         AlertMaker.snackBar(pnlBooking, "Reserva cancelada.");
         loadItens();
     }
+
+    @FXML
+    void refresh(MouseEvent event) {
+        loadItens();
+    }
     
 }

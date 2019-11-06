@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
@@ -27,13 +28,11 @@ public class CustomersController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        setData();
-
+        loadCustomers();
     }
     
     
-    public void setData() {
+    public void loadCustomers() {
         HospedeDao hospedeDao = new HospedeDao();
         
         List<Hospede> hospedes = hospedeDao.getAll();
@@ -52,5 +51,10 @@ public class CustomersController implements Initializable {
             }
 
         }
+    }
+
+    @FXML
+    void refresh(MouseEvent event) {
+        loadCustomers();
     }
 }

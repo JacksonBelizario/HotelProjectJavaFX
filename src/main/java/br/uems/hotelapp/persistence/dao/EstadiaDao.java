@@ -38,7 +38,7 @@ public class EstadiaDao extends Dao implements AbstractDao<Estadia> {
 
     @Override
     public List<Estadia> getAll() {
-        TypedQuery<Estadia> query = entityManager.createQuery("SELECT f FROM Estadia f", Estadia.class);
+        TypedQuery<Estadia> query = entityManager.createQuery("SELECT e FROM Estadia e ORDER By e.id DESC", Estadia.class);
         return query.getResultList();
     }
 

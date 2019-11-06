@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pnlUserForm" prefHeight="541.0" prefWidth="794.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.UserFormController">
+<Pane fx:id="pnlUserForm" prefHeight="541.0" prefWidth="794.0" styleClass="pane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.UserFormController">
    <children>
       <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Funcionários" textFill="#0d0d0d">
          <font>

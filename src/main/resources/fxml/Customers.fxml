@@ -11,42 +11,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pnlCustomers" prefHeight="541.0" prefWidth="794.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.CustomersController">
+<Pane fx:id="pnlCustomers" prefHeight="541.0" prefWidth="794.0" styleClass="pane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.CustomersController">
    <children>
       <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Hospedes" textFill="#0d0d0d">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="42.0" layoutY="88.0" prefHeight="42.0" prefWidth="712.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
+      <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="88.0" prefHeight="42.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label prefHeight="17.0" prefWidth="155.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Nome" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="150.0" styleClass="bold" stylesheets="@../styles/Styles.css" text="Nome" textFill="#0d0d0d">
+               <HBox.margin>
+                  <Insets left="55.0" />
+               </HBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="105.0" styleClass="bold" text="Endereço" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefHeight="17.0" prefWidth="118.0" styleClass="bold" text="Endereço" textFill="#0d0d0d">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Cidade" textFill="#0d0d0d" />
-            <Label prefHeight="17.0" prefWidth="65.0" styleClass="bold" text="Estado" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="60.0" styleClass="bold" text="Cidade" textFill="#0d0d0d" />
+            <Label prefHeight="17.0" prefWidth="45.0" styleClass="bold" text="Estado" textFill="#0d0d0d" />
             <Label prefHeight="17.0" prefWidth="90.0" styleClass="bold" text="Telefone" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefWidth="85.0" styleClass="bold" text="Email" textFill="#0d0d0d">
+            <Label prefHeight="17.0" prefWidth="140.0" styleClass="bold" text="Email" textFill="#0d0d0d">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefWidth="40.0" styleClass="bold" text="#" textFill="#0d0d0d">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_restart_32px.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </HBox>
       <ScrollPane fitToWidth="true" layoutX="16.0" layoutY="145.0" prefHeight="382.0" prefWidth="765.0" stylesheets="@../styles/Styles.css">

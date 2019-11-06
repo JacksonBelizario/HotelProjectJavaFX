@@ -1,13 +1,13 @@
 package br.uems.hotelapp.controllers;
 
+import br.uems.hotelapp.persistence.dao.EstadiaDao;
+import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Funcionario;
 import br.uems.hotelapp.utils.AlertMaker;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.events.JFXDialogEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -53,7 +52,10 @@ public class HomeController implements Initializable {
     private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm, pnlReservaForm;
     
     UserFormController userFormController;
-    double x, y;
+    
+    private double x, y;
+    
+    private EstadiaDao estadiaDao = new EstadiaDao();
 
     @FXML
     void dragged(MouseEvent event) {
@@ -93,12 +95,21 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.setController(this);
+        loadEstadias();
+    }
+    
+    public void loadEstadias() {
+        pnItems.getChildren().clear();
         try {
-            dummyData(pnItems);
-        } catch (IOException ex) {
+            List<Estadia> estadias = estadiaDao.getAll();
+
+            Iterator<Estadia> estadiasIterator = estadias.iterator();
+            while (estadiasIterator.hasNext()) {
+                addItem((Estadia) estadiasIterator.next());
+            }
+        } catch (Exception ex) {
             AlertMaker.showErrorMessage(ex);
         }
-
     }
 
 
@@ -257,32 +268,19 @@ public class HomeController implements Initializable {
         
         pnlReservaForm.toFront();
     }
-    
-    public void dummyData(Pane pane) throws IOException {
-        
-        final Node[] nodes = new Node[10];
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = FXMLLoader.load(getClass().getResource("/fxml/Item.fxml"));
 
-                //give the items some effect
+    @FXML
+    void refresh(MouseEvent event) {
+        loadEstadias();
+    }
 
-//                nodes[i].setOnMouseEntered(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent mouseEvent) {
-//                        nodes[j].setStyle("-fx-background-color : #DFE4E8");
-//                    }
-//                });
-//                nodes[i].setOnMouseExited(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent mouseEvent) {
-//                        nodes[j].setStyle("-fx-background-color : #FFFFFF");
-//                        
-//                    }
-//                });
+    private void addItem(Estadia estadia) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Item.fxml"));
+            Node node = loader.load();
+            pnItems.getChildren().add(node);
 
-            pane.getChildren().add(nodes[i]);
-        }
-
+            ItemController controller = loader.<ItemController>getController();
+            controller.setData(estadia);
     }
 
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {
