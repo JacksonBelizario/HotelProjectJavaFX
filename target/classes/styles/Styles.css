@@ -30,8 +30,9 @@
     -fx-metal: #c4c5d6;
     -fx-metal-active: #a6a7c1;
     -fx-metal-border: #9ea0bc;
-    -fx-light : #fff;
+    -fx-light: #fff;
     -fx-light-gray: #fafbfd;
+    -fx-pink: #FE21BE;
 }
 
 .button {
@@ -288,9 +289,9 @@ JFXButton.btn-brand:hover {
  
  
 .table-view {
-    -fx-base: #fff;
-    -fx-control-inner-background: #fff;
-    -fx-background-color: #fff;
+    -fx-base: -fx-light;
+    -fx-control-inner-background: -fx-light;
+    -fx-background-color: -fx-light;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
 }
@@ -313,4 +314,8 @@ JFXButton.btn-brand:hover {
     -fx-font-family: 'Poppins', sans-serif;
     -fx-alignment: center-left;
     -fx-opacity: 1;
+}
+
+.table-view .column-header .arrow {
+    -fx-background-color: -fx-light;
 }

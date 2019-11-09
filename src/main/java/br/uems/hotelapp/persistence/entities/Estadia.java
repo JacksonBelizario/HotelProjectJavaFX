@@ -7,6 +7,7 @@ package br.uems.hotelapp.persistence.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -57,6 +59,9 @@ public class Estadia implements AbstractEntity, Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_acomodacao", nullable = false, updatable = false)
     Acomodacao acomodacao;
+    
+    @OneToMany(mappedBy = "estadia")
+    private List<Consumo> consumos;
     
     @Override
     public Integer getId() {
@@ -109,6 +114,10 @@ public class Estadia implements AbstractEntity, Serializable {
 
     public void setAcomodacao(Acomodacao acomodacao) {
         this.acomodacao = acomodacao;
+    }
+    
+    public List<Consumo> getConsumos() {
+        return consumos;
     }
     
 }

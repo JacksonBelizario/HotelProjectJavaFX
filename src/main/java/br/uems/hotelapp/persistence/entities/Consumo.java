@@ -38,11 +38,6 @@ public class Consumo implements AbstractEntity, Serializable {
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
     
-    @Override
-    public Integer getId() {
-        return id;
-    }
-    
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_item", nullable = false, updatable = false)
     ItemConsumo itemConsumo;
@@ -60,6 +55,11 @@ public class Consumo implements AbstractEntity, Serializable {
     
     @Column(name = "valor", nullable = false)
     private Double valor;
+    
+    @Override
+    public Integer getId() {
+        return id;
+    }
 
     public ItemConsumo getItemConsumo() {
         return itemConsumo;

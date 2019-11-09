@@ -15,6 +15,7 @@ import br.uems.hotelapp.utils.ValidatorUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +83,7 @@ public class EstadiaController implements Initializable {
     private TableColumn<ItemConsumoTable, String> colValor;
 
     @FXML
-    private Label labelTotalPrice;
+    private Label labelPrecoEstadia, labelPrecoConsumo, labelPrecoTotal;
 
     @FXML
     private JFXButton btnPay;
@@ -105,11 +106,13 @@ public class EstadiaController implements Initializable {
     
     ItemConsumo itemConsumo;
     
+    Double valorConsumo = 0.0, valorTotal = 0.0;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initTable();
         reset();
         loadValidators();
-        loadConsumo();
     }
 
     @FXML
@@ -117,24 +120,32 @@ public class EstadiaController implements Initializable {
 
     }
     
-    private void loadConsumo() {
+    private void initTable() {
+        tableItensConsumo.getColumns().clear();
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colQtde.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        tableItensConsumo.getColumns().addAll(colNome, colTipo, colQtde, colData, colValor);
+    }
+    
+    private void loadConsumo(Estadia estadia) {
         
-        List<Consumo> consumos = consumoDao.getAll();
+        List<Consumo> consumos = estadia.getConsumos();
         
         List<ItemConsumoTable> listConsumos = new ArrayList<>();
         
         consumos.forEach(consumo -> {
+            valorConsumo += consumo.getQuantidade() * consumo.getValor();
+            valorTotal += consumo.getQuantidade() * consumo.getValor();
             listConsumos.add(consumo.getRowTable());
         });
         
         obConsumos = FXCollections.observableArrayList(listConsumos);
         tableItensConsumo.setItems(obConsumos);
-        tableItensConsumo.getColumns().addAll(colNome, colTipo, colQtde, colData, colValor);
+        labelPrecoConsumo.setText(NumberUtils.formatCurrency(valorConsumo));
+        labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
     }
     
     private void loadItensConsumo() {
@@ -164,6 +175,10 @@ public class EstadiaController implements Initializable {
         consumo.setQuantidade(Integer.parseInt(inputQtdeItensConsumo.getText()));
         consumoDao.save(consumo);
         obConsumos.add(consumo.getRowTable());
+        valorConsumo += consumo.getQuantidade() * consumo.getValor();
+        valorTotal += consumo.getQuantidade() * consumo.getValor();
+        labelPrecoConsumo.setText(NumberUtils.formatCurrency(valorConsumo));
+        labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
         resetConsumoForm();
     }
     
@@ -180,22 +195,27 @@ public class EstadiaController implements Initializable {
     
     public void setData(Estadia estadia) {
         this.estadia = estadia;
-        TipoAcomodacao tipoAcomodacao = estadia.getAcomodacao().getTipoAcomodacao();
         Reserva reserva = estadia.getReserva();
         labelCustomerName.setText(estadia.getHospede().getNome());
         labelStartDate.setText(DateUtils.format(estadia.getDataHoraInicio()));
         labelEndDate.setText(DateUtils.format(estadia.getDataHoraTermino()));
-        labelRoomType.setText(tipoAcomodacao.toString());
+        labelRoomType.setText(estadia.getAcomodacao().toString());
         labelQtdeAdultos.setText(reserva.getQtdeAdulto().toString());
         labelQtdeCriancas.setText(reserva.getQtdeCrianca().toString());
         
         Integer dias = DateUtils.diffInDays(estadia.getDataHoraInicio(), estadia.getDataHoraTermino());
         Double valorEstadia =  dias * estadia.getReserva().getValorDiaria();
         
-        labelTotalPrice.setText(NumberUtils.formatCurrency(valorEstadia));
+        valorConsumo = 0.0;
+        valorTotal = valorEstadia;
+        labelPrecoEstadia.setText(NumberUtils.formatCurrency(valorEstadia));
+        labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
+        
+        loadConsumo(estadia);
     }
     
     private void reset() {
+        resetConsumoForm();
         loadItensConsumo();
     }
     
