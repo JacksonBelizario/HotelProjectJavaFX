@@ -5,6 +5,7 @@
  */
 package br.uems.hotelapp.persistence.entities;
 
+import br.uems.hotelapp.utils.NumberUtils;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -79,6 +80,11 @@ public class ItemConsumo implements AbstractEntity, Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+    
+    @Override
+    public String toString() {
+        return item + " " + NumberUtils.formatCurrency(preco);
     }
     
 }

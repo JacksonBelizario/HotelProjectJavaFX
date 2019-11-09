@@ -10,7 +10,9 @@ import br.uems.hotelapp.persistence.dao.ItemConsumoDao;
 import br.uems.hotelapp.persistence.entities.CategoriaItem;
 import br.uems.hotelapp.persistence.entities.ItemConsumo;
 import br.uems.hotelapp.utils.AlertMaker;
+import br.uems.hotelapp.utils.MasksUtils;
 import br.uems.hotelapp.utils.NumberUtils;
+import br.uems.hotelapp.utils.ValidatorUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -81,33 +83,8 @@ public class ItensConsumoController implements Initializable {
     
     private void loadValidators() {
         NumberUtils.mascaraDinheiro(inputPreco);
-        
-        RequiredFieldValidator validator = new RequiredFieldValidator();
-        validator.setMessage("Campo obrigatório");
-        inputNome.getValidators().add(validator);
-        inputNome.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (!newValue) {
-                inputNome.validate();
-            } else {
-                inputNome.resetValidation();
-            }
-        });
-        inputDescricao.getValidators().add(validator);
-        inputDescricao.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (!newValue) {
-                inputDescricao.validate();
-            } else {
-                inputDescricao.resetValidation();
-            }
-        });
-        inputDescricao.getValidators().add(validator);
-        inputDescricao.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-            if (!newValue) {
-                inputDescricao.validate();
-            } else {
-                inputDescricao.resetValidation();
-            }
-        });
+        ValidatorUtils.setValidator(inputNome, "Informe o nome");
+        ValidatorUtils.setValidator(inputDescricao, "Informe a descrição");
     }
     
     private void loadCategories() {

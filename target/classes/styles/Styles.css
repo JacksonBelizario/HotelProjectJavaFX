@@ -1,10 +1,37 @@
 * {
-    -fx-primary : #5867dd;
-    -fx-secondary : #fff;
-    -fx-primarytext : #fff;
-    -fx-blue: #1976D2;
-    -fx-red: #FF0000;
-    -fx-gray: #fafbfd;
+    -fx-primary: #5867dd;
+    -fx-primary-active: #2e40d4;
+    -fx-primary-border: #293ccc;
+    -fx-secondary: #ffffff;
+    -fx-secondary-border: #d4d8e3;
+    
+    -fx-success: #34bfa3;
+    -fx-success-active: #299781;
+    -fx-success-border: #268d78;
+    -fx-warning: #ffb822;
+    -fx-warning-active: #eea200;
+    -fx-warning-border: #e19900;
+    -fx-info: #36a3f7;
+    -fx-info-active: #0a8cf0;
+    -fx-info-border: #0985e4;
+    -fx-danger: #f4516c;
+    -fx-danger-active: #f12143;
+    -fx-danger-border: #f01539;
+    
+    -fx-brand: #716aca;
+    -fx-brand-active: #4d44bd;
+    -fx-brand-border: #4940b4;
+    -fx-accent: #00c5dc;
+    -fx-accent-active: #0097a9;
+    -fx-accent-border: #008c9c;
+    -fx-focus: #9816f4;
+    -fx-focus-active: #7c0acd;
+    -fx-focus-border: #7509c1;
+    -fx-metal: #c4c5d6;
+    -fx-metal-active: #a6a7c1;
+    -fx-metal-border: #9ea0bc;
+    -fx-light : #fff;
+    -fx-light-gray: #fafbfd;
 }
 
 .button {
@@ -43,7 +70,7 @@ JFXTextField, JFXDatePicker, JFXComboBox {
 }
 
 .pane, .scroll-pane {
-    -fx-background-color: -fx-gray;
+    -fx-background-color: -fx-light-gray;
 }
 
 .scroll-bar:horizontal, .scroll-bar:vertical{
@@ -143,29 +170,29 @@ JFXButton, JFXButton:hover {
 }
 
 .btn-round-danger, .btn-round-danger:hover  {
-    -fx-border-color: #f4516c;
+    -fx-border-color: -fx-danger;
     -fx-border-radius:  20;
     -fx-background-color: transparent;
 }
 
 .btn-round-secondary, .btn-round-secondary:hover  {
-    -fx-border-color: #d4d8e3;
+    -fx-border-color: -fx-secondary-border;
     -fx-border-radius:  20;
     -fx-background-color: transparent;
 }
 
 JFXButton.btn-primary {
-    -fx-text-fill: #fff;
-    -fx-background-color: #5867dd;
-    -fx-border-color: #5867dd;
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-primary;
 }
 
 JFXButton.btn-primary:hover {
-    -fx-background-color: #384ad7;
-    -fx-border-color: #2e40d4;
+    -fx-background-color: -fx-primary-active;
+    -fx-border-color: -fx-primary-border;
 }
 JFXButton.btn-secondary {
-    -fx-background-color: #fff;
+    -fx-background-color: -fx-light;
     -fx-border-color: #ebedf2;
 }
 JFXButton.btn-secondary:hover {
@@ -173,15 +200,50 @@ JFXButton.btn-secondary:hover {
     -fx-background-color: #d4d8e3;
     -fx-border-color: #ccd1de;
 }
+JFXButton.btn-success {
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-success;
+    -fx-border-color: -fx-success;
+}
+JFXButton.btn-success:hover {
+    -fx-background-color: -fx-success-active;
+    -fx-border-color: -fx-success-border;
+}
 JFXButton.btn-danger {
-    -fx-text-fill: #fff;
-    -fx-background-color: #f4516c;
-    -fx-border-color: #f4516c;
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-danger;
+    -fx-border-color: -fx-danger;
 }
 JFXButton.btn-danger:hover {
-    -fx-text-fill: #fff;
-    -fx-background-color: #f22d4e;
-    -fx-border-color: #f12143;
+    -fx-background-color: -fx-danger-active;
+    -fx-border-color: -fx-danger-border;
+}
+JFXButton.btn-warning {
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-warning;
+    -fx-border-color: -fx-warning;
+}
+JFXButton.btn-warning:hover {
+    -fx-background-color: -fx-warning-active;
+    -fx-border-color: -fx-warning-border;
+}
+JFXButton.btn-accent {
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-accent;
+    -fx-border-color: -fx-accent;
+}
+JFXButton.btn-accent:hover {
+    -fx-background-color: -fx-accent-active;
+    -fx-border-color: -fx-accent-border;
+}
+JFXButton.btn-brand {
+    -fx-text-fill: -fx-light;
+    -fx-background-color: -fx-brand;
+    -fx-border-color: -fx-brand;
+}
+JFXButton.btn-brand:hover {
+    -fx-background-color: -fx-brand-active;
+    -fx-border-color: -fx-brand-border;
 }
 
 .jfx-snackbar-content {
@@ -223,3 +285,32 @@ JFXButton.btn-danger:hover {
     -fx-border-color: #5867dd;
     -fx-cursor:hand;
  }
+ 
+ 
+.table-view {
+    -fx-base: #fff;
+    -fx-control-inner-background: #fff;
+    -fx-background-color: #fff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: -fx-brand;
+    -fx-border-color: -fx-brand;
+    -fx-border-insets: 0 10 1 0;
+    -fx-padding: 5;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-light;
+    -fx-font-size: 10pt;
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}

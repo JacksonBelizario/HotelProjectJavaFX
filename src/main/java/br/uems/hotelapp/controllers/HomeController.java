@@ -1,6 +1,8 @@
 package br.uems.hotelapp.controllers;
 
+import br.uems.hotelapp.persistence.dao.AcomodacaoDao;
 import br.uems.hotelapp.persistence.dao.EstadiaDao;
+import br.uems.hotelapp.persistence.dao.ReservaDao;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Funcionario;
 import br.uems.hotelapp.utils.AlertMaker;
@@ -37,7 +39,7 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    private Label label;
+    private Label label, labelQuartos, labelOcupados, labelLivres, labelReservas;
 
     @FXML
     private StackPane stackPane;
@@ -49,13 +51,16 @@ public class HomeController implements Initializable {
     private Button btnOverview, btnBooking, btnCustomers, btnConsumable, btnRooms, btnUsers, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm, pnlReservaForm;
+    private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm, pnlReservaForm, pnlEstadia;
     
     UserFormController userFormController;
+    EstadiaController estadiaController;
     
     private double x, y;
     
     private EstadiaDao estadiaDao = new EstadiaDao();
+    private ReservaDao reservaDao = new ReservaDao();
+    private AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
 
     @FXML
     void dragged(MouseEvent event) {
@@ -96,6 +101,13 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.setController(this);
         loadEstadias();
+        loadStats();
+    }
+    
+    public void loadStats() {
+        labelQuartos.setText(acomodacaoDao.getCount()+"");
+        labelOcupados.setText(estadiaDao.getCount()+"");
+        labelReservas.setText(reservaDao.getCount()+"");
     }
     
     public void loadEstadias() {
@@ -123,7 +135,7 @@ public class HomeController implements Initializable {
         
         if (actionEvent.getSource() == btnOverview) {
             btnOverview.getStyleClass().add("active");
-            pnlOverview.toFront();
+            showOverview();
         }
         if (actionEvent.getSource() == btnBooking) {
             btnBooking.getStyleClass().add("active");
@@ -145,6 +157,10 @@ public class HomeController implements Initializable {
             btnRooms.getStyleClass().add("active");
             showPlaneRooms();
         }
+    }
+    
+    public void showOverview() {
+        pnlOverview.toFront();
     }
     
     public void showPlaneUsers() {
@@ -281,6 +297,27 @@ public class HomeController implements Initializable {
 
             ItemController controller = loader.<ItemController>getController();
             controller.setData(estadia);
+                
+            Button btnStatus = controller.getBtnStatus();
+            btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                showEstadia(estadia);
+            });
+    }
+    
+    public void showEstadia(Estadia estadia) {
+        if (pnlEstadia == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/Estadia.fxml"));
+                pnlEstadia = userFormLoader.load();
+                estadiaController = userFormLoader.<EstadiaController>getController();
+                stackPane.getChildren().add(pnlEstadia);
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
+            }
+        }
+        estadiaController.setData(estadia);
+        pnlEstadia.toFront();
     }
 
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {

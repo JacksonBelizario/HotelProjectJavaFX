@@ -1,3 +1,4 @@
+br\uems\hotelapp\persistence\entities\Consumo$ItemConsumoTable.class
 br\uems\hotelapp\persistence\ConnectionFactory.class
 br\uems\hotelapp\persistence\entities\Estadia.class
 br\uems\hotelapp\utils\NumberUtils.class
@@ -42,6 +43,7 @@ br\uems\hotelapp\persistence\dao\ItemConsumoDao.class
 br\uems\hotelapp\controllers\UsersController.class
 br\uems\hotelapp\controllers\AcomodacaoItemController.class
 br\uems\hotelapp\persistence\dao\TipoAcomodacaoDao.class
+br\uems\hotelapp\controllers\EstadiaController.class
 br\uems\hotelapp\persistence\dao\HospedeDao.class
 br\uems\hotelapp\persistence\dao\DadosCartaoDao.class
 br\uems\hotelapp\controllers\ReservasController.class

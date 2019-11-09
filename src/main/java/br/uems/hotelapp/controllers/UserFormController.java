@@ -12,6 +12,7 @@ import br.uems.hotelapp.utils.DateUtils;
 import br.uems.hotelapp.utils.MascarasFX;
 import br.uems.hotelapp.utils.MasksUtils;
 import br.uems.hotelapp.utils.NumberUtils;
+import br.uems.hotelapp.utils.ValidatorUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXSnackbar;
@@ -64,24 +65,20 @@ public class UserFormController implements Initializable {
 
     @FXML
     private JFXTextField inputSalario;
-    
+
     private Label label = new Label();
-    
+
     FuncionarioDao funcionarioDao = new FuncionarioDao();
     Funcionario funcionario;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        MascarasFX.mascaraTelefone(inputTel);
         MasksUtils.foneField(inputTel);
         NumberUtils.mascaraDinheiro(inputSalario);
-        
-        RequiredFieldValidator validator = new RequiredFieldValidator();
-        validator.setMessage("Campo obrigatório");
-        inputName.getValidators().add(validator);
-        inputSalario.getValidators().add(validator);
+        ValidatorUtils.setValidator(inputName, "Informe o nome");
+        ValidatorUtils.setValidator(inputSalario, "Informe o salário");
     }
-    
+
     public void editUser(Funcionario funcionario) {
         this.funcionario = funcionario;
         inputName.setText(funcionario.getNome());
@@ -92,11 +89,10 @@ public class UserFormController implements Initializable {
         inputSalario.setText(NumberUtils.formatNumber(funcionario.getSalario()));
         inputDataNasc.setValue(DateUtils.toLocalDate(funcionario.getDataNascimento()));
     }
-    
 
     @FXML
     void save(MouseEvent event) {
-        
+
         Boolean edit = funcionario != null;
 
         if (inputName.getText().isEmpty()) {
@@ -124,8 +120,7 @@ public class UserFormController implements Initializable {
         if (!edit) {
             funcionarioDao.save(funcionario);
             HomeController.getController().showSnackBar("Funcionário atualizado");
-        }
-        else {
+        } else {
             funcionarioDao.update(funcionario);
             HomeController.getController().showSnackBar("Funcionário inserido");
         }
@@ -133,7 +128,7 @@ public class UserFormController implements Initializable {
         UsersController.getController().loadUsers();
         HomeController.getController().showPlaneUsers();
     }
-    
+
     private void reset() {
         inputName.setText("");
         inputTel.setText("");
@@ -143,7 +138,7 @@ public class UserFormController implements Initializable {
         inputSalario.setText("");
         funcionario = null;
     }
-    
+
     @FXML
     void back(MouseEvent event) {
         reset();

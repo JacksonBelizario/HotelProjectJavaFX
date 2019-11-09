@@ -109,4 +109,8 @@ public class NumberUtils {
         }
         return valueStr;
     }
+    
+    public static String formatCurrency(Double value) {
+        return NumberFormat.getCurrencyInstance().format(value);
+    }
 }

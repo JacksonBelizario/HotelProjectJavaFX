@@ -5,8 +5,12 @@
  */
 package br.uems.hotelapp.persistence.entities;
 
+import br.uems.hotelapp.utils.DateUtils;
+import br.uems.hotelapp.utils.NumberUtils;
 import java.io.Serializable;
 import java.util.Date;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,6 +55,9 @@ public class Consumo implements AbstractEntity, Serializable {
     @Column(name = "data_hora", nullable = false)
     private Date dataHora;
     
+    @Column(name = "quantidade", nullable = false)
+    private Integer quantidade;
+    
     @Column(name = "valor", nullable = false)
     private Double valor;
 
@@ -84,6 +91,81 @@ public class Consumo implements AbstractEntity, Serializable {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    public ItemConsumoTable getRowTable() {
+        return new ItemConsumoTable(
+                itemConsumo.getItem(), 
+                itemConsumo.getCategoria().toString(),
+                quantidade,
+                DateUtils.format(dataHora),
+                NumberUtils.formatCurrency(quantidade * valor)
+        );
+    }
+    
+    public class ItemConsumoTable {
+        private SimpleStringProperty nome;
+        private SimpleStringProperty tipo;
+        private SimpleIntegerProperty quantidade;
+        private SimpleStringProperty data;
+        private SimpleStringProperty valor;
+        
+        public ItemConsumoTable(String nome, String tipo, Integer quantidade, String data, String valor) {
+            this.nome = new SimpleStringProperty(nome);
+            this.tipo = new SimpleStringProperty(tipo);
+            this.quantidade = new SimpleIntegerProperty(quantidade);
+            this.data = new SimpleStringProperty(data);
+            this.valor = new SimpleStringProperty(valor);
+        }
+
+        public String getNome() {
+            return nome.get();
+        }
+
+        public void setNome(String nome) {
+            this.nome = new SimpleStringProperty(nome);
+        }
+
+        public String getTipo() {
+            return tipo.get();
+        }
+
+        public void setTipo(String tipo) {
+            this.tipo = new SimpleStringProperty(tipo);
+        }
+
+        public int getQuantidade() {
+            return quantidade.get();
+        }
+
+        public void setQuantidade(int quantidade) {
+            this.quantidade = new SimpleIntegerProperty(quantidade);
+        }
+
+        public String getData() {
+            return data.get();
+        }
+
+        public void setData(String data) {
+            this.data = new SimpleStringProperty(data);
+        }
+
+        public String getValor() {
+            return valor.get();
+        }
+
+        public void setValor(String valor) {
+            this.valor = new SimpleStringProperty(valor);
+        }
+
     }
     
 }

@@ -33,7 +33,7 @@ public class ItemConsumoController {
         try {
             labelNome.setText(itemConsumo.getItem());
             labelDesc.setText(itemConsumo.getDescricao());
-            labelPreco.setText("R$ " + NumberUtils.formatNumber(itemConsumo.getPreco()));
+            labelPreco.setText(NumberUtils.formatCurrency(itemConsumo.getPreco()));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

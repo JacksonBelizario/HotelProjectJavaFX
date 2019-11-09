@@ -3,6 +3,7 @@ package br.uems.hotelapp.controllers;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.utils.DateUtils;
 import br.uems.hotelapp.utils.NumberUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,7 +44,12 @@ public class ItemController {
         
         Integer dias = DateUtils.diffInDays(estadia.getDataHoraInicio(), estadia.getDataHoraTermino());
         
-        labelPreco.setText("R$ " + NumberUtils.formatNumber(dias * estadia.getReserva().getValorDiaria()));
+        labelPreco.setText(NumberUtils.formatCurrency(dias * estadia.getReserva().getValorDiaria()));
+    }
+
+    @FXML
+    void onAction(ActionEvent event) {
+
     }
 
 }

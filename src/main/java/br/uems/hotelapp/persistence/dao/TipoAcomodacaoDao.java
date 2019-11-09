@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
  *
  * @author Jackson
  */
-public class TipoAcomodacaoDao extends Dao implements AbstractDao<TipoAcomodacao> {
+public class TipoAcomodacaoDao extends Dao<TipoAcomodacao> {
 
     @Override
     public void save(TipoAcomodacao tipoAcomodacao) {
@@ -40,20 +40,5 @@ public class TipoAcomodacaoDao extends Dao implements AbstractDao<TipoAcomodacao
     public List<TipoAcomodacao> getAll() {
         TypedQuery<TipoAcomodacao> query = entityManager.createQuery("SELECT f FROM TipoAcomodacao f", TipoAcomodacao.class);
         return query.getResultList();
-    }
-
-    @Override
-    public List<TipoAcomodacao> getList(String qlString, Object[] params) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<TipoAcomodacao> getList(String qlString, Object[] params, int[] range) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public long getCount(String qlString, Object[] params) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pnlEstadia" prefHeight="541.0" prefWidth="794.0" styleClass="pane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.EstadiaController">
+   <children>
+      <ImageView fx:id="btnBack" fitHeight="36.0" fitWidth="34.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_left_round_64px.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Estadia" textFill="#0d0d0d">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="73.0" prefHeight="186.0" prefWidth="220.0" styleClass="card">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_user_64px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelCustomerName" styleClass="text-3" text="Nome do Cliente" />
+            <HBox prefHeight="24.0" prefWidth="179.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="110.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_enter_2_64px.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelStartDate" text="01/11/2019" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="110.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_exit_64px.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelEndDate" text="04/11/2019" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="73.0" prefHeight="186.0" prefWidth="220.0" styleClass="card">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_bed_64px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelRoomType" styleClass="text-3" text="Quarto de Casal" />
+            <HBox prefHeight="24.0" prefWidth="179.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="110.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_standing_man_64px_1.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelQtdeAdultos" text="2" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="110.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_boy_64px.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label fx:id="labelQtdeCriancas" text="1" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="541.0" layoutY="73.0" prefHeight="186.0" prefWidth="220.0" styleClass="card">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_checkout_64px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelTotalPrice" styleClass="text-3" text="R$ 500,00" />
+            <JFXButton fx:id="btnPay" onMouseClicked="#save" styleClass="btn-accent" stylesheets="@../styles/Styles.css" text="Pagar Estadia">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="288.0" prefHeight="229.0" prefWidth="220.0" styleClass="card">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_food_64px.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="cbItensConsumo" labelFloat="true" onAction="#setItemConsumo" prefHeight="36.0" prefWidth="172.0" promptText="Item de Consumo">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXTextField fx:id="inputQtdeItensConsumo" focusColor="#5867dd" labelFloat="true" prefHeight="36.0" prefWidth="134.0" promptText="Quantidade">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXButton fx:id="btnAddItemConsumo" onMouseClicked="#addConsumo" styleClass="btn-danger" stylesheets="@../styles/Styles.css" text="Adicionar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="288.0" layoutY="288.0" prefHeight="229.0" prefWidth="475.0" styleClass="card">
+         <children>
+            <TableView fx:id="tableItensConsumo" prefHeight="230.0" prefWidth="475.0">
+              <columns>
+                <TableColumn fx:id="colNome" prefWidth="127.0" text="Nome" />
+                <TableColumn fx:id="colTipo" prefWidth="86.0" text="Tipo" />
+                  <TableColumn fx:id="colQtde" prefWidth="73.0" text="Qtde" />
+                  <TableColumn fx:id="colData" prefWidth="93.0" text="Data" />
+                  <TableColumn fx:id="colValor" prefWidth="95.0" text="Valor" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</Pane>

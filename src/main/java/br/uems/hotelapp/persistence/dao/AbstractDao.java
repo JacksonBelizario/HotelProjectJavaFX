@@ -29,5 +29,7 @@ interface AbstractDao<T> {
     List<T> getList(String qlString, Object[] params, int[] range);
 
     long getCount(String qlString, Object[] params);
+    
+    long getCount();
 
 }
