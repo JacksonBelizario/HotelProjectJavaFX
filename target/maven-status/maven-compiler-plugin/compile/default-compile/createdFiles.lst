@@ -8,6 +8,7 @@ br\uems\hotelapp\controllers\ItemController.class
 br\uems\hotelapp\controllers\UserItemController.class
 br\uems\hotelapp\controllers\ReservaItemController.class
 br\uems\hotelapp\controllers\ListaReservaItemController.class
+br\uems\hotelapp\controllers\CartaoController.class
 br\uems\hotelapp\utils\MasksUtils$4.class
 br\uems\hotelapp\persistence\dao\AcomodacaoDao.class
 br\uems\hotelapp\persistence\entities\Funcionario.class
@@ -52,6 +53,7 @@ br\uems\hotelapp\controllers\ReservasController.class
 br\uems\hotelapp\persistence\entities\CategoriaItem.class
 br\uems\hotelapp\utils\AlertMaker.class
 br\uems\hotelapp\persistence\entities\Acompanhante.class
+br\uems\hotelapp\utils\AppUtils.class
 br\uems\hotelapp\persistence\dao\ConsumoDao.class
 br\uems\hotelapp\persistence\entities\TipoAcomodacao.class
 br\uems\hotelapp\controllers\CustomerFormController.class

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="rootPane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.CartaoController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="mainContainer" prefHeight="338.0" prefWidth="464.0" styleClass="custom-pane">
+         <children>
+            <VBox prefHeight="256.0" prefWidth="404.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="inputTitular" labelFloat="true" promptText="Nome do Titular">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="inputNumCartao" labelFloat="true" layoutX="20.0" layoutY="30.0" promptText="Número do Cartão">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <HBox spacing="25.0">
+                     <children>
+                        <JFXTextField fx:id="inputMesVal" labelFloat="true" prefWidth="195.0" promptText="Mês de Validade" />
+                        <JFXTextField fx:id="inputAnoVal" labelFloat="true" prefWidth="195.0" promptText="Ano de Validade" />
+                        <JFXTextField fx:id="inputCVV" labelFloat="true" prefWidth="195.0" promptText="CVV" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="404.0" spacing="30.0">
+                     <children>
+                        <JFXButton fx:id="btnCancel" layoutX="10.0" layoutY="10.0" onAction="#cancel" prefHeight="66.0" prefWidth="100.0" styleClass="btn-secondary" text="Cancelar" />
+                        <JFXButton fx:id="btnSave" onAction="#save" prefHeight="66.0" prefWidth="100.0" styleClass="btn-primary" text="Salvar" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -68,8 +68,7 @@ public class Hospede implements AbstractEntity, Serializable {
     @Column(name = "tipo_doc", nullable = true)
     private Integer tipo_doc;
     
-    @ColumnDefault("0")
-    @Column(name = "deleted")
+    @Column(name = "deleted", nullable = false,  columnDefinition = "int4 default 0", insertable = false, updatable = true)
     private Integer deleted;
 
     public Integer getId() {

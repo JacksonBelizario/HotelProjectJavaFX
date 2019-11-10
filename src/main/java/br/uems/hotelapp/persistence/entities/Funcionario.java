@@ -64,8 +64,7 @@ public class Funcionario implements AbstractEntity, Serializable {
     @Column(name = "salario", nullable = true)
     private Double salario;
     
-    @ColumnDefault("0")
-    @Column(name = "deleted")
+    @Column(name = "deleted", nullable = false,  columnDefinition = "int4 default 0", insertable = false, updatable = true)
     private Integer deleted;
 
 

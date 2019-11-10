@@ -6,8 +6,8 @@
 package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.HospedeDao;
-import br.uems.hotelapp.persistence.entities.Funcionario;
 import br.uems.hotelapp.persistence.entities.Hospede;
+import br.uems.hotelapp.utils.AppUtils;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.Arrays;
@@ -71,6 +71,12 @@ public class CustomersController implements Initializable {
 
             CustomerItemController controller = loader.<CustomerItemController>getController();
             controller.setData(hospede);
+
+            ImageView btnCard = (ImageView) controller.getBtnCard();
+            btnCard.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                CartaoController cartaoController = (CartaoController) AppUtils.loadWindow(getClass().getResource("/fxml/Cartao.fxml"), "Adicionar Cartão", null);
+                cartaoController.setCustomer(hospede);
+            });
 
             ImageView btnEdit = (ImageView) controller.getBtnEdit();
             btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {

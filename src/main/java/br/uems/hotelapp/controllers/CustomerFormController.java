@@ -61,6 +61,7 @@ public class CustomerFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        reset();
         MasksUtils.foneField(inputTel);
         ValidatorUtils.setValidator(inputName, "Informe o nome");
         
@@ -83,7 +84,8 @@ public class CustomerFormController implements Initializable {
         inputEmail.setText(hospede.getEmail());
         inputDoc.setText(hospede.getDocumento());
         inputDataNasc.setValue(DateUtils.toLocalDate(hospede.getDataNascimento()));
-        cbTipoDocumento.getSelectionModel().select(TipoDocumento.values()[hospede.getTipoDoc()]);
+        tipoDocumento = TipoDocumento.values()[hospede.getTipoDoc()];
+        cbTipoDocumento.getSelectionModel().select(tipoDocumento);
     }
 
     @FXML

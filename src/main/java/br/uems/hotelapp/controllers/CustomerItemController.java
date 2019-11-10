@@ -85,4 +85,8 @@ public class CustomerItemController {
     public ImageView getBtnDel() {
         return btnDel;
     }
+    
+    public ImageView getBtnCard() {
+        return btnCard;
+    }
 }

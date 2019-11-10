@@ -46,8 +46,7 @@ public class ItemConsumo implements AbstractEntity, Serializable {
     @Column(name = "preco", nullable = false)
     private Double preco;
     
-    @ColumnDefault("0")
-    @Column(name = "deleted")
+    @Column(name = "deleted", nullable = false,  columnDefinition = "int4 default 0", insertable = false, updatable = true)
     private Integer deleted;
     
     @Override
