@@ -29,6 +29,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "estadia")
 public class Estadia implements AbstractEntity, Serializable {
+    
+    public static int STATUS_OCUPADO = 0;
+    public static int STATUS_PAGO = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +65,9 @@ public class Estadia implements AbstractEntity, Serializable {
     
     @OneToMany(mappedBy = "estadia")
     private List<Consumo> consumos;
+    
+    @Column(name = "status", nullable = false)
+    private Integer status;
     
     @Override
     public Integer getId() {
@@ -114,6 +120,14 @@ public class Estadia implements AbstractEntity, Serializable {
 
     public void setAcomodacao(Acomodacao acomodacao) {
         this.acomodacao = acomodacao;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
     
     public List<Consumo> getConsumos() {

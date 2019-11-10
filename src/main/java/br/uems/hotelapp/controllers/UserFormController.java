@@ -7,16 +7,12 @@ package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.FuncionarioDao;
 import br.uems.hotelapp.persistence.entities.Funcionario;
-import br.uems.hotelapp.utils.AlertMaker;
 import br.uems.hotelapp.utils.DateUtils;
-import br.uems.hotelapp.utils.MascarasFX;
 import br.uems.hotelapp.utils.MasksUtils;
 import br.uems.hotelapp.utils.NumberUtils;
 import br.uems.hotelapp.utils.ValidatorUtils;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXSnackbar;
-import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,9 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
-import com.jfoenix.validation.RequiredFieldValidator;
 
 /**
  *
@@ -46,25 +39,10 @@ public class UserFormController implements Initializable {
     private ImageView btnBack;
 
     @FXML
-    private JFXTextField inputName;
-
-    @FXML
-    private JFXTextField inputTel;
-
-    @FXML
-    private JFXTextField inputEndereco;
-
-    @FXML
-    private JFXTextField inputCidade;
-
-    @FXML
-    private JFXTextField inputEstado;
+    private JFXTextField inputName, inputTel, inputEndereco, inputCidade, inputEstado, inputSalario;
 
     @FXML
     private JFXDatePicker inputDataNasc;
-
-    @FXML
-    private JFXTextField inputSalario;
 
     private Label label = new Label();
 
@@ -79,7 +57,7 @@ public class UserFormController implements Initializable {
         ValidatorUtils.setValidator(inputSalario, "Informe o salário");
     }
 
-    public void editUser(Funcionario funcionario) {
+    public void edit(Funcionario funcionario) {
         this.funcionario = funcionario;
         inputName.setText(funcionario.getNome());
         inputTel.setText(funcionario.getTelefone());
@@ -119,23 +97,23 @@ public class UserFormController implements Initializable {
 
         if (!edit) {
             funcionarioDao.save(funcionario);
-            HomeController.getController().showSnackBar("Funcionário atualizado");
+            HomeController.getController().showSnackBar("Funcionário inserido");
         } else {
             funcionarioDao.update(funcionario);
-            HomeController.getController().showSnackBar("Funcionário inserido");
+            HomeController.getController().showSnackBar("Funcionário atualizado");
         }
         reset();
-        UsersController.getController().loadUsers();
+        UsersController.getController().loadData();
         HomeController.getController().showPlaneUsers();
     }
 
     private void reset() {
-        inputName.setText("");
-        inputTel.setText("");
-        inputEndereco.setText("");
-        inputCidade.setText("");
-        inputEstado.setText("");
-        inputSalario.setText("");
+        inputName.clear();
+        inputTel.clear();
+        inputEndereco.clear();
+        inputCidade.clear();
+        inputEstado.clear();
+        inputSalario.clear();
         funcionario = null;
     }
 

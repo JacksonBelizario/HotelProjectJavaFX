@@ -7,6 +7,7 @@ package br.uems.hotelapp.persistence.dao;
 
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Reserva;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -20,5 +21,13 @@ public class ReservaDao extends Dao<Reserva> {
     public List<Reserva> getAll() {
         TypedQuery<Reserva> query = entityManager.createQuery("SELECT r FROM Reserva r ORDER By r.id DESC", Reserva.class);
         return query.getResultList();
+    }
+    
+    public List<Reserva> getCurrents() {
+        return entityManager.createQuery(
+            "SELECT r FROM Reserva r"
+                + " WHERE r.dataHoraSaida >= :today and r.dataHoraChegada <= :today")
+                .setParameter("today", new Date())
+                .getResultList();
     }
 }

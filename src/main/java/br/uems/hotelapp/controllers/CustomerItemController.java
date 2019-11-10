@@ -77,4 +77,12 @@ public class CustomerItemController {
             System.out.println(e.getMessage());
         }
     }
+    
+    public ImageView getBtnEdit() {
+        return btnEdit;
+    }
+    
+    public ImageView getBtnDel() {
+        return btnDel;
+    }
 }

@@ -35,6 +35,15 @@
     -fx-pink: #FE21BE;
 }
 
+.jfx-toggle-button {
+     -jfx-toggle-color: -fx-primary-active;
+     -jfx-untoggle-color: #FAFAFA;
+     -jfx-toggle-line-color: -fx-primary;
+     -jfx-untoggle-line-color: #999999;
+     -jfx-size: 10.0;
+     -jfx-disable-visual-focus: false;
+}
+
 .button {
    -fx-font-family: 'Poppins', sans-serif;
     -fx-background-color : #e6eaed;
@@ -178,6 +187,12 @@ JFXButton, JFXButton:hover {
 
 .btn-round-secondary, .btn-round-secondary:hover  {
     -fx-border-color: -fx-secondary-border;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
+.btn-round-success, .btn-round-success:hover  {
+    -fx-border-color: -fx-success-border;
     -fx-border-radius:  20;
     -fx-background-color: transparent;
 }

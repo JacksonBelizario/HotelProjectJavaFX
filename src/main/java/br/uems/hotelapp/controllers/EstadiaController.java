@@ -1,6 +1,7 @@
 package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.ConsumoDao;
+import br.uems.hotelapp.persistence.dao.EstadiaDao;
 import br.uems.hotelapp.persistence.dao.ItemConsumoDao;
 import br.uems.hotelapp.persistence.entities.Consumo;
 import br.uems.hotelapp.persistence.entities.Consumo.ItemConsumoTable;
@@ -44,25 +45,10 @@ public class EstadiaController implements Initializable {
     private ImageView btnBack;
 
     @FXML
-    private Label labelCustomerName;
+    private Label labelCustomerName, labelStartDate, labelEndDate, labelRoomType, labelQtdeAdultos, labelQtdeCriancas;
 
     @FXML
-    private Label labelStartDate;
-
-    @FXML
-    private Label labelEndDate;
-
-    @FXML
-    private Label labelRoomType;
-
-    @FXML
-    private Label labelQtdeAdultos;
-
-    @FXML
-    private Label labelQtdeCriancas;
-
-    @FXML
-    private JFXButton btnAddItemConsumo;
+    private JFXButton btnAddItemConsumo, btnPay;
 
     @FXML
     private TableView<ItemConsumoTable> tableItensConsumo;
@@ -86,9 +72,6 @@ public class EstadiaController implements Initializable {
     private Label labelPrecoEstadia, labelPrecoConsumo, labelPrecoTotal;
 
     @FXML
-    private JFXButton btnPay;
-
-    @FXML
     private JFXComboBox<ItemConsumo> cbItensConsumo;
 
     @FXML
@@ -100,9 +83,11 @@ public class EstadiaController implements Initializable {
     
     ObservableList<ItemConsumoTable> obConsumos;
     
-    ConsumoDao consumoDao = new ConsumoDao();
+    EstadiaDao estadiaDao = new EstadiaDao();
     
     Estadia estadia;
+    
+    ConsumoDao consumoDao = new ConsumoDao();
     
     ItemConsumo itemConsumo;
     
@@ -117,7 +102,13 @@ public class EstadiaController implements Initializable {
 
     @FXML
     void save(MouseEvent event) {
-
+        if (estadia.getStatus() == Estadia.STATUS_PAGO) {
+            // TODO: Exibir recibo
+            return;
+        }
+        estadia.setStatus(Estadia.STATUS_PAGO);
+        estadiaDao.update(estadia);
+        statusPago();
     }
     
     private void initTable() {
@@ -186,6 +177,9 @@ public class EstadiaController implements Initializable {
         itemConsumo = null;
         cbItensConsumo.getSelectionModel().select(itemConsumo);
         inputQtdeItensConsumo.clear();
+        cbItensConsumo.setDisable(false);
+        inputQtdeItensConsumo.setDisable(false);
+        btnAddItemConsumo.setDisable(false);
     }
 
     @FXML
@@ -212,11 +206,29 @@ public class EstadiaController implements Initializable {
         labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
         
         loadConsumo(estadia);
+        
+        if (estadia.getStatus() == Estadia.STATUS_PAGO) {
+            statusPago();
+        }
+    }
+    
+    private void statusPago() {
+        cbItensConsumo.getSelectionModel().select(null);
+        inputQtdeItensConsumo.clear();
+        cbItensConsumo.setDisable(true);
+        inputQtdeItensConsumo.setDisable(true);
+        btnAddItemConsumo.setDisable(true);
+        btnPay.getStyleClass().remove("btn-accent");
+        btnPay.getStyleClass().add("btn-success");
+        btnPay.setText("Exibir comprovante");
     }
     
     private void reset() {
         resetConsumoForm();
         loadItensConsumo();
+        btnPay.getStyleClass().remove("btn-success");
+        btnPay.getStyleClass().add("btn-accent");
+        btnPay.setText("Pagar Estadia");
     }
     
     @FXML

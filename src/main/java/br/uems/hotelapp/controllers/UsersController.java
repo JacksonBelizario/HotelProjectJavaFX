@@ -7,21 +7,16 @@ package br.uems.hotelapp.controllers;
 
 import br.uems.hotelapp.persistence.dao.FuncionarioDao;
 import br.uems.hotelapp.persistence.entities.Funcionario;
-import br.uems.hotelapp.utils.AlertMaker;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -49,58 +44,60 @@ public class UsersController implements Initializable {
 
     @FXML
     private VBox pnListUsers;
+        
+    FuncionarioDao funcionarioDao = new FuncionarioDao();
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setController(this);
-        loadUsers();
+        loadData();
     }
     
     
-    public void loadUsers() {
+    public void loadData() {
         pnListUsers.getChildren().clear();
-        
-        FuncionarioDao funcionarioDao = new FuncionarioDao();
         
         List<Funcionario> funcionarios = funcionarioDao.getAll();
 
         Iterator<Funcionario> funcionariosIterator = funcionarios.iterator();
         while (funcionariosIterator.hasNext()){
-            Funcionario funcionario = (Funcionario) funcionariosIterator.next();
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
-                Node node = loader.load();
-                pnListUsers.getChildren().add(node);
+            addItem((Funcionario) funcionariosIterator.next());
+        }
+    }
+    
+    private void addItem(Funcionario funcionario) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
+            Node node = loader.load();
+            pnListUsers.getChildren().add(node);
 
-                UserItemController controller = loader.<UserItemController>getController();
-                controller.setUser(funcionario);
-                
-                ImageView btnEdit = (ImageView) node.lookup("#btnEdit");
-                btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                    HomeController.getController().showUserForm(funcionario);
+            UserItemController controller = loader.<UserItemController>getController();
+            controller.setUser(funcionario);
+
+            ImageView btnEdit = (ImageView) controller.getBtnEdit();
+            btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                HomeController.getController().showUserForm(funcionario);
+            });
+
+
+            ImageView btnDel = (ImageView) controller.getBtnDel();
+            btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
+
+                JFXButton noButton = new JFXButton("Não");
+                noButton.getStyleClass().add("btn-secondary");
+
+                JFXButton yesButton = new JFXButton("Sim");
+                yesButton.getStyleClass().add("btn-danger");
+                yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ev) -> {
+                    funcionarioDao.delete(funcionario);
+                    pnListUsers.getChildren().remove(node);
                 });
-                
-                
-                ImageView btnDel = (ImageView) node.lookup("#btnDel");
-                btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                    
-                    JFXButton noButton = new JFXButton("Não");
-                    noButton.getStyleClass().add("btn-secondary");
-                    
-                    JFXButton yesButton = new JFXButton("Sim");
-                    yesButton.getStyleClass().add("btn-danger");
-                    yesButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ev) -> {
-                        funcionarioDao.delete(funcionario);
-                        pnListUsers.getChildren().remove(node);
-                    });
-                    
-                    HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover funcionário?", "Esta ação não pode ser desfeita!");
-                });
-                
 
-            } catch (Exception e) {
-            }
+                HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover funcionário?", "Esta ação não pode ser desfeita!");
+            });
 
+
+        } catch (Exception e) {
         }
     }
 
@@ -111,6 +108,6 @@ public class UsersController implements Initializable {
 
     @FXML
     void refresh(MouseEvent event) {
-        loadUsers();
+        loadData();
     }
 }

@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -66,7 +67,10 @@ public class Hospede implements AbstractEntity, Serializable {
     
     @Column(name = "tipo_doc", nullable = true)
     private Integer tipo_doc;
-
+    
+    @ColumnDefault("0")
+    @Column(name = "deleted")
+    private Integer deleted;
 
     public Integer getId() {
         return id;
@@ -158,6 +162,14 @@ public class Hospede implements AbstractEntity, Serializable {
 
     public void setTipoDoc(Integer tipo_doc) {
         this.tipo_doc = tipo_doc;
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
     
     @Override

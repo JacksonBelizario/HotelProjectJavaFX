@@ -12,6 +12,7 @@ import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Reserva;
 import br.uems.hotelapp.utils.AlertMaker;
 import br.uems.hotelapp.utils.DateUtils;
+import com.jfoenix.controls.JFXToggleButton;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,6 +54,9 @@ public class ReservasController implements Initializable {
 
     @FXML
     private VBox pnReservas;
+
+    @FXML
+    private JFXToggleButton toggleButton;
     
     private ReservaDao reservaDao = new ReservaDao();
     
@@ -72,7 +77,12 @@ public class ReservasController implements Initializable {
     public void loadItens() {
         pnReservas.getChildren().clear();
         try {
-            List<Reserva> reservas = reservaDao.getAll();
+            List<Reserva> reservas = null;
+            if (toggleButton.isSelected()) {
+                reservas = reservaDao.getCurrents();
+            } else {
+                reservas = reservaDao.getAll();
+            }
 
             Iterator<Reserva> reservasIterator = reservas.iterator();
             while (reservasIterator.hasNext()) {
@@ -144,4 +154,9 @@ public class ReservasController implements Initializable {
         loadItens();
     }
     
+
+    @FXML
+    void onToggleButton(ActionEvent event) {
+        loadItens();
+    }
 }

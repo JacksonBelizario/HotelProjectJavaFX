@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -62,6 +63,10 @@ public class Funcionario implements AbstractEntity, Serializable {
     
     @Column(name = "salario", nullable = true)
     private Double salario;
+    
+    @ColumnDefault("0")
+    @Column(name = "deleted")
+    private Integer deleted;
 
 
     public Integer getId() {
@@ -142,6 +147,19 @@ public class Funcionario implements AbstractEntity, Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
+    
+    @Override
+    public String toString() {
+        return id + " | " + nome;
     }
     
 }

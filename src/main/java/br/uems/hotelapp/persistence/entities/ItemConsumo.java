@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -44,6 +45,10 @@ public class ItemConsumo implements AbstractEntity, Serializable {
     
     @Column(name = "preco", nullable = false)
     private Double preco;
+    
+    @ColumnDefault("0")
+    @Column(name = "deleted")
+    private Integer deleted;
     
     @Override
     public Integer getId() {
@@ -80,6 +85,14 @@ public class ItemConsumo implements AbstractEntity, Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
     
     @Override

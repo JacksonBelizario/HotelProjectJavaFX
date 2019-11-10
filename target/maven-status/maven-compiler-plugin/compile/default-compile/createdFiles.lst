@@ -26,6 +26,7 @@ br\uems\hotelapp\controllers\HomeController.class
 br\uems\hotelapp\persistence\dao\CategoriaItemDao.class
 br\uems\hotelapp\persistence\dao\AcompanhanteDao.class
 br\uems\hotelapp\persistence\entities\Hospede.class
+br\uems\hotelapp\controllers\RelatoriosController.class
 br\uems\hotelapp\utils\DateUtils.class
 br\uems\hotelapp\persistence\dao\EstadiaDao.class
 br\uems\hotelapp\utils\MasksUtils.class
@@ -35,6 +36,7 @@ br\uems\hotelapp\persistence\entities\DadosCartao.class
 br\uems\hotelapp\persistence\entities\AbstractEntity.class
 br\uems\hotelapp\persistence\entities\Reserva.class
 br\uems\hotelapp\persistence\dao\FuncionarioDao.class
+br\uems\hotelapp\enums\TipoDocumento.class
 br\uems\hotelapp\persistence\entities\Consumo.class
 br\uems\hotelapp\controllers\CustomerItemController.class
 br\uems\hotelapp\persistence\dao\AbstractDao.class
@@ -52,6 +54,7 @@ br\uems\hotelapp\utils\AlertMaker.class
 br\uems\hotelapp\persistence\entities\Acompanhante.class
 br\uems\hotelapp\persistence\dao\ConsumoDao.class
 br\uems\hotelapp\persistence\entities\TipoAcomodacao.class
+br\uems\hotelapp\controllers\CustomerFormController.class
 br\uems\hotelapp\persistence\dao\ReservaDao.class
 br\uems\hotelapp\utils\MascarasFX.class
 br\uems\hotelapp\utils\MasksUtils$3.class

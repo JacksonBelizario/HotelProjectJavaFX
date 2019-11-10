@@ -5,6 +5,7 @@ import br.uems.hotelapp.persistence.dao.EstadiaDao;
 import br.uems.hotelapp.persistence.dao.ReservaDao;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Funcionario;
+import br.uems.hotelapp.persistence.entities.Hospede;
 import br.uems.hotelapp.utils.AlertMaker;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -48,13 +49,14 @@ public class HomeController implements Initializable {
     private VBox pnItems;
     
     @FXML
-    private Button btnOverview, btnBooking, btnCustomers, btnConsumable, btnRooms, btnUsers, btnSignout;
+    private Button btnOverview, btnBooking, btnCustomers, btnConsumable, btnRooms, btnUsers, btnReports, btnSignout;
 
     @FXML
-    private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlUsers, pnlUserForm, pnlReservaForm, pnlEstadia;
+    private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlCustomerForm, pnlUsers, pnlUserForm, pnlReservaForm, pnlEstadia, pnlReports;
     
     UserFormController userFormController;
     EstadiaController estadiaController;
+    CustomerFormController customerFormController;
     
     private double x, y;
     
@@ -132,6 +134,7 @@ public class HomeController implements Initializable {
         btnConsumable.getStyleClass().remove("active");
         btnUsers.getStyleClass().remove("active");
         btnRooms.getStyleClass().remove("active");
+        btnReports.getStyleClass().remove("active");
         
         if (actionEvent.getSource() == btnOverview) {
             btnOverview.getStyleClass().add("active");
@@ -156,6 +159,10 @@ public class HomeController implements Initializable {
         if (actionEvent.getSource() == btnRooms) {
             btnRooms.getStyleClass().add("active");
             showPlaneRooms();
+        }
+        if (actionEvent.getSource() == btnReports) {
+            btnReports.getStyleClass().add("active");
+            showPlaneReports();
         }
     }
     
@@ -221,7 +228,7 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        userFormController.editUser(funcionario);
+        userFormController.edit(funcionario);
         pnlUserForm.toFront();
     }
     
@@ -238,6 +245,38 @@ public class HomeController implements Initializable {
         }
         
         pnlCustomers.toFront();
+    }
+    
+    public void showCustomerForm() {
+        if (pnlCustomerForm == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/CustomerForm.fxml"));
+                pnlCustomerForm = userFormLoader.load();
+                customerFormController = userFormLoader.<CustomerFormController>getController();
+                stackPane.getChildren().add(pnlCustomerForm);
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
+            }
+        }
+        
+        pnlCustomerForm.toFront();
+    }
+    
+    public void showCustomerForm(Hospede hospede) {
+        if (pnlCustomerForm == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/CustomerForm.fxml"));
+                pnlCustomerForm = userFormLoader.load();
+                customerFormController = userFormLoader.<CustomerFormController>getController();
+                stackPane.getChildren().add(pnlCustomerForm);
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
+            }
+        }
+        customerFormController.edit(hospede);
+        pnlCustomerForm.toFront();
     }
     
     public void showPlaneItensConsumo() {
@@ -284,6 +323,21 @@ public class HomeController implements Initializable {
         
         pnlReservaForm.toFront();
     }
+    
+    public void showPlaneReports() {
+        if (pnlReports == null) {
+            try {
+                FXMLLoader userFormLoader = new FXMLLoader(getClass().getResource("/fxml/Relatorios.fxml"));
+                pnlReports = userFormLoader.load();
+                stackPane.getChildren().add(pnlReports);
+            } catch (IOException ex) {
+                AlertMaker.showErrorMessage(ex);
+                return;
+            }
+        }
+        
+        pnlReports.toFront();
+    }
 
     @FXML
     void refresh(MouseEvent event) {
@@ -299,6 +353,12 @@ public class HomeController implements Initializable {
             controller.setData(estadia);
                 
             Button btnStatus = controller.getBtnStatus();
+            
+            if (estadia.getStatus() == Estadia.STATUS_PAGO) {
+                btnStatus.getStyleClass().remove("btn-round");
+                btnStatus.getStyleClass().add("btn-round-success");
+                btnStatus.setText("Pago");
+            }
             btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 showEstadia(estadia);
             });

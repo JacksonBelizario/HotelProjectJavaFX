@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pnlCustomerForm" prefHeight="541.0" prefWidth="794.0" styleClass="pane" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uems.hotelapp.controllers.CustomerFormController">
+   <children>
+      <Label layoutX="57.0" layoutY="25.0" styleClass="subtitle" stylesheets="@../styles/Styles.css" text="Hóspedes" textFill="#0d0d0d">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="inputName" focusColor="#5867dd" labelFloat="true" layoutX="14.0" layoutY="109.0" prefHeight="36.0" prefWidth="374.0" promptText="Nome" />
+      <JFXTextField fx:id="inputTel" focusColor="#5867dd" labelFloat="true" layoutX="406.0" layoutY="109.0" prefHeight="36.0" prefWidth="374.0" promptText="Telefone" />
+      <JFXTextField fx:id="inputEndereco" focusColor="#5867dd" labelFloat="true" layoutX="14.0" layoutY="168.0" prefHeight="36.0" prefWidth="374.0" promptText="Endereço" />
+      <JFXTextField fx:id="inputCidade" focusColor="#5867dd" labelFloat="true" layoutX="406.0" layoutY="168.0" prefHeight="36.0" prefWidth="374.0" promptText="Cidade" />
+      <JFXTextField fx:id="inputEstado" focusColor="#5867dd" labelFloat="true" layoutX="14.0" layoutY="235.0" prefHeight="36.0" prefWidth="374.0" promptText="Estado" />
+      <JFXTextField fx:id="inputPais" focusColor="#5867dd" labelFloat="true" layoutX="406.0" layoutY="235.0" prefHeight="36.0" prefWidth="374.0" promptText="País" />
+      <JFXDatePicker fx:id="inputDataNasc" defaultColor="#5867dd" editable="false" layoutX="14.0" layoutY="292.0" prefHeight="36.0" prefWidth="374.0" promptText="Data de Nascimento" />
+      <JFXTextField fx:id="inputEmail" focusColor="#5867dd" labelFloat="true" layoutX="406.0" layoutY="292.0" prefHeight="36.0" prefWidth="374.0" promptText="Email" />
+      <JFXTextField fx:id="inputDoc" focusColor="#5867dd" labelFloat="true" layoutX="14.0" layoutY="350.0" prefHeight="36.0" prefWidth="374.0" promptText="Documento" />
+      <JFXComboBox fx:id="cbTipoDocumento" labelFloat="true" layoutX="406.0" layoutY="350.0" onAction="#setTipoDocumento" prefHeight="36.0" prefWidth="374.0" promptText="Tipo Documento" />
+      <JFXButton fx:id="btnSave" layoutX="706.0" layoutY="415.0" onMouseClicked="#save" styleClass="btn-primary" stylesheets="@../styles/Styles.css" text="Salvar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="btnBack" fitHeight="36.0" fitWidth="34.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8_left_round_64px.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</Pane>

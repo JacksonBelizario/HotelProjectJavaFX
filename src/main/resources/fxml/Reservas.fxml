@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -41,11 +42,11 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label prefWidth="150.0" styleClass="bold" textFill="#0d0d0d">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
+            <HBox alignment="CENTER" prefWidth="150.0">
+               <children>
+                  <JFXToggleButton fx:id="toggleButton" minHeight="40.0" onAction="#onToggleButton" style="-fx-text-fill: -fx-brand;" text="Atuais" />
+               </children>
+            </HBox>
             <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_restart_32px.png" />

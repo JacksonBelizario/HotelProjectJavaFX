@@ -17,18 +17,9 @@ import javax.persistence.TypedQuery;
 public class HospedeDao extends Dao<Hospede> {
 
     @Override
-    public void save(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.persist(hospede));
-    }
-
-    @Override
     public void delete(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.remove(hospede));
-    }
-
-    @Override
-    public void update(Hospede hospede) {
-        executeInsideTransaction(entityMan -> entityMan.merge(hospede));
+        hospede.setDeleted(1);
+        update(hospede);
     }
 
     @Override
@@ -38,7 +29,7 @@ public class HospedeDao extends Dao<Hospede> {
 
     @Override
     public List<Hospede> getAll() {
-        TypedQuery<Hospede> query = entityManager.createQuery("SELECT e FROM Hospede e", Hospede.class);
+        TypedQuery<Hospede> query = entityManager.createQuery("SELECT h FROM Hospede h WHERE h.deleted = 0", Hospede.class);
         return query.getResultList();
     }
 }
