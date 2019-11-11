@@ -3,6 +3,7 @@ br\uems\hotelapp\persistence\ConnectionFactory.class
 br\uems\hotelapp\persistence\entities\Estadia.class
 br\uems\hotelapp\utils\NumberUtils.class
 br\uems\hotelapp\controllers\CustomersController.class
+br\uems\hotelapp\enums\FormaPagamento.class
 br\uems\hotelapp\persistence\dao\PagamentoDao.class
 br\uems\hotelapp\controllers\ItemController.class
 br\uems\hotelapp\controllers\UserItemController.class
@@ -55,6 +56,7 @@ br\uems\hotelapp\utils\AlertMaker.class
 br\uems\hotelapp\persistence\entities\Acompanhante.class
 br\uems\hotelapp\utils\AppUtils.class
 br\uems\hotelapp\persistence\dao\ConsumoDao.class
+br\uems\hotelapp\controllers\PagamentoController.class
 br\uems\hotelapp\persistence\entities\TipoAcomodacao.class
 br\uems\hotelapp\controllers\CustomerFormController.class
 br\uems\hotelapp\persistence\dao\ReservaDao.class

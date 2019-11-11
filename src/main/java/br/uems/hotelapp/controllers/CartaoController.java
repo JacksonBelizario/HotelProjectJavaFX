@@ -39,6 +39,7 @@ public class CartaoController implements Initializable {
     DadosCartaoDao dadosCartaoDao = new DadosCartaoDao();
     DadosCartao dadosCartao;
     Boolean edit = true;
+    Hospede hospede;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,12 +76,12 @@ public class CartaoController implements Initializable {
             inputAnoVal.validate();
             return;
         }
-        
         dadosCartao.setNumero(inputNumCartao.getText());                                 
         dadosCartao.setNomeCartao(inputTitular.getText());                           
         dadosCartao.setCodigoSeguranca(inputCVV.getText());                           
         dadosCartao.setValidadeMes(inputMesVal.getText());                         
         dadosCartao.setValidadeAno(inputAnoVal.getText());
+        
         if (!edit) {
             dadosCartaoDao.save(dadosCartao);
         }
@@ -91,7 +92,7 @@ public class CartaoController implements Initializable {
     }
     
     public void setCustomer(Hospede hospede) {
-        
+        this.hospede = hospede;
         dadosCartao = dadosCartaoDao.findByHospede(hospede.getId());
         edit = dadosCartao != null;
                 

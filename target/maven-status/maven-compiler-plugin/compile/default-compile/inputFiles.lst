@@ -1,9 +1,11 @@
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\FuncionarioDao.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\enums\TipoDocumento.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Estadia.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\ItensConsumoController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\ReservaFormController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\CategoriaItem.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UserItemController.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CustomerFormController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\MascarasFX.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\DadosCartaoDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\ItemController.java
@@ -13,9 +15,11 @@ C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelap
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\AbstractDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\CategoriaItemDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CustomersController.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CartaoController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\ReservaDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Reserva.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\ReservasController.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\AppUtils.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\HomeController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\AcomodacoesController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Hospede.java
@@ -33,6 +37,7 @@ C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelap
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\Dao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\ReservaItemController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\CustomerItemController.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\enums\FormaPagamento.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\AcompanhanteDao.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\utils\MasksUtils.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\ConnectionFactory.java
@@ -47,6 +52,7 @@ C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelap
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Acompanhante.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\MainApp.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\dao\TipoAcomodacaoDao.java
+C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\PagamentoController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UserFormController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\controllers\UsersController.java
 C:\Users\Jackson\Desktop\NetBeansProjects\hotelapp\src\main\java\br\uems\hotelapp\persistence\entities\Acomodacao.java

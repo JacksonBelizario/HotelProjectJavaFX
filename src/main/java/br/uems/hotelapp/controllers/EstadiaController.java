@@ -9,6 +9,7 @@ import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.ItemConsumo;
 import br.uems.hotelapp.persistence.entities.Reserva;
 import br.uems.hotelapp.persistence.entities.TipoAcomodacao;
+import br.uems.hotelapp.utils.AppUtils;
 import br.uems.hotelapp.utils.DateUtils;
 import br.uems.hotelapp.utils.MasksUtils;
 import br.uems.hotelapp.utils.NumberUtils;
@@ -102,6 +103,9 @@ public class EstadiaController implements Initializable {
 
     @FXML
     void save(MouseEvent event) {
+        PagamentoController pgtoController = (PagamentoController) AppUtils.loadWindow(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", null);
+//        pgtoController.setData(estadia);
+        
         if (estadia.getStatus() == Estadia.STATUS_PAGO) {
             // TODO: Exibir recibo
             return;
