@@ -10,6 +10,7 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -31,6 +32,7 @@ public class AppUtils {
             stage.setTitle(title);
             stage.setScene(new Scene(parent));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/images/reserva.png"));
             stage.show();
         } catch (IOException ex) {
         }

@@ -38,6 +38,22 @@ public abstract class MasksUtils {
         });
     }
 
+    //xxxx-xxxx-xxxx-xxxx
+    public static void credCardTextField(final TextField textField) {
+        MasksUtils.maxField(textField, 23);
+        textField.lengthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+            if (newValue.intValue() < 24) {
+                String value = textField.getText();
+                value = value.replaceAll("[^\\w]", "");
+                value = value.replaceFirst("(\\w{4})(\\w)", "$1-$2");
+                value = value.replaceFirst("(\\w{4})\\-(\\w{4})(\\w)", "$1-$2-$3");
+                value = value.replaceFirst("(\\w{4})\\-(\\w{4})\\-(\\w{4})(\\w)", "$1-$2-$3-$4");
+                textField.setText(value.toUpperCase());
+                MasksUtils.positionCaret(textField);
+            }
+        });
+    }
+
     //xxxxx-xxxxx-xxxxx-xxxxx
     public static void serialTextField(final TextField textField) {
         MasksUtils.maxField(textField, 23);
@@ -242,6 +258,15 @@ public abstract class MasksUtils {
         if (result == null) {
             return null;
         }
+        return result.replaceAll("[^0-9]", "");
+    }
+
+    public static String onlyIntegerValue(TextField field) {
+        String result = field.getText();
+        if (result == null) {
+            return null;
+        }
+        result = result.replaceAll("^0+", "");
         return result.replaceAll("[^0-9]", "");
     }
 

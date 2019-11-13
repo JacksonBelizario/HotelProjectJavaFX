@@ -56,6 +56,9 @@ public class NumberUtils {
      * @return numeric value or {@link Double.NaN} if not a number
      */
     public static Double getNumericValue(final String numero) {
+        if (numero == null) {
+            return 0.0;
+        }
         String original = numero.trim().replaceAll(NUMBER_FILTER_REGEX, "");
         original = StringUtils.replace(
             original,
@@ -67,6 +70,28 @@ public class NumberUtils {
             return NumberFormat.getInstance().parse(original).doubleValue();
         } catch (ParseException e) {
             return 0.0;
+        }
+    }
+    
+    public static Double parseDouble(final String numero) {
+        if (numero == null) {
+            return 0.0;
+        }
+        try {
+            return NumberFormat.getInstance().parse(numero).doubleValue();
+        } catch (ParseException e) {
+            return 0.0;
+        }
+    }
+    
+    public static Integer parseInt(final String numero) {
+        if (numero == null) {
+            return 0;
+        }
+        try {
+            return NumberFormat.getInstance().parse(numero).intValue();
+        } catch (ParseException e) {
+            return 0;
         }
     }
     

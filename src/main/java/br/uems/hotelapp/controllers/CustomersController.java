@@ -59,7 +59,6 @@ public class CustomersController implements Initializable {
         Iterator<Hospede> hospedesIterator = hospedes.iterator();
         while (hospedesIterator.hasNext()){
             addItem((Hospede) hospedesIterator.next());
-
         }
     }
     

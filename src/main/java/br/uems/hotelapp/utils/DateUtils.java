@@ -75,6 +75,10 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return getDateFormat().format(date);
     }
     
+    public static boolean isToday(LocalDate date) {
+        return isToday(toDate(date));
+    }
+    
     /**
      * <p>Checks if a date is today.</p>
      * @param date the date, not altered, not null.

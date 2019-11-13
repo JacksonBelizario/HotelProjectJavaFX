@@ -31,7 +31,7 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
+                        <Insets left="10.0" right="10.0" top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="24.0" prefWidth="179.0">
@@ -41,7 +41,7 @@
                               <Label text="Consumo" />
                            </children>
                            <HBox.margin>
-                              <Insets top="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="BOTTOM_RIGHT" prefWidth="210.0">
@@ -68,25 +68,25 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox spacing="25.0">
                      <children>
                         <JFXComboBox fx:id="cbFormaPagamento" labelFloat="true" onAction="#setFormaPagamento" prefHeight="31.0" prefWidth="195.0" promptText="Forma de Pagamento" />
-                        <JFXDatePicker fx:id="inputDataVenc" prefWidth="195.0" promptText="Data de Vencimento" />
+                        <JFXDatePicker fx:id="inputDataVenc" onAction="#onDate" prefWidth="195.0" promptText="Data de Vencimento" />
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
+                        <Insets left="10.0" right="10.0" top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox spacing="25.0">
                      <children>
-                        <JFXTextField fx:id="inputDesconto" labelFloat="true" prefWidth="195.0" promptText="Desconto" />
-                        <JFXTextField fx:id="inputMulta" labelFloat="true" prefWidth="195.0" promptText="Multa" />
+                        <JFXTextField fx:id="inputDesconto" labelFloat="true" onKeyReleased="#onChange" prefWidth="195.0" promptText="Desconto (%)" />
+                        <JFXTextField fx:id="inputMulta" labelFloat="true" onAction="#onChange" onKeyReleased="#onChange" prefWidth="195.0" promptText="Multa (%)" />
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="20.0" />
+                        <Insets left="10.0" right="10.0" top="25.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="404.0" spacing="30.0">

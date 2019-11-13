@@ -92,7 +92,7 @@ public class EstadiaController implements Initializable {
     
     ItemConsumo itemConsumo;
     
-    Double valorConsumo = 0.0, valorTotal = 0.0;
+    Double valorEstadia = 0.0, valorConsumo = 0.0, valorTotal = 0.0;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -104,7 +104,7 @@ public class EstadiaController implements Initializable {
     @FXML
     void save(MouseEvent event) {
         PagamentoController pgtoController = (PagamentoController) AppUtils.loadWindow(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", null);
-//        pgtoController.setData(estadia);
+        pgtoController.setData(estadia, valorEstadia, valorConsumo);
         
         if (estadia.getStatus() == Estadia.STATUS_PAGO) {
             // TODO: Exibir recibo
@@ -202,7 +202,7 @@ public class EstadiaController implements Initializable {
         labelQtdeCriancas.setText(reserva.getQtdeCrianca().toString());
         
         Integer dias = DateUtils.diffInDays(estadia.getDataHoraInicio(), estadia.getDataHoraTermino());
-        Double valorEstadia =  dias * estadia.getReserva().getValorDiaria();
+        valorEstadia =  dias * estadia.getReserva().getValorDiaria();
         
         valorConsumo = 0.0;
         valorTotal = valorEstadia;

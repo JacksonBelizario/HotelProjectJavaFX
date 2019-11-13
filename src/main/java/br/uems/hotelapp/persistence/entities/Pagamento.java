@@ -27,6 +27,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pagamento")
 public class Pagamento implements AbstractEntity, Serializable {
+    
+    public static int STATUS_ABERTO = 0;
+    public static int STATUS_PAGO = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +46,7 @@ public class Pagamento implements AbstractEntity, Serializable {
     private Date dataHora;
     
     @Column(name = "forma_pagamento", nullable = false, length = 255)
-    private String formaPagamento;
+    private Integer formaPagamento;
     
     @Temporal(TemporalType.DATE)
     @Column(name = "data_vencimento", nullable = true)
@@ -52,14 +55,20 @@ public class Pagamento implements AbstractEntity, Serializable {
     @Column(name = "valor_total_diaria", nullable = false)
     private Double valorTotalDiaria;
     
-    @Column(name = "valor_total_telefonema", nullable = true)
-    private Double valorTotalTelefonema;
-    
     @Column(name = "valor_total_consumo", nullable = true)
     private Double valorTotalConsumo;
     
     @Column(name = "valor", nullable = false)
     private Double valor;
+    
+    @Column(name = "desconto")
+    private Integer desconto;
+    
+    @Column(name = "multa")
+    private Integer multa;
+    
+    @Column(name = "status", nullable = false)
+    private Integer status;
     
     @Override
     public Integer getId() {
@@ -82,11 +91,11 @@ public class Pagamento implements AbstractEntity, Serializable {
         this.dataHora = dataHora;
     }
 
-    public String getFormaPagamento() {
+    public Integer getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setFormaPagamento(String formaPagamento) {
+    public void setFormaPagamento(Integer formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
@@ -106,14 +115,6 @@ public class Pagamento implements AbstractEntity, Serializable {
         this.valorTotalDiaria = valorTotalDiaria;
     }
 
-    public Double getValorTotalTelefonema() {
-        return valorTotalTelefonema;
-    }
-
-    public void setValorTotalTelefonema(Double valorTotalTelefonema) {
-        this.valorTotalTelefonema = valorTotalTelefonema;
-    }
-
     public Double getValorTotalConsumo() {
         return valorTotalConsumo;
     }
@@ -128,6 +129,30 @@ public class Pagamento implements AbstractEntity, Serializable {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public Integer getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Integer desconto) {
+        this.desconto = desconto;
+    }
+
+    public Integer getMulta() {
+        return multa;
+    }
+
+    public void setMulta(Integer multa) {
+        this.multa = multa;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
     
 }
