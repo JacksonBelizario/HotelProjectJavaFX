@@ -66,8 +66,8 @@ public class Estadia implements AbstractEntity, Serializable {
     @OneToMany(mappedBy = "estadia")
     private List<Consumo> consumos;
     
-    @Column(name = "status", nullable = false)
-    private Integer status;
+    @OneToOne(mappedBy = "estadia")
+    private Pagamento pagamento;
     
     @Override
     public Integer getId() {
@@ -121,17 +121,17 @@ public class Estadia implements AbstractEntity, Serializable {
     public void setAcomodacao(Acomodacao acomodacao) {
         this.acomodacao = acomodacao;
     }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
     
     public List<Consumo> getConsumos() {
         return consumos;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
     
 }

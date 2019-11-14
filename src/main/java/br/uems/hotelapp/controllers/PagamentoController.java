@@ -145,6 +145,7 @@ public class PagamentoController implements Initializable {
         } else {
             pagamentoDao.update(pagamento);
         }
+        this.estadia.setPagamento(pagamento);
         closeWindow();
     }
     
@@ -202,9 +203,11 @@ public class PagamentoController implements Initializable {
             inputDesconto.setDisable(true);
             inputMulta.setDisable(true);
             
-            if (pagamento.getStatus() == Pagamento.STATUS_PAGO) {
-                btnPay.setDisable(true);
-            } else if(DateUtils.isBeforeDay(pagamento.getDataVencimento(), Calendar.getInstance().getTime())) {
+            btnSave.setDisable(true);
+            if (
+                    pagamento.getStatus() == Pagamento.STATUS_PAGO ||
+                    DateUtils.isBeforeDay(pagamento.getDataVencimento(), Calendar.getInstance().getTime())
+                ) {
                 btnPay.setDisable(true);
             }
         }

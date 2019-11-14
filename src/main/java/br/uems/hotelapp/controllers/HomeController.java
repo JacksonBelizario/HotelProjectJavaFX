@@ -6,6 +6,7 @@ import br.uems.hotelapp.persistence.dao.ReservaDao;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Funcionario;
 import br.uems.hotelapp.persistence.entities.Hospede;
+import br.uems.hotelapp.persistence.entities.Pagamento;
 import br.uems.hotelapp.utils.AlertMaker;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -354,10 +355,16 @@ public class HomeController implements Initializable {
                 
             Button btnStatus = controller.getBtnStatus();
             
-            if (estadia.getStatus() == Estadia.STATUS_PAGO) {
-                btnStatus.getStyleClass().remove("btn-round");
-                btnStatus.getStyleClass().add("btn-round-success");
-                btnStatus.setText("Pago");
+            Pagamento pagamento = estadia.getPagamento();
+            if (pagamento != null) {
+                    btnStatus.getStyleClass().remove("btn-round");
+                if (pagamento.getStatus() == Pagamento.STATUS_ABERTO) {
+                    btnStatus.getStyleClass().add("btn-round-warning");
+                    btnStatus.setText("Faturado");
+                } else {
+                    btnStatus.getStyleClass().add("btn-round-success");
+                    btnStatus.setText("Pago");
+                }
             }
             btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 showEstadia(estadia);

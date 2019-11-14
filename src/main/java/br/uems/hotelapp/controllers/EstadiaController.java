@@ -7,6 +7,7 @@ import br.uems.hotelapp.persistence.entities.Consumo;
 import br.uems.hotelapp.persistence.entities.Consumo.ItemConsumoTable;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.ItemConsumo;
+import br.uems.hotelapp.persistence.entities.Pagamento;
 import br.uems.hotelapp.persistence.entities.Reserva;
 import br.uems.hotelapp.persistence.entities.TipoAcomodacao;
 import br.uems.hotelapp.utils.AppUtils;
@@ -105,14 +106,6 @@ public class EstadiaController implements Initializable {
     void save(MouseEvent event) {
         PagamentoController pgtoController = (PagamentoController) AppUtils.loadWindow(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", null);
         pgtoController.setData(estadia, valorEstadia, valorConsumo);
-        
-        if (estadia.getStatus() == Estadia.STATUS_PAGO) {
-            // TODO: Exibir recibo
-            return;
-        }
-        estadia.setStatus(Estadia.STATUS_PAGO);
-        estadiaDao.update(estadia);
-        statusPago();
     }
     
     private void initTable() {
@@ -211,20 +204,30 @@ public class EstadiaController implements Initializable {
         
         loadConsumo(estadia);
         
-        if (estadia.getStatus() == Estadia.STATUS_PAGO) {
-            statusPago();
+        Pagamento pagamento = estadia.getPagamento();
+        if (pagamento != null) {
+            if (pagamento.getStatus() == Pagamento.STATUS_ABERTO) {
+                statusPgto(false);
+            } else {
+                statusPgto(true);
+            }
         }
     }
     
-    private void statusPago() {
+    private void statusPgto(Boolean pago) {
         cbItensConsumo.getSelectionModel().select(null);
         inputQtdeItensConsumo.clear();
         cbItensConsumo.setDisable(true);
         inputQtdeItensConsumo.setDisable(true);
         btnAddItemConsumo.setDisable(true);
         btnPay.getStyleClass().remove("btn-accent");
-        btnPay.getStyleClass().add("btn-success");
-        btnPay.setText("Exibir comprovante");
+        if (pago) {
+            btnPay.getStyleClass().add("btn-success");
+            btnPay.setText("Detalhes Pagamento");
+        } else {
+            btnPay.getStyleClass().add("btn-warning");
+            btnPay.setText("Detalhes da Fatura");
+        }
     }
     
     private void reset() {

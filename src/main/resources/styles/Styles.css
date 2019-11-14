@@ -191,6 +191,12 @@ JFXButton, JFXButton:hover {
     -fx-background-color: transparent;
 }
 
+.btn-round-warning, .btn-round-warning:hover  {
+    -fx-border-color: -fx-warning;
+    -fx-border-radius:  20;
+    -fx-background-color: transparent;
+}
+
 .btn-round-success, .btn-round-success:hover  {
     -fx-border-color: -fx-success-border;
     -fx-border-radius:  20;
