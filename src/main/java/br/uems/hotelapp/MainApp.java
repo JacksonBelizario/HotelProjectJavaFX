@@ -1,6 +1,5 @@
 package br.uems.hotelapp;
 
-import static javafx.application.Application.launch;
 import br.uems.hotelapp.persistence.ConnectionFactory;
 import br.uems.hotelapp.utils.AppUtils;
 import javafx.application.Application;

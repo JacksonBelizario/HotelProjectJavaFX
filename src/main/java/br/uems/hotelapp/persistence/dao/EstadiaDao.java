@@ -5,7 +5,6 @@
  */
 package br.uems.hotelapp.persistence.dao;
 
-import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.utils.DateUtils;
 import java.util.List;
@@ -18,9 +17,8 @@ public class EstadiaDao extends Dao<Estadia> {
 
     public List<Estadia> getCurrents() {
         return entityManager.createQuery(
-                "SELECT e FROM Estadia e JOIN Hospede h ON h.id = e.hospede.id"
-                + " WHERE cast(e.dataHoraInicio as date) >= :today and cast(e.dataHoraTermino as date) <= :today")
-                .setParameter("today", DateUtils.getToday())
+                "SELECT e FROM Estadia e JOIN Hospede h ON e.hospede.id = h.id"
+                + " WHERE cast(e.dataHoraInicio as date) <= current_date and cast(e.dataHoraTermino as date) >= current_date")
                 .getResultList();
     }
 

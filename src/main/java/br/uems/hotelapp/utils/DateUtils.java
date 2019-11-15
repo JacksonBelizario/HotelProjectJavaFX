@@ -215,4 +215,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static Date getToday() {
         return truncate(new Date(), Calendar.DAY_OF_MONTH);
     }
+
+    // public static String getToday() {
+    //     return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    // }
 }

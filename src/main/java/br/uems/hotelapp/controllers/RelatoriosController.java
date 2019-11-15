@@ -16,11 +16,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TableView;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class RelatoriosController {
+public class RelatoriosController implements Initializable {
 
     @FXML
     private Pane pnlBooking;
@@ -33,6 +36,12 @@ public class RelatoriosController {
 
     @FXML
     private TableView<ObservableList<String>> tableReport;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        tableReport.getItems().clear();
+        tableReport.getColumns().clear();
+        showHospedesAtuais();
+    }
 
     EstadiaDao estadiaDao = new EstadiaDao();
     ReservaDao reservaDao = new ReservaDao();
@@ -58,6 +67,8 @@ public class RelatoriosController {
         ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
 
         List<Estadia> estadias = estadiaDao.getCurrents();
+
+        System.out.println("estadias " + estadias.size());
 
         Iterator<Estadia> estadiasIterator = estadias.iterator();
         while (estadiasIterator.hasNext()) {

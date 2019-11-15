@@ -27,16 +27,14 @@ public class ReservaDao extends Dao<Reserva> {
     public List<Reserva> getCurrents() {
         return entityManager.createQuery(
                 "SELECT r FROM Reserva r"
-                + " WHERE r.dataHoraSaida >= :today and r.dataHoraChegada <= :today")
-                .setParameter("today", new Date())
+                + " WHERE cast(r.dataHoraSaida as date) >= current_date and cast(r.dataHoraChegada as date) <= current_date")
                 .getResultList();
     }
 
     public List<Reserva> getBookingsforToday() {
         return entityManager.createQuery(
                 "SELECT r FROM Reserva r"
-                + " WHERE cast(r.dataHoraChegada as date) = :today")
-                .setParameter("today", DateUtils.getToday())
+                + " WHERE cast(r.dataHoraChegada as date) = current_date")
                 .getResultList();
     }
 }
