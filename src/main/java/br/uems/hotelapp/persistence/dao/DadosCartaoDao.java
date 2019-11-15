@@ -35,17 +35,16 @@ public class DadosCartaoDao extends Dao<DadosCartao> {
     public DadosCartao find(Integer id) {
         return entityManager.find(DadosCartao.class, id);
     }
-    
+
     public DadosCartao findByHospede(Integer idHospede) {
         List<DadosCartao> query = entityManager.createQuery("SELECT t FROM DadosCartao t where t.codigo_hospede = :codigo_hospede")
-                        .setParameter("codigo_hospede", idHospede).getResultList();
-        
+                .setParameter("codigo_hospede", idHospede).getResultList();
+
         if (query.size() > 0) {
             return query.get(0);
         }
         return null;
     }
-    
 
     @Override
     public List<DadosCartao> getAll() {

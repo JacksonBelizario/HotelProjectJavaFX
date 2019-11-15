@@ -16,13 +16,13 @@ import javafx.beans.value.ObservableValue;
  * @author Jackson
  */
 public abstract class ValidatorUtils {
-    
+
     public static void setValidator(JFXTextField node) {
         setValidator(node, "Campo obrigatório");
     }
-    
+
     public static void setValidator(JFXTextField node, String message) {
-        
+
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage(message);
         node.getValidators().add(validator);
@@ -34,13 +34,13 @@ public abstract class ValidatorUtils {
             }
         });
     }
-    
+
     public static void setValidator(JFXComboBox node) {
         setValidator(node, "Campo obrigatório");
     }
-    
+
     public static void setValidator(JFXComboBox node, String message) {
-        
+
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage(message);
         node.getValidators().add(validator);
@@ -52,13 +52,13 @@ public abstract class ValidatorUtils {
             }
         });
     }
-    
+
     public static void setValidator(JFXDatePicker node) {
         setValidator(node, "Campo obrigatório");
     }
-    
+
     public static void setValidator(JFXDatePicker node, String message) {
-        
+
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage(message);
         node.getValidators().add(validator);
@@ -70,5 +70,5 @@ public abstract class ValidatorUtils {
             }
         });
     }
-    
+
 }

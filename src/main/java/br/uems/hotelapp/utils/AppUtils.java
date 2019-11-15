@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AppUtils {
-    
 
     public static Object loadWindow(URL loc, String title, Stage parentStage) {
         Object controller = null;

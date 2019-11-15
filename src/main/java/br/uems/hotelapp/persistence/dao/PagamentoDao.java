@@ -22,11 +22,11 @@ public class PagamentoDao extends Dao<Pagamento> {
         TypedQuery<Pagamento> query = entityManager.createQuery("SELECT f FROM Pagamento f", Pagamento.class);
         return query.getResultList();
     }
-    
+
     public Pagamento findByEstadia(Integer idEstadia) {
         List<Pagamento> query = entityManager.createQuery("SELECT p FROM Pagamento p where p.estadia.id = :codigo_estadia")
-                        .setParameter("codigo_estadia", idEstadia).getResultList();
-        
+                .setParameter("codigo_estadia", idEstadia).getResultList();
+
         if (query.size() > 0) {
             return query.get(0);
         }

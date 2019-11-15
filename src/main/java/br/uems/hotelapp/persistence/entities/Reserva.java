@@ -33,45 +33,45 @@ public class Reserva implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora_chegada")
     private Date dataHoraChegada;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora_saida")
     private Date dataHoraSaida;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_hospede", nullable = false, updatable = false)
     private Hospede hospede;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_acomodacao", nullable = false, updatable = true)
     private Acomodacao acomodacao;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_cartao")
     private DadosCartao cartao;
-    
+
     @OneToOne(mappedBy = "reserva")
     private Estadia estadia;
-    
+
     @Column(name = "valor_diaria", nullable = false)
     private Double valorDiaria;
-    
+
     @Column(name = "taxa_multa")
     private Double taxaMulta;
-    
+
     @Column(name = "desconto")
     private Double desconto;
-    
+
     @Column(name = "qtde_adulto", nullable = false)
     private Integer qtdeAdulto;
-    
+
     @Column(name = "qtde_crianca")
     private Integer qtdeCrianca;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -156,13 +156,13 @@ public class Reserva implements AbstractEntity, Serializable {
     public void setQtdeCrianca(Integer qtdeCrianca) {
         this.qtdeCrianca = qtdeCrianca;
     }
-    
+
     public Estadia getEstadia() {
         return estadia;
     }
-    
+
     public void setEstadia(Estadia estadia) {
         this.estadia = estadia;
     }
-    
+
 }

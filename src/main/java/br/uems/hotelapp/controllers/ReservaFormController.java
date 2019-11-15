@@ -60,22 +60,20 @@ public class ReservaFormController implements Initializable {
 
     @FXML
     private VBox pnReservas;
-    
+
     private ObservableList<Hospede> obCustomers;
-    
+
     private ReservaDao reservaDao = new ReservaDao();
-    
+
     private HospedeDao hospedeDao = new HospedeDao();
-    
+
     private Hospede hospede = null;
-        
+
     private AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
 
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadValidators();
-        getCustomers();
         reset();
     }
 
@@ -84,47 +82,51 @@ public class ReservaFormController implements Initializable {
         reset();
         HomeController.getController().showPlaneBookings();
     }
-    
+
     @FXML
     void onEndDate(ActionEvent event) {
-        if (inputEndDate.getValue() == null) return;
+        if (inputEndDate.getValue() == null) {
+            return;
+        }
         LocalDate maxDate = inputEndDate.getValue().minusDays(1);
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), maxDate);
     }
 
     @FXML
     void onStartDate(ActionEvent event) {
-        if (inputStartDate.getValue() == null) return;
+        if (inputStartDate.getValue() == null) {
+            return;
+        }
         LocalDate minDate = inputStartDate.getValue().plusDays(1);
         DateUtils.setDatePickerLimit(inputEndDate, minDate, null);
     }
 
     @FXML
     void search(MouseEvent event) {
-        
+
         cbCustomers.validate();
         inputStartDate.validate();
         inputEndDate.validate();
-        
+
         if (StringUtils.strip(inputQtdeAdultos.getText(), "0").isEmpty()) {
             inputQtdeAdultos.clear();
             inputQtdeAdultos.validate();
             return;
         }
-        
+
         if (StringUtils.strip(inputQtdeCriancas.getText(), "0").isEmpty()) {
             inputQtdeCriancas.setText("0");
         }
-        
+
         if (hospede == null || inputStartDate.getValue() == null || inputEndDate.getValue() == null) {
             return;
         }
         findFreeRooms();
     }
-    
+
     void reservar(Acomodacao acomodacao) {
         Reserva reserva = new Reserva();
-        
+
         reserva.setAcomodacao(acomodacao);
         reserva.setValorDiaria(acomodacao.getTipoAcomodacao().getValorDiaria());
         reserva.setDataHoraChegada(DateUtils.toDate(inputStartDate.getValue()));
@@ -132,7 +134,7 @@ public class ReservaFormController implements Initializable {
         reserva.setHospede(hospede);
         reserva.setQtdeAdulto(Integer.parseInt(inputQtdeAdultos.getText()));
         reserva.setQtdeCrianca(Integer.parseInt(inputQtdeCriancas.getText()));
-        
+
         reservaDao.save(reserva);
         reset();
         HomeController.getController().showPlaneBookings();
@@ -144,22 +146,22 @@ public class ReservaFormController implements Initializable {
     void setHospede(ActionEvent event) {
         hospede = cbCustomers.getSelectionModel().getSelectedItem();
     }
-    
+
     private void findFreeRooms() {
         pnReservas.getChildren().clear();
-        
+
         List<Acomodacao> acomodacoes = acomodacaoDao.findFreeRooms(
-            Integer.parseInt(inputQtdeAdultos.getText()),
-            Integer.parseInt(inputQtdeCriancas.getText()),
-            DateUtils.toDate(inputStartDate.getValue()),
-            DateUtils.toDate(inputEndDate.getValue())
+                Integer.parseInt(inputQtdeAdultos.getText()),
+                Integer.parseInt(inputQtdeCriancas.getText()),
+                DateUtils.toDate(inputStartDate.getValue()),
+                DateUtils.toDate(inputEndDate.getValue())
         );
-        
+
         if (acomodacoes.isEmpty()) {
             AlertMaker.showSimpleAlert("Não há quartos disponíveis", "Altere os filtros e tente novamente.");
             return;
         }
-        
+
         cbCustomers.setDisable(true);
         inputStartDate.setDisable(true);
         inputEndDate.setDisable(true);
@@ -167,7 +169,7 @@ public class ReservaFormController implements Initializable {
         inputQtdeCriancas.setDisable(true);
 
         Iterator<Acomodacao> acomodacoesIterator = acomodacoes.iterator();
-        while (acomodacoesIterator.hasNext()){
+        while (acomodacoesIterator.hasNext()) {
             addItem((Acomodacao) acomodacoesIterator.next());
         }
     }
@@ -189,8 +191,9 @@ public class ReservaFormController implements Initializable {
             AlertMaker.showErrorMessage(ex);
         }
     }
-    
+
     private void reset() {
+        getCustomers();
         hospede = null;
         cbCustomers.getSelectionModel().select(hospede);
         inputStartDate.setValue(null);
@@ -202,29 +205,26 @@ public class ReservaFormController implements Initializable {
         inputEndDate.setDisable(false);
         inputQtdeAdultos.setDisable(false);
         inputQtdeCriancas.setDisable(false);
-        
+
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), null);
         DateUtils.setDatePickerLimit(inputEndDate, LocalDate.now().plusDays(1), null);
         pnReservas.getChildren().clear();
     }
-    
-    
+
     private void getCustomers() {
         obCustomers = FXCollections.observableArrayList(hospedeDao.getAll());
         cbCustomers.setItems(obCustomers);
     }
-    
+
     private void loadValidators() {
         MasksUtils.onlyDigitsValue(inputQtdeAdultos);
         MasksUtils.onlyDigitsValue(inputQtdeCriancas);
-        
+
         ValidatorUtils.setValidator(inputQtdeAdultos, "Informe o número de adultos");
         ValidatorUtils.setValidator(cbCustomers, "Informe o hóspede");
         ValidatorUtils.setValidator(inputStartDate, "Informe a data de chegada");
         ValidatorUtils.setValidator(inputEndDate, "Informe a data de saída");
     }
-    
-    
 
     @FXML
     void reset(MouseEvent event) {

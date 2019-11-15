@@ -41,12 +41,11 @@ public class ReservaItemController {
 
     @FXML
     private Button btnBooking;
-    
-    
+
     public void setData(Acomodacao acomodacao) {
         try {
             labelQuarto.setText("Quarto " + acomodacao.getId());
-            labelAndar.setText("Andar "+ acomodacao.getAndar());
+            labelAndar.setText("Andar " + acomodacao.getAndar());
             labelTipo.setText(acomodacao.getTipoAcomodacao().toString());
             labelPreco.setText("R$ " + NumberUtils.formatNumber(acomodacao.getTipoAcomodacao().getValorDiaria()));
         } catch (Exception e) {

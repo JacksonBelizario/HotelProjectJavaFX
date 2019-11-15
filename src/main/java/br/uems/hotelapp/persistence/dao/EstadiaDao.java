@@ -15,10 +15,10 @@ import java.util.List;
  * @author Jackson
  */
 public class EstadiaDao extends Dao<Estadia> {
-    
+
     public List<Estadia> getCurrents() {
         return entityManager.createQuery(
-            "SELECT e FROM Estadia e JOIN Hospede h ON h.id = e.hospede.id"
+                "SELECT e FROM Estadia e JOIN Hospede h ON h.id = e.hospede.id"
                 + " WHERE cast(e.dataHoraInicio as date) >= :today and cast(e.dataHoraTermino as date) <= :today")
                 .setParameter("today", DateUtils.getToday())
                 .getResultList();

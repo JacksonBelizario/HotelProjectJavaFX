@@ -27,10 +27,9 @@ import javafx.scene.layout.VBox;
  * @author Jackson
  */
 public class CustomersController implements Initializable {
-    
-    
+
     public static CustomersController controller;
-    
+
     public static CustomersController getController() {
         return controller;
     }
@@ -38,30 +37,29 @@ public class CustomersController implements Initializable {
     private static void setController(CustomersController controller) {
         CustomersController.controller = controller;
     }
-    
+
     @FXML
     private VBox pnList;
-    
+
     HospedeDao hospedeDao = new HospedeDao();
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setController(this);
         loadData();
     }
-    
-    
+
     public void loadData() {
         pnList.getChildren().clear();
-        
+
         List<Hospede> hospedes = hospedeDao.getAll();
 
         Iterator<Hospede> hospedesIterator = hospedes.iterator();
-        while (hospedesIterator.hasNext()){
+        while (hospedesIterator.hasNext()) {
             addItem((Hospede) hospedesIterator.next());
         }
     }
-    
+
     private void addItem(Hospede hospede) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CustomerItem.fxml"));
@@ -82,7 +80,6 @@ public class CustomersController implements Initializable {
                 HomeController.getController().showCustomerForm(hospede);
             });
 
-
             ImageView btnDel = (ImageView) controller.getBtnDel();
             btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
 
@@ -99,11 +96,10 @@ public class CustomersController implements Initializable {
                 HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover hóspede?", "Esta ação não pode ser desfeita!");
             });
 
-
         } catch (Exception e) {
         }
     }
-    
+
     @FXML
     void addCustomer(MouseEvent event) {
         HomeController.getController().showCustomerForm();

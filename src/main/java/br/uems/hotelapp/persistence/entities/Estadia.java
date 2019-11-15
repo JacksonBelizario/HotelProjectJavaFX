@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "estadia")
 public class Estadia implements AbstractEntity, Serializable {
-    
+
     public static int STATUS_OCUPADO = 0;
     public static int STATUS_PAGO = 1;
 
@@ -38,37 +38,37 @@ public class Estadia implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora_inicio", nullable = false)
     private Date dataHoraInicio;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora_termino", nullable = true)
     private Date dataHoraTermino;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_reserva", nullable = false, updatable = false)
     Reserva reserva;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_hospede", nullable = false, updatable = false)
     Hospede hospede;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_funcionario", updatable = false)
     Funcionario funcionario;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_acomodacao", nullable = false, updatable = false)
     Acomodacao acomodacao;
-    
+
     @OneToMany(mappedBy = "estadia")
     private List<Consumo> consumos;
-    
+
     @OneToOne(mappedBy = "estadia")
     private Pagamento pagamento;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -121,7 +121,7 @@ public class Estadia implements AbstractEntity, Serializable {
     public void setAcomodacao(Acomodacao acomodacao) {
         this.acomodacao = acomodacao;
     }
-    
+
     public List<Consumo> getConsumos() {
         return consumos;
     }
@@ -133,5 +133,5 @@ public class Estadia implements AbstractEntity, Serializable {
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
     }
-    
+
 }

@@ -37,25 +37,25 @@ public class Consumo implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_item", nullable = false, updatable = false)
     ItemConsumo itemConsumo;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_estadia", nullable = false, updatable = false)
     Estadia estadia;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora", nullable = false)
     private Date dataHora;
-    
+
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
-    
+
     @Column(name = "valor", nullable = false)
     private Double valor;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -100,24 +100,25 @@ public class Consumo implements AbstractEntity, Serializable {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
-    
+
     public ItemConsumoTable getRowTable() {
         return new ItemConsumoTable(
-                itemConsumo.getItem(), 
+                itemConsumo.getItem(),
                 itemConsumo.getCategoria().toString(),
                 quantidade,
                 DateUtils.format(dataHora),
                 NumberUtils.formatCurrency(quantidade * valor)
         );
     }
-    
+
     public class ItemConsumoTable {
+
         private SimpleStringProperty nome;
         private SimpleStringProperty tipo;
         private SimpleIntegerProperty quantidade;
         private SimpleStringProperty data;
         private SimpleStringProperty valor;
-        
+
         public ItemConsumoTable(String nome, String tipo, Integer quantidade, String data, String valor) {
             this.nome = new SimpleStringProperty(nome);
             this.tipo = new SimpleStringProperty(tipo);
@@ -167,5 +168,5 @@ public class Consumo implements AbstractEntity, Serializable {
         }
 
     }
-    
+
 }

@@ -18,8 +18,6 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +49,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     private JFXComboBox<TipoDocumento> cbTipoDocumento;
-    
+
     private TipoDocumento tipoDocumento;
 
     private Label label = new Label();
@@ -64,7 +62,7 @@ public class CustomerFormController implements Initializable {
         reset();
         MasksUtils.foneField(inputTel);
         ValidatorUtils.setValidator(inputName, "Informe o nome");
-        
+
         cbTipoDocumento.getItems().setAll(Arrays.asList(TipoDocumento.values()));
     }
 

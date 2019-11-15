@@ -33,10 +33,10 @@ public class HospedeDao extends Dao<Hospede> {
         TypedQuery<Hospede> query = entityManager.createQuery("SELECT h FROM Hospede h WHERE h.deleted = 0", Hospede.class);
         return query.getResultList();
     }
-    
+
     public List<Hospede> getCurrents() {
         return entityManager.createQuery(
-            "SELECT h FROM Hospede h JOIN Estadia e ON h.id = e.hospede.id"
+                "SELECT h FROM Hospede h JOIN Estadia e ON h.id = e.hospede.id"
                 + " WHERE e.dataHoraInicio >= :today and e.dataHoraTermino <= :today")
                 .setParameter("today", new Date())
                 .getResultList();

@@ -32,23 +32,23 @@ public class ItemConsumo implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_categoria", nullable = false, updatable = false)
     CategoriaItem categoria;
-    
+
     @Column(name = "item", nullable = false, length = 255)
     private String item;
-    
+
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
-    
+
     @Column(name = "preco", nullable = false)
     private Double preco;
-    
-    @Column(name = "deleted", nullable = false,  columnDefinition = "int4 default 0", insertable = false, updatable = true)
+
+    @Column(name = "deleted", nullable = false, columnDefinition = "int4 default 0", insertable = false, updatable = true)
     private Integer deleted;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -93,10 +93,10 @@ public class ItemConsumo implements AbstractEntity, Serializable {
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
-    
+
     @Override
     public String toString() {
         return item + " " + NumberUtils.formatCurrency(preco);
     }
-    
+
 }

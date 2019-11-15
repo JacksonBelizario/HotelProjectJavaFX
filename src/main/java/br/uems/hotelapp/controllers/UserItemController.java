@@ -47,7 +47,6 @@ public class UserItemController {
     @FXML
     private ImageView btnDel;
 
-
     @FXML
     void onEdit(MouseEvent event) {
 
@@ -57,7 +56,7 @@ public class UserItemController {
     void onRemove(MouseEvent event) {
 
     }
-    
+
     public void setUser(Funcionario funcionario) {
         try {
             labelNome.setText(funcionario.getNome());
@@ -70,11 +69,11 @@ public class UserItemController {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public ImageView getBtnEdit() {
         return btnEdit;
     }
-    
+
     public ImageView getBtnDel() {
         return btnDel;
     }

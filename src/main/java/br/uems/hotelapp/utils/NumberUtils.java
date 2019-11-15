@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
  * @author Jackson
  */
 public class NumberUtils {
+
     private static final char GROUPING_SEPARATOR = DecimalFormatSymbols.getInstance().getGroupingSeparator();
     private static final char DECIMAL_SEPARATOR = DecimalFormatSymbols.getInstance().getDecimalSeparator();
     private static final String NUMBER_FILTER_REGEX = "[^\\d\\" + DECIMAL_SEPARATOR + "]";
@@ -27,7 +28,8 @@ public class NumberUtils {
     /**
      * Add grouping separators to string
      *
-     * @param original original string, may already contains incorrect grouping separators
+     * @param original original string, may already contains incorrect grouping
+     * separators
      * @return string with correct grouping separators
      */
     public static String format(final String original) {
@@ -61,9 +63,9 @@ public class NumberUtils {
         }
         String original = numero.trim().replaceAll(NUMBER_FILTER_REGEX, "");
         original = StringUtils.replace(
-            original,
-            String.valueOf(M_DECIMAL_SEPARATOR),
-            String.valueOf(DECIMAL_SEPARATOR)
+                original,
+                String.valueOf(M_DECIMAL_SEPARATOR),
+                String.valueOf(DECIMAL_SEPARATOR)
         );
 
         try {
@@ -72,7 +74,7 @@ public class NumberUtils {
             return 0.0;
         }
     }
-    
+
     public static Double parseDouble(final String numero) {
         if (numero == null) {
             return 0.0;
@@ -83,7 +85,7 @@ public class NumberUtils {
             return 0.0;
         }
     }
-    
+
     public static Integer parseInt(final String numero) {
         if (numero == null) {
             return 0;
@@ -94,7 +96,7 @@ public class NumberUtils {
             return 0;
         }
     }
-    
+
     public static String validateDouble(String str) {
         if (!str.matches("\\d*(\\.\\d{0,2})?")) {
             str = str.substring(0, str.length() - 1);
@@ -106,7 +108,7 @@ public class NumberUtils {
 
         textField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             if (newValue.length() > 0) {
-                
+
                 newValue = newValue.toString().trim();
                 // valid decimal number should not have more than 2 decimal separators
                 if (StringUtils.countMatches(newValue, String.valueOf(M_DECIMAL_SEPARATOR)) > 1) {
@@ -118,23 +120,23 @@ public class NumberUtils {
                     textField.setText(oldValue); // cancel change and revert to previous input
                     return;
                 }
-                
+
                 textField.setText(format(newValue));
             }
         });
 
-    } 
-    
+    }
+
     public static String formatNumber(Double value) {
-        String valueStr =  "0";
+        String valueStr = "0";
         try {
             valueStr = NumberFormat.getNumberInstance().format(value);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             //
         }
         return valueStr;
     }
-    
+
     public static String formatCurrency(Double value) {
         return NumberFormat.getCurrencyInstance().format(value);
     }

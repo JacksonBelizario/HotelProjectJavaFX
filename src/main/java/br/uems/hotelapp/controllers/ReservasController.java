@@ -38,9 +38,9 @@ import javafx.scene.layout.VBox;
  * @author Jackson
  */
 public class ReservasController implements Initializable {
-    
+
     public static ReservasController controller;
-    
+
     public static ReservasController getController() {
         return controller;
     }
@@ -48,7 +48,7 @@ public class ReservasController implements Initializable {
     private static void setController(ReservasController controller) {
         ReservasController.controller = controller;
     }
-    
+
     @FXML
     private Pane pnlBooking;
 
@@ -57,9 +57,9 @@ public class ReservasController implements Initializable {
 
     @FXML
     private JFXToggleButton toggleButton;
-    
+
     private ReservaDao reservaDao = new ReservaDao();
-    
+
     private EstadiaDao estadiaDao = new EstadiaDao();
 
     @Override
@@ -72,8 +72,7 @@ public class ReservasController implements Initializable {
     void novaReserva(MouseEvent event) {
         HomeController.getController().showReservaForm();
     }
-    
-    
+
     public void loadItens() {
         pnReservas.getChildren().clear();
         try {
@@ -94,40 +93,39 @@ public class ReservasController implements Initializable {
     }
 
     private void addItem(Reserva reserva) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ListaReservaItem.fxml"));
-            Node node = loader.load();
-            pnReservas.getChildren().add(node);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ListaReservaItem.fxml"));
+        Node node = loader.load();
+        pnReservas.getChildren().add(node);
 
-            ListaReservaItemController controller = loader.<ListaReservaItemController>getController();
-            controller.setData(reserva);
-            
-            Estadia estadia = reserva.getEstadia();
+        ListaReservaItemController controller = loader.<ListaReservaItemController>getController();
+        controller.setData(reserva);
 
-            Button btnStatus = controller.getBtnStatus();
-            Button btnCancel = controller.getBtnCancel();
-            
-            if (estadia != null) {
-                btnStatus.setText("Confirmado");
-                btnStatus.getStyleClass().add("btn-round-secondary");
-                btnStatus.setPrefWidth(180);
-                btnCancel.setVisible(false);
-                btnCancel.setManaged(false);
-            }
-            else {
-                if(reserva.getDataHoraChegada().after(Calendar.getInstance().getTime())) {
-                    btnStatus.setText("Reservado");
-                    btnStatus.getStyleClass().add("btn-round-disabled");
-                } else {
-                    btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                        confirmarEstadia(reserva);
-                    });
-                }
-                btnCancel.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                    cancelarReserva(reserva);
+        Estadia estadia = reserva.getEstadia();
+
+        Button btnStatus = controller.getBtnStatus();
+        Button btnCancel = controller.getBtnCancel();
+
+        if (estadia != null) {
+            btnStatus.setText("Confirmado");
+            btnStatus.getStyleClass().add("btn-round-secondary");
+            btnStatus.setPrefWidth(180);
+            btnCancel.setVisible(false);
+            btnCancel.setManaged(false);
+        } else {
+            if (reserva.getDataHoraChegada().after(Calendar.getInstance().getTime())) {
+                btnStatus.setText("Reservado");
+                btnStatus.getStyleClass().add("btn-round-disabled");
+            } else {
+                btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                    confirmarEstadia(reserva);
                 });
             }
+            btnCancel.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                cancelarReserva(reserva);
+            });
+        }
     }
-    
+
     private void confirmarEstadia(Reserva reserva) {
         Estadia estadia = new Estadia();
         estadia.setReserva(reserva);
@@ -135,9 +133,9 @@ public class ReservasController implements Initializable {
         estadia.setDataHoraInicio(reserva.getDataHoraChegada());
         estadia.setDataHoraTermino(reserva.getDataHoraSaida());
         estadia.setHospede(reserva.getHospede());
-        
+
         estadiaDao.save(estadia);
-        
+
         reserva.setEstadia(estadia);
         AlertMaker.snackBar(pnlBooking, "Estadia confirmada.");
         loadItens();
@@ -153,7 +151,6 @@ public class ReservasController implements Initializable {
     void refresh(MouseEvent event) {
         loadItens();
     }
-    
 
     @FXML
     void onToggleButton(ActionEvent event) {

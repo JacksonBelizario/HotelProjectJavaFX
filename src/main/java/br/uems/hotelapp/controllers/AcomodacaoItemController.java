@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
  * @author Jackson
  */
 public class AcomodacaoItemController {
-    
+
     @FXML
     private Label labelDesc;
 
@@ -30,12 +30,12 @@ public class AcomodacaoItemController {
 
     @FXML
     private ImageView btnDel;
-    
+
     public void setData(Acomodacao acomodacao) {
         try {
             labelDesc.setText("Quarto " + acomodacao.getId());
             labelTipo.setText(acomodacao.getTipoAcomodacao().toString());
-            labelAndar.setText("Andar "+ acomodacao.getAndar());
+            labelAndar.setText("Andar " + acomodacao.getAndar());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

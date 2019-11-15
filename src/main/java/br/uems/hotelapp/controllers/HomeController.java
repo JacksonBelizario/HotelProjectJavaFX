@@ -28,10 +28,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
-    
-    
+
     public static HomeController controller;
-    
+
     public static HomeController getController() {
         return controller;
     }
@@ -39,28 +38,28 @@ public class HomeController implements Initializable {
     private static void setController(HomeController controller) {
         HomeController.controller = controller;
     }
-    
+
     @FXML
     private Label label, labelQuartos, labelOcupados, labelLivres, labelReservas;
 
     @FXML
     private StackPane stackPane;
-    
+
     @FXML
     private VBox pnItems;
-    
+
     @FXML
     private Button btnOverview, btnBooking, btnCustomers, btnConsumable, btnRooms, btnUsers, btnReports, btnSignout;
 
     @FXML
     private Pane pnlOverview, pnlBooking, pnlConsumable, pnlRooms, pnlCustomers, pnlCustomerForm, pnlUsers, pnlUserForm, pnlReservaForm, pnlEstadia, pnlReports;
-    
+
     UserFormController userFormController;
     EstadiaController estadiaController;
     CustomerFormController customerFormController;
-    
+
     private double x, y;
-    
+
     private EstadiaDao estadiaDao = new EstadiaDao();
     private ReservaDao reservaDao = new ReservaDao();
     private AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
@@ -77,7 +76,6 @@ public class HomeController implements Initializable {
         x = event.getSceneX();
         y = event.getSceneY();
     }
-    
 
     @FXML
     void minimizeWindow(MouseEvent event) {
@@ -90,29 +88,28 @@ public class HomeController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-   
-    
+
     public void onMouseEntered(MouseEvent event) {
-        
+
     }
-    
+
     public void onMouseExited(MouseEvent event) {
-        
+
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HomeController.setController(this);
         loadEstadias();
         loadStats();
     }
-    
+
     public void loadStats() {
-        labelQuartos.setText(acomodacaoDao.getCount()+"");
-        labelOcupados.setText(estadiaDao.getCount()+"");
-        labelReservas.setText(reservaDao.getCount()+"");
+        labelQuartos.setText(acomodacaoDao.getCount() + "");
+        labelOcupados.setText(estadiaDao.getCount() + "");
+        labelReservas.setText(reservaDao.getCount() + "");
     }
-    
+
     public void loadEstadias() {
         pnItems.getChildren().clear();
         try {
@@ -127,7 +124,6 @@ public class HomeController implements Initializable {
         }
     }
 
-
     public void handleClicks(ActionEvent actionEvent) {
         btnOverview.getStyleClass().remove("active");
         btnBooking.getStyleClass().remove("active");
@@ -136,7 +132,7 @@ public class HomeController implements Initializable {
         btnUsers.getStyleClass().remove("active");
         btnRooms.getStyleClass().remove("active");
         btnReports.getStyleClass().remove("active");
-        
+
         if (actionEvent.getSource() == btnOverview) {
             btnOverview.getStyleClass().add("active");
             showOverview();
@@ -166,11 +162,11 @@ public class HomeController implements Initializable {
             showPlaneReports();
         }
     }
-    
+
     public void showOverview() {
         pnlOverview.toFront();
     }
-    
+
     public void showPlaneUsers() {
         if (pnlUsers == null) {
             try {
@@ -182,10 +178,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlUsers.toFront();
     }
-    
+
     public void showPlaneBookings() {
         if (pnlBooking == null) {
             try {
@@ -197,10 +193,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlBooking.toFront();
     }
-    
+
     public void showUserForm() {
         if (pnlUserForm == null) {
             try {
@@ -213,10 +209,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlUserForm.toFront();
     }
-    
+
     public void showUserForm(Funcionario funcionario) {
         if (pnlUserForm == null) {
             try {
@@ -232,7 +228,7 @@ public class HomeController implements Initializable {
         userFormController.edit(funcionario);
         pnlUserForm.toFront();
     }
-    
+
     public void showPlaneCustomers() {
         if (pnlCustomers == null) {
             try {
@@ -244,10 +240,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlCustomers.toFront();
     }
-    
+
     public void showCustomerForm() {
         if (pnlCustomerForm == null) {
             try {
@@ -260,10 +256,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlCustomerForm.toFront();
     }
-    
+
     public void showCustomerForm(Hospede hospede) {
         if (pnlCustomerForm == null) {
             try {
@@ -279,7 +275,7 @@ public class HomeController implements Initializable {
         customerFormController.edit(hospede);
         pnlCustomerForm.toFront();
     }
-    
+
     public void showPlaneItensConsumo() {
         if (pnlConsumable == null) {
             try {
@@ -291,10 +287,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlConsumable.toFront();
     }
-    
+
     public void showPlaneRooms() {
         if (pnlRooms == null) {
             try {
@@ -306,10 +302,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlRooms.toFront();
     }
-    
+
     public void showReservaForm() {
         if (pnlReservaForm == null) {
             try {
@@ -321,10 +317,10 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlReservaForm.toFront();
     }
-    
+
     public void showPlaneReports() {
         if (pnlReports == null) {
             try {
@@ -336,7 +332,7 @@ public class HomeController implements Initializable {
                 return;
             }
         }
-        
+
         pnlReports.toFront();
     }
 
@@ -346,31 +342,31 @@ public class HomeController implements Initializable {
     }
 
     private void addItem(Estadia estadia) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Item.fxml"));
-            Node node = loader.load();
-            pnItems.getChildren().add(node);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Item.fxml"));
+        Node node = loader.load();
+        pnItems.getChildren().add(node);
 
-            ItemController controller = loader.<ItemController>getController();
-            controller.setData(estadia);
-                
-            Button btnStatus = controller.getBtnStatus();
-            
-            Pagamento pagamento = estadia.getPagamento();
-            if (pagamento != null) {
-                    btnStatus.getStyleClass().remove("btn-round");
-                if (pagamento.getStatus() == Pagamento.STATUS_ABERTO) {
-                    btnStatus.getStyleClass().add("btn-round-warning");
-                    btnStatus.setText("Faturado");
-                } else {
-                    btnStatus.getStyleClass().add("btn-round-success");
-                    btnStatus.setText("Pago");
-                }
+        ItemController controller = loader.<ItemController>getController();
+        controller.setData(estadia);
+
+        Button btnStatus = controller.getBtnStatus();
+
+        Pagamento pagamento = estadia.getPagamento();
+        if (pagamento != null) {
+            btnStatus.getStyleClass().remove("btn-round");
+            if (pagamento.getStatus() == Pagamento.STATUS_ABERTO) {
+                btnStatus.getStyleClass().add("btn-round-warning");
+                btnStatus.setText("Faturado");
+            } else {
+                btnStatus.getStyleClass().add("btn-round-success");
+                btnStatus.setText("Pago");
             }
-            btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                showEstadia(estadia);
-            });
+        }
+        btnStatus.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            showEstadia(estadia);
+        });
     }
-    
+
     public void showEstadia(Estadia estadia) {
         if (pnlEstadia == null) {
             try {
@@ -390,7 +386,7 @@ public class HomeController implements Initializable {
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {
         AlertMaker.showMaterialDialog(stackPane, controls, header, body);
     }
-    
+
     public void showSnackBar(String message) {
         AlertMaker.snackBar(stackPane, message);
     }

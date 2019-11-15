@@ -32,14 +32,14 @@ public class Acomodacao implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Column(name = "andar", nullable = false)
     private Integer andar;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="codigo_tipo_acomodacao", nullable = false, updatable = false)
+    @JoinColumn(name = "codigo_tipo_acomodacao", nullable = false, updatable = false)
     TipoAcomodacao tipoAcomodacao;
-    
+
     @OneToMany(mappedBy = "acomodacao")
     private List<Reserva> reservas;
 
@@ -63,14 +63,14 @@ public class Acomodacao implements AbstractEntity, Serializable {
     public void setTipoAcomodacao(TipoAcomodacao tipoAcomodacao) {
         this.tipoAcomodacao = tipoAcomodacao;
     }
-    
+
     public List<Reserva> getReservas() {
         return reservas;
     }
-    
+
     @Override
     public String toString() {
         return "Quarto " + id;
     }
-    
+
 }

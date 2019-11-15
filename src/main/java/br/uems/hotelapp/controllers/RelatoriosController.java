@@ -33,7 +33,7 @@ public class RelatoriosController {
 
     @FXML
     private TableView<ObservableList<String>> tableReport;
-    
+
     EstadiaDao estadiaDao = new EstadiaDao();
     ReservaDao reservaDao = new ReservaDao();
     HospedeDao hospedeDao = new HospedeDao();
@@ -50,13 +50,13 @@ public class RelatoriosController {
         }
 
     }
-    
+
     private void showHospedesAtuais() {
-        
+
         List<String> columns = Arrays.asList("Hospede", "Data Início", "Data Término", "Quarto");
         addColumns(columns);
-        ObservableList<ObservableList<String>> data = FXCollections.observableArrayList(); 
-        
+        ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
+
         List<Estadia> estadias = estadiaDao.getCurrents();
 
         Iterator<Estadia> estadiasIterator = estadias.iterator();
@@ -68,17 +68,17 @@ public class RelatoriosController {
             row.add(DateUtils.format(estadia.getDataHoraInicio()));
             row.add(DateUtils.format(estadia.getDataHoraTermino()));
             row.add(estadia.getAcomodacao().toString());
-            data.add(row); 
+            data.add(row);
         }
         tableReport.setItems(data);
     }
-    
+
     private void showReservasAtuais() {
-        
+
         List<String> columns = Arrays.asList("Nome", "Telefone", "Data Entrada", "Data Saída", "Quarto");
         addColumns(columns);
-        ObservableList<ObservableList<String>> data = FXCollections.observableArrayList(); 
-        
+        ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
+
         List<Reserva> reservas = reservaDao.getBookingsforToday();
 
         Iterator<Reserva> reservasIterator = reservas.iterator();
@@ -91,11 +91,11 @@ public class RelatoriosController {
             row.add(DateUtils.format(reserva.getDataHoraChegada()));
             row.add(DateUtils.format(reserva.getDataHoraSaida()));
             row.add(reserva.getAcomodacao().toString());
-            data.add(row); 
+            data.add(row);
         }
         tableReport.setItems(data);
     }
-    
+
     private void addColumns(List<String> columns) {
         for (int i = 0; i < columns.size(); i++) {
             final int finalIdx = i;

@@ -27,10 +27,10 @@ public class CategoriaItem implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -48,5 +48,5 @@ public class CategoriaItem implements AbstractEntity, Serializable {
     public String toString() {
         return nome;
     }
-    
+
 }

@@ -76,23 +76,23 @@ public class EstadiaController implements Initializable {
 
     @FXML
     private JFXTextField inputQtdeItensConsumo;
-        
+
     ItemConsumoDao itemConsumoDao = new ItemConsumoDao();
-    
+
     ObservableList<ItemConsumo> obItensConsumo;
-    
+
     ObservableList<ItemConsumoTable> obConsumos;
-    
+
     EstadiaDao estadiaDao = new EstadiaDao();
-    
+
     Estadia estadia;
-    
+
     ConsumoDao consumoDao = new ConsumoDao();
-    
+
     ItemConsumo itemConsumo;
-    
+
     Double valorEstadia = 0.0, valorConsumo = 0.0, valorTotal = 0.0;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initTable();
@@ -105,7 +105,7 @@ public class EstadiaController implements Initializable {
         PagamentoController pgtoController = (PagamentoController) AppUtils.loadWindow(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", null);
         pgtoController.setData(estadia, valorEstadia, valorConsumo);
     }
-    
+
     private void initTable() {
         tableItensConsumo.getColumns().clear();
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -115,30 +115,30 @@ public class EstadiaController implements Initializable {
         colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
         tableItensConsumo.getColumns().addAll(colNome, colTipo, colQtde, colData, colValor);
     }
-    
+
     private void loadConsumo(Estadia estadia) {
-        
+
         List<Consumo> consumos = estadia.getConsumos();
-        
+
         List<ItemConsumoTable> listConsumos = new ArrayList<>();
-        
+
         consumos.forEach(consumo -> {
             valorConsumo += consumo.getQuantidade() * consumo.getValor();
             valorTotal += consumo.getQuantidade() * consumo.getValor();
             listConsumos.add(consumo.getRowTable());
         });
-        
+
         obConsumos = FXCollections.observableArrayList(listConsumos);
         tableItensConsumo.setItems(obConsumos);
         labelPrecoConsumo.setText(NumberUtils.formatCurrency(valorConsumo));
         labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
     }
-    
+
     private void loadItensConsumo() {
         obItensConsumo = FXCollections.observableArrayList(itemConsumoDao.getAll());
         cbItensConsumo.setItems(obItensConsumo);
     }
-    
+
     private void loadValidators() {
         MasksUtils.onlyDigitsValue(inputQtdeItensConsumo);
         ValidatorUtils.setValidator(inputQtdeItensConsumo, "Informe a quantidade");
@@ -152,7 +152,7 @@ public class EstadiaController implements Initializable {
             inputQtdeItensConsumo.validate();
             return;
         }
-        
+
         Consumo consumo = new Consumo();
         consumo.setEstadia(estadia);
         consumo.setDataHora(new Date());
@@ -167,7 +167,7 @@ public class EstadiaController implements Initializable {
         labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
         resetConsumoForm();
     }
-    
+
     private void resetConsumoForm() {
         itemConsumo = null;
         cbItensConsumo.getSelectionModel().select(itemConsumo);
@@ -181,7 +181,7 @@ public class EstadiaController implements Initializable {
     void setItemConsumo(ActionEvent event) {
         itemConsumo = cbItensConsumo.getSelectionModel().getSelectedItem();
     }
-    
+
     public void setData(Estadia estadia) {
         this.estadia = estadia;
         Reserva reserva = estadia.getReserva();
@@ -191,17 +191,17 @@ public class EstadiaController implements Initializable {
         labelRoomType.setText(estadia.getAcomodacao().toString());
         labelQtdeAdultos.setText(reserva.getQtdeAdulto().toString());
         labelQtdeCriancas.setText(reserva.getQtdeCrianca().toString());
-        
+
         Integer dias = DateUtils.diffInDays(estadia.getDataHoraInicio(), estadia.getDataHoraTermino());
-        valorEstadia =  dias * estadia.getReserva().getValorDiaria();
-        
+        valorEstadia = dias * estadia.getReserva().getValorDiaria();
+
         valorConsumo = 0.0;
         valorTotal = valorEstadia;
         labelPrecoEstadia.setText(NumberUtils.formatCurrency(valorEstadia));
         labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
-        
+
         loadConsumo(estadia);
-        
+
         Pagamento pagamento = estadia.getPagamento();
         if (pagamento != null) {
             if (pagamento.getStatus() == Pagamento.STATUS_ABERTO) {
@@ -211,7 +211,7 @@ public class EstadiaController implements Initializable {
             }
         }
     }
-    
+
     private void statusPgto(Boolean pago) {
         cbItensConsumo.getSelectionModel().select(null);
         inputQtdeItensConsumo.clear();
@@ -227,7 +227,7 @@ public class EstadiaController implements Initializable {
             btnPay.setText("Detalhes da Fatura");
         }
     }
-    
+
     private void reset() {
         resetConsumoForm();
         loadItensConsumo();
@@ -235,7 +235,7 @@ public class EstadiaController implements Initializable {
         btnPay.getStyleClass().add("btn-accent");
         btnPay.setText("Pagar Estadia");
     }
-    
+
     @FXML
     void back(MouseEvent event) {
         reset();

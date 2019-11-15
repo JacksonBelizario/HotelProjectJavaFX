@@ -39,7 +39,6 @@ import javafx.scene.layout.Pane;
  */
 public class AcomodacoesController implements Initializable {
 
-
     @FXML
     private Pane pnlRooms;
 
@@ -57,28 +56,27 @@ public class AcomodacoesController implements Initializable {
 
     @FXML
     private JFXButton btnReset;
-    
+
     private TipoAcomodacaoDao tipoAcomodacaoDao = new TipoAcomodacaoDao();
-        
+
     private AcomodacaoDao acomodacaoDao = new AcomodacaoDao();
-    
+
     private ObservableList<TipoAcomodacao> obTipos;
-    
+
     private TipoAcomodacao tipoAcomodacao;
-    
+
     private Acomodacao acomodacao;
 
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadValidators();
         loadTipos();
         loadItens();
     }
-    
+
     private void loadValidators() {
         MasksUtils.onlyDigitsValue(inputAndar);
-        
+
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Campo obrigatório");
         inputAndar.getValidators().add(validator);
@@ -98,7 +96,7 @@ public class AcomodacoesController implements Initializable {
             }
         });
     }
-    
+
     private void loadTipos() {
         obTipos = FXCollections.observableArrayList(tipoAcomodacaoDao.getAll());
         cbTipos.setItems(obTipos);
@@ -111,7 +109,7 @@ public class AcomodacoesController implements Initializable {
 
     @FXML
     void save(MouseEvent event) {
-        
+
         Boolean edit = acomodacao != null;
 
         if (inputAndar.getText().isEmpty()) {
@@ -125,15 +123,14 @@ public class AcomodacoesController implements Initializable {
         if (!edit) {
             acomodacao = new Acomodacao();
         }
-        
+
         acomodacao.setAndar(Integer.valueOf(inputAndar.getText()));
         acomodacao.setTipoAcomodacao(tipoAcomodacao);
 
         if (!edit) {
             acomodacaoDao.save(acomodacao);
             addItem(acomodacao);
-        }
-        else {
+        } else {
             acomodacaoDao.update(acomodacao);
             loadItens();
         }
@@ -144,14 +141,14 @@ public class AcomodacoesController implements Initializable {
     void setAndar(ActionEvent event) {
         tipoAcomodacao = cbTipos.getSelectionModel().getSelectedItem();
     }
-    
+
     private void loadItens() {
         fpAcomodacoes.getChildren().clear();
-        
+
         List<Acomodacao> acomodacoes = acomodacaoDao.getAll();
 
         Iterator<Acomodacao> acomodacoesIterator = acomodacoes.iterator();
-        while (acomodacoesIterator.hasNext()){
+        while (acomodacoesIterator.hasNext()) {
             addItem((Acomodacao) acomodacoesIterator.next());
         }
     }
@@ -170,7 +167,6 @@ public class AcomodacoesController implements Initializable {
                 editItem(acomodacao);
             });
 
-
             ImageView btnDel = (ImageView) node.lookup("#btnDel");
             btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
 
@@ -187,13 +183,12 @@ public class AcomodacoesController implements Initializable {
                 HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover quarto?", "Esta ação não pode ser desfeita!");
             });
 
-
         } catch (Exception ex) {
             AlertMaker.showErrorMessage(ex);
         }
 
     }
-    
+
     private void editItem(Acomodacao acomodacao) {
         reset();
         this.acomodacao = acomodacao;
@@ -201,7 +196,7 @@ public class AcomodacoesController implements Initializable {
         cbTipos.getSelectionModel().select(tipoAcomodacao);
         inputAndar.setText(acomodacao.getAndar().toString());
     }
-    
+
     private void reset() {
         acomodacao = null;
         tipoAcomodacao = null;
@@ -209,5 +204,5 @@ public class AcomodacoesController implements Initializable {
         inputAndar.resetValidation();
         inputAndar.clear();
     }
-    
+
 }

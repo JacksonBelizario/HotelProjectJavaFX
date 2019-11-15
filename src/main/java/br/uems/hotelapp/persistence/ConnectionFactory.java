@@ -14,10 +14,12 @@ import javax.persistence.Persistence;
  * @author Jackson
  */
 public class ConnectionFactory {
-    
-	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotel");;
+
+    private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory("hotel");
+
+    ;
 	
-	public static EntityManager getEntityManager(){
-            return factory.createEntityManager();
-	}
+	public static EntityManager getEntityManager() {
+        return factory.createEntityManager();
+    }
 }

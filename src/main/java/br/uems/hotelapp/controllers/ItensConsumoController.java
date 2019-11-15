@@ -37,7 +37,6 @@ import javafx.scene.layout.VBox;
  * @author Jackson
  */
 public class ItensConsumoController implements Initializable {
-    
 
     @FXML
     private Pane pnlConsumable;
@@ -59,17 +58,17 @@ public class ItensConsumoController implements Initializable {
 
     @FXML
     private JFXComboBox<CategoriaItem> cbCategorias;
-    
+
     CategoriaItemDao categoriaItemDao = new CategoriaItemDao();
-        
+
     ItemConsumoDao itemConsumoDao = new ItemConsumoDao();
-    
+
     ObservableList<CategoriaItem> obCategorias;
-    
+
     CategoriaItem categoriaItem;
-    
+
     ItemConsumo itemConsumo;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadValidators();
@@ -77,32 +76,32 @@ public class ItensConsumoController implements Initializable {
         loadItens();
         reset();
     }
-    
+
     private void loadValidators() {
         NumberUtils.mascaraDinheiro(inputPreco);
         ValidatorUtils.setValidator(inputNome, "Informe o nome");
         ValidatorUtils.setValidator(inputDescricao, "Informe a descrição");
     }
-    
+
     private void loadCategories() {
         obCategorias = FXCollections.observableArrayList(categoriaItemDao.getAll());
         cbCategorias.setItems(obCategorias);
     }
-    
+
     @FXML
     void setCategoria(ActionEvent event) {
-        
+
         categoriaItem = cbCategorias.getSelectionModel().getSelectedItem();
 
     }
-    
+
     private void loadItens() {
         pnListItens.getChildren().clear();
-        
+
         List<ItemConsumo> itensConsumo = itemConsumoDao.getAll();
 
         Iterator<ItemConsumo> itensConsumoIterator = itensConsumo.iterator();
-        while (itensConsumoIterator.hasNext()){
+        while (itensConsumoIterator.hasNext()) {
             addItem((ItemConsumo) itensConsumoIterator.next());
         }
     }
@@ -120,7 +119,6 @@ public class ItensConsumoController implements Initializable {
             btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 editItem(itemConsumo);
             });
-
 
             ImageView btnDel = (ImageView) node.lookup("#btnDel");
             btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
@@ -142,10 +140,10 @@ public class ItensConsumoController implements Initializable {
         }
 
     }
-    
+
     @FXML
     void save(MouseEvent event) {
-        
+
         Boolean edit = itemConsumo != null;
 
         if (inputNome.getText().isEmpty()) {
@@ -163,7 +161,7 @@ public class ItensConsumoController implements Initializable {
         if (!edit) {
             itemConsumo = new ItemConsumo();
         }
-        
+
         itemConsumo.setItem(inputNome.getText());
         itemConsumo.setDescricao(inputDescricao.getText());
         itemConsumo.setPreco(NumberUtils.getNumericValue(inputPreco.getText()));
@@ -172,14 +170,13 @@ public class ItensConsumoController implements Initializable {
         if (!edit) {
             itemConsumoDao.save(itemConsumo);
             addItem(itemConsumo);
-        }
-        else {
+        } else {
             itemConsumoDao.update(itemConsumo);
             loadItens();
         }
         reset();
     }
-    
+
     private void editItem(ItemConsumo itemConsumo) {
         reset();
         this.itemConsumo = itemConsumo;
@@ -189,13 +186,12 @@ public class ItensConsumoController implements Initializable {
         inputDescricao.setText(itemConsumo.getDescricao());
         inputPreco.setText(NumberUtils.formatNumber(itemConsumo.getPreco()));
     }
-    
-    
+
     @FXML
     void reset(MouseEvent event) {
         reset();
     }
-    
+
     private void reset() {
         itemConsumo = null;
         categoriaItem = null;
@@ -207,5 +203,5 @@ public class ItensConsumoController implements Initializable {
         inputPreco.resetValidation();
         inputPreco.clear();
     }
-    
+
 }

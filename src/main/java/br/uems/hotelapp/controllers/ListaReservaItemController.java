@@ -18,22 +18,22 @@ public class ListaReservaItemController {
 
     @FXML
     private Button btnStatus, btnCancel;
-    
+
     public void setData(Reserva reserva) {
         labelQuarto.setText(reserva.getAcomodacao().toString());
         labelHospede.setText(reserva.getHospede().toString());
         labelStartDate.setText(DateUtils.format(reserva.getDataHoraChegada()));
         labelEndDate.setText(DateUtils.format(reserva.getDataHoraSaida()));
-        
+
         Integer dias = DateUtils.diffInDays(reserva.getDataHoraChegada(), reserva.getDataHoraSaida());
-        
+
         labelPreco.setText("R$ " + NumberUtils.formatNumber(dias * reserva.getValorDiaria()));
     }
-    
+
     public Button getBtnStatus() {
         return btnStatus;
     }
-    
+
     public Button getBtnCancel() {
         return btnCancel;
     }

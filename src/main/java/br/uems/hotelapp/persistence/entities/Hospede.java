@@ -24,11 +24,10 @@ import org.hibernate.annotations.ColumnDefault;
  *
  * @author Jackson
  */
-
 @Entity
 @Table(name = "hospede")
 public class Hospede implements AbstractEntity, Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -36,39 +35,39 @@ public class Hospede implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
-    
+
     @Column(name = "endereco", nullable = true, length = 255)
     private String endereco;
-    
+
     @Column(name = "cidade", nullable = true, length = 255)
     private String cidade;
-    
+
     @Column(name = "estado", nullable = true, length = 255)
     private String estado;
-    
+
     @Column(name = "pais", nullable = true, length = 255)
     private String pais;
-    
+
     @Column(name = "telefone", nullable = true, length = 255)
     private String telefone;
-    
+
     @Column(name = "email", nullable = true, length = 255)
     private String email;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nascimento", nullable = true)
     private Date data_nascimento;
-    
+
     @Column(name = "documento", nullable = true, length = 255)
     private String documento;
-    
+
     @Column(name = "tipo_doc", nullable = true)
     private Integer tipo_doc;
-    
-    @Column(name = "deleted", nullable = false,  columnDefinition = "int4 default 0", insertable = false, updatable = true)
+
+    @Column(name = "deleted", nullable = false, columnDefinition = "int4 default 0", insertable = false, updatable = true)
     private Integer deleted;
 
     public Integer getId() {
@@ -110,11 +109,11 @@ public class Hospede implements AbstractEntity, Serializable {
     public String getTelefone() {
         return telefone;
     }
-    
+
     public void setDataNascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
-    
+
     public void setDataNascimento(String data_nascimento, DateFormat df) {
         try {
             this.data_nascimento = df.parse(data_nascimento);
@@ -122,7 +121,7 @@ public class Hospede implements AbstractEntity, Serializable {
             //
         }
     }
-    
+
     public Date getDataNascimento() {
         return data_nascimento;
     }
@@ -170,10 +169,10 @@ public class Hospede implements AbstractEntity, Serializable {
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
     }
-    
+
     @Override
     public String toString() {
         return id + " | " + nome;
     }
-    
+
 }

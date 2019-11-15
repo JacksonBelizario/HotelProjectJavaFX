@@ -30,19 +30,19 @@ public class Acompanhante implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Override
     public Integer getId() {
         return id;
     }
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_reserva", nullable = false, updatable = false)
     Reserva reserva;
-    
+
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
-    
+
     @Column(name = "idade", nullable = false)
     private Integer idade;
 
@@ -69,5 +69,5 @@ public class Acompanhante implements AbstractEntity, Serializable {
     public void setIdade(Integer idade) {
         this.idade = idade;
     }
-    
+
 }

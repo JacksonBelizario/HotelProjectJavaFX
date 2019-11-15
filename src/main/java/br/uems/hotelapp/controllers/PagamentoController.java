@@ -5,7 +5,6 @@
  */
 package br.uems.hotelapp.controllers;
 
-
 import br.uems.hotelapp.enums.FormaPagamento;
 import br.uems.hotelapp.persistence.dao.PagamentoDao;
 import br.uems.hotelapp.persistence.entities.Estadia;
@@ -56,18 +55,18 @@ public class PagamentoController implements Initializable {
 
     @FXML
     private JFXButton btnCancel, btnSave, btnPay;
-    
+
     private FormaPagamento formaPagamento;
-    
+
     private Hospede hospede;
-    
+
     private Double valorConsumo, valorEstadia, valorTotal;
-    
+
     Estadia estadia;
-    
+
     PagamentoDao pagamentoDao = new PagamentoDao();
     Pagamento pagamento;
-    
+
     LocalDate dataVencimento = LocalDate.now();
 
     @Override
@@ -78,7 +77,7 @@ public class PagamentoController implements Initializable {
         MasksUtils.onlyIntegerValue(inputDesconto);
         ValidatorUtils.setValidator(cbFormaPagamento, "Informe a forma de pagamento");
         ValidatorUtils.setValidator(inputDataVenc, "Informe a data de Vencimento");
-        
+
         btnSave.setDisable(true);
         cbFormaPagamento.getItems().setAll(Arrays.asList(FormaPagamento.values()));
         inputDataVenc.setValue(dataVencimento);
@@ -110,7 +109,7 @@ public class PagamentoController implements Initializable {
     void pay(ActionEvent event) {
         gerarPagamento(true);
     }
-    
+
     void gerarPagamento(Boolean quitar) {
         if (formaPagamento == null || inputDataVenc.getValue() == null) {
             cbFormaPagamento.validate();
@@ -118,9 +117,9 @@ public class PagamentoController implements Initializable {
             return;
         }
         pagamento = pagamentoDao.findByEstadia(estadia.getId());
-        
+
         Boolean edit = pagamento != null;
-        
+
         if (!edit) {
             pagamento = new Pagamento();
         }
@@ -138,7 +137,7 @@ public class PagamentoController implements Initializable {
         pagamento.setDesconto(NumberUtils.parseInt(inputDesconto.getText()));
         pagamento.setMulta(NumberUtils.parseInt(inputMulta.getText()));
         pagamento.setFormaPagamento(formaPagamento.ordinal());
-        
+
         if (!edit) {
             pagamentoDao.save(pagamento);
         } else {
@@ -147,12 +146,12 @@ public class PagamentoController implements Initializable {
         this.estadia.setPagamento(pagamento);
         closeWindow();
     }
-    
+
     private void closeWindow() {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     void onDate(ActionEvent event) {
         dataVencimento = inputDataVenc.getValue();
@@ -168,7 +167,7 @@ public class PagamentoController implements Initializable {
             btnPay.setDisable(true);
         }
     }
-    
+
     @FXML
     void onChange(KeyEvent event) {
         atualizarTotal();
@@ -178,7 +177,7 @@ public class PagamentoController implements Initializable {
         this.estadia = estadia;
         this.valorEstadia = valorEstadia;
         this.valorConsumo = valorConsumo;
-        
+
         labelPrecoConsumo.setText(NumberUtils.formatCurrency(valorConsumo));
         labelPrecoEstadia.setText(NumberUtils.formatCurrency(valorEstadia));
         DateUtils.setDatePickerLimit(inputDataVenc, LocalDate.now(), null);
@@ -201,26 +200,24 @@ public class PagamentoController implements Initializable {
             inputDataVenc.setDisable(true);
             inputDesconto.setDisable(true);
             inputMulta.setDisable(true);
-            
+
             btnSave.setDisable(true);
-            if (
-                    pagamento.getStatus() == Pagamento.STATUS_PAGO ||
-                    DateUtils.isBeforeDay(pagamento.getDataVencimento(), Calendar.getInstance().getTime())
-                ) {
+            if (pagamento.getStatus() == Pagamento.STATUS_PAGO
+                    || DateUtils.isBeforeDay(pagamento.getDataVencimento(), Calendar.getInstance().getTime())) {
                 btnPay.setDisable(true);
             }
         }
         atualizarTotal();
     }
-    
+
     private void atualizarTotal() {
         Double valorOrig = valorConsumo + valorEstadia;
         Double desconto = NumberUtils.parseDouble(inputDesconto.getText());
         Double multa = NumberUtils.parseDouble(inputMulta.getText());
-    
+
         desconto = (desconto / 100.0) * valorOrig;
         multa = (multa / 100.0) * valorOrig;
-        
+
         valorTotal = valorOrig - desconto + multa;
         labelPrecoTotal.setText(NumberUtils.formatCurrency(valorTotal));
     }

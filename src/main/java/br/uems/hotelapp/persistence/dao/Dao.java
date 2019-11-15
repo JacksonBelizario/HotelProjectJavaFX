@@ -25,7 +25,7 @@ import javax.persistence.criteria.Root;
  * @param <T>
  */
 public abstract class Dao<T> implements AbstractDao<T> {
-    
+
     protected static EntityManager entityManager = ConnectionFactory.getEntityManager();
 
     protected Class<T> entityClass;
@@ -44,16 +44,14 @@ public abstract class Dao<T> implements AbstractDao<T> {
 
         this.entityClass = (Class<T>) ((ParameterizedType) type).getActualTypeArguments()[0];
     }
-    
-     
+
     protected void executeInsideTransaction(Consumer<EntityManager> action) {
         EntityTransaction tx = entityManager.getTransaction();
         try {
             tx.begin();
             action.accept(entityManager);
-            tx.commit(); 
-        }
-        catch (RuntimeException e) {
+            tx.commit();
+        } catch (RuntimeException e) {
             tx.rollback();
             throw e;
         }
@@ -73,15 +71,15 @@ public abstract class Dao<T> implements AbstractDao<T> {
     public void update(T entity) {
         executeInsideTransaction(entityMan -> entityMan.merge(entity));
     }
-    
+
     List<T> getList(String queryName, Map<String, Object> params) {
-      Query query = entityManager.createNamedQuery(queryName);
-      if (params != null) {
-          params.entrySet().forEach((paramEntry) -> {
-              query.setParameter(paramEntry.getKey(), paramEntry.getValue());
-          });
-      }
-      return query.getResultList();
+        Query query = entityManager.createNamedQuery(queryName);
+        if (params != null) {
+            params.entrySet().forEach((paramEntry) -> {
+                query.setParameter(paramEntry.getKey(), paramEntry.getValue());
+            });
+        }
+        return query.getResultList();
     }
 
     public List<T> getList() {
@@ -92,7 +90,7 @@ public abstract class Dao<T> implements AbstractDao<T> {
     public T find(Integer id) {
         return entityManager.find(entityClass, id);
     }
-    
+
     @Override
     public List<T> getAll() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();

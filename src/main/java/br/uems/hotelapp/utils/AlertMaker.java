@@ -177,7 +177,6 @@ public class AlertMaker {
 //            exp.printStackTrace();
 //        }
 //    }
-
     private static void styleAlert(Alert alert) {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         //LibraryAssistantUtil.setStageIcon(stage);
@@ -186,11 +185,11 @@ public class AlertMaker {
         dialogPane.getStylesheets().add("/styles/Styles.css");
         dialogPane.getStyleClass().add("custom-alert");
     }
-    
+
     public static void snackBar(Pane pane, String message) {
-       snackBar(pane, message, 5);
+        snackBar(pane, message, 5);
     }
-    
+
     public static void snackBar(Pane pane, String message, long duration) {
         JFXSnackbar bar = new JFXSnackbar(pane);
         Label label = new Label();

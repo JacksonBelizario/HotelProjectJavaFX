@@ -11,12 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
 public class MainApp extends Application {
-    
-    
+
     public static MainApp mainApp;
-    
+
     public static MainApp getAppController() {
         return mainApp;
     }
@@ -28,18 +26,18 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         MainApp.setAppController(this);
-        
+
         ConnectionFactory.getEntityManager();
-        
+
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Home.fxml"));
-        
+
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Poppins:400,700");
         scene.setFill(Color.TRANSPARENT);
-        
+
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Sistema Hoteleiro");
         stage.getIcons().add(new Image("/images/reserva.png"));

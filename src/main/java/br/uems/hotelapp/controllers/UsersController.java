@@ -27,10 +27,9 @@ import javafx.scene.layout.VBox;
  * @author Jackson
  */
 public class UsersController implements Initializable {
-    
-    
+
     public static UsersController controller;
-    
+
     public static UsersController getController() {
         return controller;
     }
@@ -38,33 +37,32 @@ public class UsersController implements Initializable {
     private static void setController(UsersController controller) {
         UsersController.controller = controller;
     }
-    
+
     @FXML
     private Pane pnlUsers;
 
     @FXML
     private VBox pnListUsers;
-        
+
     FuncionarioDao funcionarioDao = new FuncionarioDao();
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setController(this);
         loadData();
     }
-    
-    
+
     public void loadData() {
         pnListUsers.getChildren().clear();
-        
+
         List<Funcionario> funcionarios = funcionarioDao.getAll();
 
         Iterator<Funcionario> funcionariosIterator = funcionarios.iterator();
-        while (funcionariosIterator.hasNext()){
+        while (funcionariosIterator.hasNext()) {
             addItem((Funcionario) funcionariosIterator.next());
         }
     }
-    
+
     private void addItem(Funcionario funcionario) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserItem.fxml"));
@@ -78,7 +76,6 @@ public class UsersController implements Initializable {
             btnEdit.setOnMouseClicked((MouseEvent mouseEvent) -> {
                 HomeController.getController().showUserForm(funcionario);
             });
-
 
             ImageView btnDel = (ImageView) controller.getBtnDel();
             btnDel.setOnMouseClicked((MouseEvent mouseEvent) -> {
@@ -95,7 +92,6 @@ public class UsersController implements Initializable {
 
                 HomeController.getController().showMaterialDialog(Arrays.asList(noButton, yesButton), "Remover funcionário?", "Esta ação não pode ser desfeita!");
             });
-
 
         } catch (Exception e) {
         }

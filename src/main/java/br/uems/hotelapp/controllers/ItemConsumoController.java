@@ -5,7 +5,6 @@
  */
 package br.uems.hotelapp.controllers;
 
-
 import br.uems.hotelapp.persistence.entities.ItemConsumo;
 import br.uems.hotelapp.utils.NumberUtils;
 import javafx.fxml.FXML;
@@ -28,7 +27,7 @@ public class ItemConsumoController {
 
     @FXML
     private ImageView btnDel;
-    
+
     public void setData(ItemConsumo itemConsumo) {
         try {
             labelNome.setText(itemConsumo.getItem());

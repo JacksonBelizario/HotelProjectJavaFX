@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pagamento")
 public class Pagamento implements AbstractEntity, Serializable {
-    
+
     public static int STATUS_ABERTO = 0;
     public static int STATUS_PAGO = 1;
 
@@ -36,40 +36,40 @@ public class Pagamento implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codigo_estadia", nullable = false, updatable = false)
     Estadia estadia;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora", nullable = false)
     private Date dataHora;
-    
+
     @Column(name = "forma_pagamento", nullable = false, length = 255)
     private Integer formaPagamento;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "data_vencimento", nullable = true)
     private Date dataVencimento;
-    
+
     @Column(name = "valor_total_diaria", nullable = false)
     private Double valorTotalDiaria;
-    
+
     @Column(name = "valor_total_consumo", nullable = true)
     private Double valorTotalConsumo;
-    
+
     @Column(name = "valor", nullable = false)
     private Double valor;
-    
+
     @Column(name = "desconto")
     private Integer desconto;
-    
+
     @Column(name = "multa")
     private Integer multa;
-    
+
     @Column(name = "status", nullable = false)
     private Integer status;
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -154,5 +154,5 @@ public class Pagamento implements AbstractEntity, Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
-    
+
 }

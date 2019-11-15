@@ -48,7 +48,6 @@ public class CustomerItemController {
     @FXML
     private ImageView btnDel;
 
-
     @FXML
     void onCard(MouseEvent event) {
 
@@ -63,7 +62,7 @@ public class CustomerItemController {
     void onRemove(MouseEvent event) {
 
     }
-    
+
     public void setData(Hospede hospede) {
         try {
             labelNome.setText(hospede.getNome());
@@ -77,15 +76,15 @@ public class CustomerItemController {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public ImageView getBtnEdit() {
         return btnEdit;
     }
-    
+
     public ImageView getBtnDel() {
         return btnDel;
     }
-    
+
     public ImageView getBtnCard() {
         return btnCard;
     }

@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "dados_cartao")
 public class DadosCartao implements AbstractEntity, Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -32,25 +32,24 @@ public class DadosCartao implements AbstractEntity, Serializable {
     @Basic(optional = false)
     @Column(name = "codigo", unique = true, nullable = false)
     private Integer id;
-    
+
     @Column(name = "codigo_hospede", unique = true, nullable = false)
     private Integer codigo_hospede;
-    
+
     @Column(name = "numero", nullable = false, length = 255)
     private String numero;
-    
+
     @Column(name = "nome_cartao", nullable = false, length = 255)
     private String nome_cartao;
-    
+
     @Column(name = "codigo_seguranca", nullable = false, length = 3)
     private String codigo_seguranca;
-    
+
     @Column(name = "validade_mes", nullable = false, length = 2)
     private String validade_mes;
-    
+
     @Column(name = "validade_ano", nullable = false, length = 2)
     private String validade_ano;
-
 
     public Integer getId() {
         return id;
@@ -103,5 +102,5 @@ public class DadosCartao implements AbstractEntity, Serializable {
     public void setValidadeAno(String validade_ano) {
         this.validade_ano = validade_ano;
     }
-    
+
 }

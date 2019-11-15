@@ -5,7 +5,6 @@
  */
 package br.uems.hotelapp.controllers;
 
-
 import br.uems.hotelapp.persistence.dao.DadosCartaoDao;
 import br.uems.hotelapp.persistence.entities.DadosCartao;
 import br.uems.hotelapp.persistence.entities.Hospede;
@@ -34,13 +33,13 @@ public class CartaoController implements Initializable {
     private JFXTextField inputTitular, inputNumCartao, inputMesVal, inputAnoVal, inputCVV;
 
     @FXML
-    private JFXButton btnCancel,  btnSave;
-    
+    private JFXButton btnCancel, btnSave;
+
     DadosCartaoDao dadosCartaoDao = new DadosCartaoDao();
     DadosCartao dadosCartao;
     Boolean edit = true;
     Hospede hospede;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MasksUtils.maxField(inputMesVal, 2);
@@ -67,8 +66,7 @@ public class CartaoController implements Initializable {
                 || inputTitular.getText().trim().isEmpty()
                 || inputCVV.getText().trim().isEmpty()
                 || inputMesVal.getText().trim().isEmpty()
-                || inputAnoVal.getText().trim().isEmpty()
-            ) {
+                || inputAnoVal.getText().trim().isEmpty()) {
             inputNumCartao.validate();
             inputTitular.validate();
             inputCVV.validate();
@@ -76,26 +74,25 @@ public class CartaoController implements Initializable {
             inputAnoVal.validate();
             return;
         }
-        dadosCartao.setNumero(inputNumCartao.getText());                                 
-        dadosCartao.setNomeCartao(inputTitular.getText());                           
-        dadosCartao.setCodigoSeguranca(inputCVV.getText());                           
-        dadosCartao.setValidadeMes(inputMesVal.getText());                         
+        dadosCartao.setNumero(inputNumCartao.getText());
+        dadosCartao.setNomeCartao(inputTitular.getText());
+        dadosCartao.setCodigoSeguranca(inputCVV.getText());
+        dadosCartao.setValidadeMes(inputMesVal.getText());
         dadosCartao.setValidadeAno(inputAnoVal.getText());
-        
+
         if (!edit) {
             dadosCartaoDao.save(dadosCartao);
-        }
-        else {
+        } else {
             dadosCartaoDao.update(dadosCartao);
         }
         closeWindow();
     }
-    
+
     public void setCustomer(Hospede hospede) {
         this.hospede = hospede;
         dadosCartao = dadosCartaoDao.findByHospede(hospede.getId());
         edit = dadosCartao != null;
-                
+
         if (edit) {
             inputNumCartao.setText(dadosCartao.getNumero());
             inputTitular.setText(dadosCartao.getNomeCartao());
@@ -107,7 +104,7 @@ public class CartaoController implements Initializable {
             dadosCartao.setCodigoHospede(hospede.getId());
         }
     }
-    
+
     private void closeWindow() {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
