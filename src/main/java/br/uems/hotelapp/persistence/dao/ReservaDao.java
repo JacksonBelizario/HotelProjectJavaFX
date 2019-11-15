@@ -5,11 +5,10 @@
  */
 package br.uems.hotelapp.persistence.dao;
 
-import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Reserva;
-import br.uems.hotelapp.utils.DateUtils;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -36,5 +35,12 @@ public class ReservaDao extends Dao<Reserva> {
                 "SELECT r FROM Reserva r"
                 + " WHERE cast(r.dataHoraChegada as date) = current_date")
                 .getResultList();
+    }
+
+    public int getCurrentsCount() {
+        Query query = entityManager.createQuery("SELECT COUNT(r) FROM Reserva r"
+        + " WHERE cast(r.dataHoraSaida as date) >= current_date and cast(r.dataHoraChegada as date) <= current_date");
+        
+        return ((Number) query.getSingleResult()).intValue();
     }
 }

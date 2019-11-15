@@ -113,8 +113,9 @@ public class HomeController implements Initializable {
 
     public void loadStats() {
         labelQuartos.setText(acomodacaoDao.getCount() + "");
-        labelOcupados.setText(estadiaDao.getCount() + "");
-        labelReservas.setText(reservaDao.getCount() + "");
+        labelOcupados.setText(estadiaDao.getCurrentsCount() + "");
+        labelReservas.setText(reservaDao.getCurrentsCount() + "");
+        labelLivres.setText((acomodacaoDao.getCount() - reservaDao.getCurrentsCount()) + "");
     }
 
     public void loadEstadias() {

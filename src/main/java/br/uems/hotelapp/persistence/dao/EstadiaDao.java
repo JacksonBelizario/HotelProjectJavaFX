@@ -8,6 +8,7 @@ package br.uems.hotelapp.persistence.dao;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.utils.DateUtils;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,6 +21,13 @@ public class EstadiaDao extends Dao<Estadia> {
                 "SELECT e FROM Estadia e JOIN Hospede h ON e.hospede.id = h.id"
                 + " WHERE cast(e.dataHoraInicio as date) <= current_date and cast(e.dataHoraTermino as date) >= current_date")
                 .getResultList();
+    }
+
+    public int getCurrentsCount() {
+        Query query = entityManager.createQuery("SELECT COUNT(e) FROM Estadia e JOIN Hospede h ON e.hospede.id = h.id"
+        + " WHERE cast(e.dataHoraInicio as date) <= current_date and cast(e.dataHoraTermino as date) >= current_date");
+        
+        return ((Number) query.getSingleResult()).intValue();
     }
 
 }
