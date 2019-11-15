@@ -2,12 +2,11 @@ package br.uems.hotelapp;
 
 import static javafx.application.Application.launch;
 import br.uems.hotelapp.persistence.ConnectionFactory;
+import br.uems.hotelapp.utils.AppUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -29,20 +28,15 @@ public class MainApp extends Application {
 
         ConnectionFactory.getEntityManager();
 
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Home.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Poppins:400,700");
-        scene.setFill(Color.TRANSPARENT);
-
+        AppUtils.setSceneStyle(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Sistema Hoteleiro");
-        stage.getIcons().add(new Image("/images/reserva.png"));
         stage.setScene(scene);
         stage.show();
+        AppUtils.setStageIcon(stage);
     }
 
     /**

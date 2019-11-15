@@ -8,6 +8,7 @@ import br.uems.hotelapp.persistence.entities.Funcionario;
 import br.uems.hotelapp.persistence.entities.Hospede;
 import br.uems.hotelapp.persistence.entities.Pagamento;
 import br.uems.hotelapp.utils.AlertMaker;
+import br.uems.hotelapp.utils.AppUtils;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class HomeController implements Initializable {
 
@@ -85,8 +89,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void closeWindow(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        closeStage();
+    }
+
+    private void closeStage() {
+        ((Stage) stackPane.getScene().getWindow()).close();
     }
 
     public void onMouseEntered(MouseEvent event) {
@@ -381,6 +388,24 @@ public class HomeController implements Initializable {
         }
         estadiaController.setData(estadia);
         pnlEstadia.toFront();
+    }
+    
+
+    @FXML
+    void signOut(MouseEvent event) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+            Scene scene = new Scene(parent);
+            AppUtils.setSceneStyle(scene);
+            Stage stage = new Stage(StageStyle.TRANSPARENT);
+            stage.setTitle("Sistema Hoteleiro");
+            stage.setScene(scene);
+            stage.show();
+            AppUtils.setStageIcon(stage);
+            closeStage();
+        }
+        catch (IOException ex) {
+        }
     }
 
     public void showMaterialDialog(List<JFXButton> controls, String header, String body) {

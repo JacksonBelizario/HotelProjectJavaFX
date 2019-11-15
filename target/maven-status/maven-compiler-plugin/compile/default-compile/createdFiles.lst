@@ -1,4 +1,5 @@
 br\uems\hotelapp\persistence\entities\Consumo$ItemConsumoTable.class
+br\uems\hotelapp\controllers\LoginController.class
 br\uems\hotelapp\persistence\ConnectionFactory.class
 br\uems\hotelapp\persistence\entities\Estadia.class
 br\uems\hotelapp\utils\NumberUtils.class

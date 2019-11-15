@@ -7,6 +7,7 @@ package br.uems.hotelapp.utils;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +23,24 @@ public abstract class ValidatorUtils {
     }
 
     public static void setValidator(JFXTextField node, String message) {
+
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage(message);
+        node.getValidators().add(validator);
+        node.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                node.validate();
+            } else {
+                node.resetValidation();
+            }
+        });
+    }
+
+    public static void setValidator(JFXPasswordField node) {
+        setValidator(node, "Campo obrigatório");
+    }
+
+    public static void setValidator(JFXPasswordField node, String message) {
 
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage(message);
