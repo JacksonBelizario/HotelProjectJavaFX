@@ -87,12 +87,14 @@ public class ReservaFormController implements Initializable {
     
     @FXML
     void onEndDate(ActionEvent event) {
+        if (inputEndDate.getValue() == null) return;
         LocalDate maxDate = inputEndDate.getValue().minusDays(1);
         DateUtils.setDatePickerLimit(inputStartDate, LocalDate.now(), maxDate);
     }
 
     @FXML
     void onStartDate(ActionEvent event) {
+        if (inputStartDate.getValue() == null) return;
         LocalDate minDate = inputStartDate.getValue().plusDays(1);
         DateUtils.setDatePickerLimit(inputEndDate, minDate, null);
     }

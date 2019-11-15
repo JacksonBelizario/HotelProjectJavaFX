@@ -7,7 +7,6 @@ package br.uems.hotelapp.controllers;
 
 
 import br.uems.hotelapp.enums.FormaPagamento;
-import br.uems.hotelapp.enums.TipoDocumento;
 import br.uems.hotelapp.persistence.dao.PagamentoDao;
 import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Hospede;

@@ -1,9 +1,13 @@
 package br.uems.hotelapp.controllers;
 
+import br.uems.hotelapp.persistence.dao.EstadiaDao;
 import br.uems.hotelapp.persistence.dao.HospedeDao;
+import br.uems.hotelapp.persistence.dao.ReservaDao;
+import br.uems.hotelapp.persistence.entities.Estadia;
 import br.uems.hotelapp.persistence.entities.Hospede;
+import br.uems.hotelapp.persistence.entities.Reserva;
+import br.uems.hotelapp.utils.DateUtils;
 import com.jfoenix.controls.JFXButton;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +33,9 @@ public class RelatoriosController {
 
     @FXML
     private TableView<ObservableList<String>> tableReport;
+    
+    EstadiaDao estadiaDao = new EstadiaDao();
+    ReservaDao reservaDao = new ReservaDao();
     HospedeDao hospedeDao = new HospedeDao();
 
     @FXML
@@ -46,19 +53,21 @@ public class RelatoriosController {
     
     private void showHospedesAtuais() {
         
-        List<String> columns = Arrays.asList("Nome", "Cidade", "Documento");
+        List<String> columns = Arrays.asList("Hospede", "Data Início", "Data Término", "Quarto");
         addColumns(columns);
         ObservableList<ObservableList<String>> data = FXCollections.observableArrayList(); 
         
-        List<Hospede> hospedes = hospedeDao.getAll();
+        List<Estadia> estadias = estadiaDao.getCurrents();
 
-        Iterator<Hospede> hospedesIterator = hospedes.iterator();
-        while (hospedesIterator.hasNext()) {
+        Iterator<Estadia> estadiasIterator = estadias.iterator();
+        while (estadiasIterator.hasNext()) {
             ObservableList<String> row = FXCollections.observableArrayList();
-            Hospede hospede = (Hospede) hospedesIterator.next();
+            Estadia estadia = (Estadia) estadiasIterator.next();
+            Hospede hospede = estadia.getHospede();
             row.add(hospede.getNome());
-            row.add(hospede.getCidade());
-            row.add(hospede.getDocumento());
+            row.add(DateUtils.format(estadia.getDataHoraInicio()));
+            row.add(DateUtils.format(estadia.getDataHoraTermino()));
+            row.add(estadia.getAcomodacao().toString());
             data.add(row); 
         }
         tableReport.setItems(data);
@@ -66,19 +75,22 @@ public class RelatoriosController {
     
     private void showReservasAtuais() {
         
-        List<String> columns = Arrays.asList("Nome2", "Cidade2", "Documento2");
+        List<String> columns = Arrays.asList("Nome", "Telefone", "Data Entrada", "Data Saída", "Quarto");
         addColumns(columns);
         ObservableList<ObservableList<String>> data = FXCollections.observableArrayList(); 
         
-        List<Hospede> hospedes = hospedeDao.getAll();
+        List<Reserva> reservas = reservaDao.getBookingsforToday();
 
-        Iterator<Hospede> hospedesIterator = hospedes.iterator();
-        while (hospedesIterator.hasNext()) {
+        Iterator<Reserva> reservasIterator = reservas.iterator();
+        while (reservasIterator.hasNext()) {
             ObservableList<String> row = FXCollections.observableArrayList();
-            Hospede hospede = (Hospede) hospedesIterator.next();
+            Reserva reserva = (Reserva) reservasIterator.next();
+            Hospede hospede = reserva.getHospede();
             row.add(hospede.getNome());
-            row.add(hospede.getCidade());
-            row.add(hospede.getDocumento());
+            row.add(hospede.getTelefone());
+            row.add(DateUtils.format(reserva.getDataHoraChegada()));
+            row.add(DateUtils.format(reserva.getDataHoraSaida()));
+            row.add(reserva.getAcomodacao().toString());
             data.add(row); 
         }
         tableReport.setItems(data);

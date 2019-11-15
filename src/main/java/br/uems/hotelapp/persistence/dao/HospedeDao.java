@@ -7,6 +7,7 @@ package br.uems.hotelapp.persistence.dao;
 
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Hospede;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
 
@@ -31,5 +32,13 @@ public class HospedeDao extends Dao<Hospede> {
     public List<Hospede> getAll() {
         TypedQuery<Hospede> query = entityManager.createQuery("SELECT h FROM Hospede h WHERE h.deleted = 0", Hospede.class);
         return query.getResultList();
+    }
+    
+    public List<Hospede> getCurrents() {
+        return entityManager.createQuery(
+            "SELECT h FROM Hospede h JOIN Estadia e ON h.id = e.hospede.id"
+                + " WHERE e.dataHoraInicio >= :today and e.dataHoraTermino <= :today")
+                .setParameter("today", new Date())
+                .getResultList();
     }
 }

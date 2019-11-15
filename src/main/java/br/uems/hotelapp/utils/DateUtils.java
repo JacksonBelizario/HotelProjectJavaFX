@@ -181,4 +181,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         );
         return periodo.getDays();
     }
+    
+    public static Date getToday() {
+        return truncate(new Date(), Calendar.DAY_OF_MONTH);
+    }
 }

@@ -7,6 +7,7 @@ package br.uems.hotelapp.persistence.dao;
 
 import static br.uems.hotelapp.persistence.dao.Dao.entityManager;
 import br.uems.hotelapp.persistence.entities.Reserva;
+import br.uems.hotelapp.utils.DateUtils;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -28,6 +29,14 @@ public class ReservaDao extends Dao<Reserva> {
             "SELECT r FROM Reserva r"
                 + " WHERE r.dataHoraSaida >= :today and r.dataHoraChegada <= :today")
                 .setParameter("today", new Date())
+                .getResultList();
+    }
+    
+    public List<Reserva> getBookingsforToday() {
+        return entityManager.createQuery(
+            "SELECT r FROM Reserva r"
+                + " WHERE cast(r.dataHoraChegada as date) = :today")
+                .setParameter("today", DateUtils.getToday())
                 .getResultList();
     }
 }
