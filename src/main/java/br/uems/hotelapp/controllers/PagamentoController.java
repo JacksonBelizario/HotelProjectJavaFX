@@ -71,6 +71,10 @@ public class PagamentoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        init();
+    }
+
+    private void init() {
         MasksUtils.maxField(inputMulta, 2);
         MasksUtils.maxField(inputDesconto, 2);
         MasksUtils.onlyIntegerValue(inputMulta);
@@ -174,6 +178,7 @@ public class PagamentoController implements Initializable {
     }
 
     public void setData(Estadia estadia, Double valorEstadia, Double valorConsumo) {
+        init();
         this.estadia = estadia;
         this.valorEstadia = valorEstadia;
         this.valorConsumo = valorConsumo;
@@ -182,7 +187,7 @@ public class PagamentoController implements Initializable {
         labelPrecoEstadia.setText(NumberUtils.formatCurrency(valorEstadia));
         DateUtils.setDatePickerLimit(inputDataVenc, LocalDate.now(), null);
         pagamento = pagamentoDao.findByEstadia(estadia.getId());
-        System.out.println("Estadia pgto: " + pagamento);
+        
         if (pagamento != null) {
             if (pagamento.getDesconto() != null) {
                 inputDesconto.setText(pagamento.getDesconto().toString());

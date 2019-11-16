@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -46,6 +47,27 @@ public class AppUtils {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.setResizable(false);
+            stage.show();
+            setStageIcon(stage);
+        } catch (IOException ex) {
+        }
+        return controller;
+    }
+
+    public static Object loadPopUp(URL loc, String title, Stage parentStage) {
+        Object controller = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(loc);
+            Parent parent = loader.load();
+            controller = loader.getController();
+            Scene scene = new Scene(parent);
+            setSceneStyle(scene);
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(parentStage);
             stage.show();
             setStageIcon(stage);
         } catch (IOException ex) {

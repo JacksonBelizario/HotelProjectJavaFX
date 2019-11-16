@@ -68,8 +68,6 @@ public class RelatoriosController implements Initializable {
 
         List<Estadia> estadias = estadiaDao.getCurrents();
 
-        System.out.println("estadias " + estadias.size());
-
         Iterator<Estadia> estadiasIterator = estadias.iterator();
         while (estadiasIterator.hasNext()) {
             ObservableList<String> row = FXCollections.observableArrayList();

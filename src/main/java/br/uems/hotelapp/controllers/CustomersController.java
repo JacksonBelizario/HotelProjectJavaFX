@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -36,6 +37,10 @@ public class CustomersController implements Initializable {
 
     private static void setController(CustomersController controller) {
         CustomersController.controller = controller;
+    }
+
+    private Stage getStage() {
+        return (Stage) pnList.getScene().getWindow();
     }
 
     @FXML
@@ -71,7 +76,7 @@ public class CustomersController implements Initializable {
 
             ImageView btnCard = (ImageView) controller.getBtnCard();
             btnCard.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                CartaoController cartaoController = (CartaoController) AppUtils.loadWindow(getClass().getResource("/fxml/Cartao.fxml"), "Adicionar Cartão", null);
+                CartaoController cartaoController = (CartaoController) AppUtils.loadPopUp(getClass().getResource("/fxml/Cartao.fxml"), "Adicionar Cartão", getStage());
                 cartaoController.setCustomer(hospede);
             });
 

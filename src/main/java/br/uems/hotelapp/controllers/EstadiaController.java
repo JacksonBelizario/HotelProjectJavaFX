@@ -35,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import org.apache.commons.lang3.StringUtils;
+import javafx.stage.Stage;
 
 public class EstadiaController implements Initializable {
 
@@ -102,7 +103,8 @@ public class EstadiaController implements Initializable {
 
     @FXML
     void save(MouseEvent event) {
-        PagamentoController pgtoController = (PagamentoController) AppUtils.loadWindow(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", null);
+        Stage stage = (Stage) pnlEstadia.getScene().getWindow();
+        PagamentoController pgtoController = (PagamentoController) AppUtils.loadPopUp(getClass().getResource("/fxml/Pagamento.fxml"), "Pagamento", stage);
         pgtoController.setData(estadia, valorEstadia, valorConsumo);
     }
 

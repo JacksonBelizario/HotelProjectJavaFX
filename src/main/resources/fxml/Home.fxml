@@ -296,6 +296,9 @@
                      </children>
                   </Pane>
                </children>
+               <VBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </VBox.margin>
             </StackPane>
          </children>
       </VBox>
