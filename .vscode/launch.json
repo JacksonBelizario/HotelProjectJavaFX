@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainApp",
+            "request": "launch",
+            "mainClass": "br.uems.hotelapp.MainApp",
+            "projectName": "hotelapp"
+        }
+    ]
+}
