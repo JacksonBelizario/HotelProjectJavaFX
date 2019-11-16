@@ -17,8 +17,7 @@
     </properties>
 
     <organization>
-        <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>Your Organisation</name>
+        <name>UEMS</name>
     </organization>
     
     <dependencies>
@@ -58,7 +57,7 @@
             <version>8.0.8</version>
         </dependency>
     </dependencies>
-
+    
     <build>
         <plugins>
             <plugin>
@@ -87,13 +86,12 @@
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
-                        
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${java.home}/../bin/javafxpackager</executable>
+                            <executable>${java.home}/../bin/javapackager</executable>
                             <arguments>
                                 <argument>-createjar</argument>
                                 <argument>-nocss2bin</argument>
@@ -124,7 +122,7 @@
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    <excludeDefaultDirectories>false</excludeDefaultDirectories>
                     <filesets>
                         <fileset>
                             <directory>target/classes</directory>
